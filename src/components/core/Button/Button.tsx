@@ -1,7 +1,7 @@
 import React from 'react';
 import { ButtonStyle } from './styles.css';
 
-interface IButton {
+interface ButtonProps {
   text: string;
   _disabled?: boolean;
   _width?: string;
@@ -15,7 +15,7 @@ const Button = ({
   _width = '425px',
   _height = '55px',
   _onClick,
-}: IButton) => {
+}: ButtonProps) => {
   return (
     <button className={ButtonStyle} disabled={_disabled} onClick={_onClick}>
       {text}
