@@ -1,7 +1,7 @@
-const MainPage = () => {
-  return (
-    <>메인페이지</>
-  )
-}
+import { MainPageStyle } from './MainPage.css';
 
-export default MainPage
+const MainPage = () => {
+  return <div className={MainPageStyle}>메인페이지</div>;
+};
+
+export default MainPage;
