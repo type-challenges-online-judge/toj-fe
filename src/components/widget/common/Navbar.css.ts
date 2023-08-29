@@ -9,6 +9,7 @@ export const NavbarStyle = style({
     'screen and (min-width: 1200px)': {
       maxWidth: '1200px',
       margin: '0 auto',
+      padding: '20px 0 14px',
     },
     'screen and (min-width: 768px) and (max-width: 1199px)': {
       padding: '20px 60px 14px',
