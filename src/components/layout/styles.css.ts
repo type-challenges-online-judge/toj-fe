@@ -2,5 +2,5 @@ import { style } from '@vanilla-extract/css';
 
 export const CommonLayoutStyle = style({
   width: '100%',
-  height: '100vh',
+  minHeight: 'calc(100vh - 61.77px)',
 });
