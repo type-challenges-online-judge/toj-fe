@@ -4,13 +4,14 @@ import './App.css';
 import { PageRouter } from './pages';
 
 // components
-import { Navbar } from './components';
+import { Footer, Navbar } from './components';
 
 function App() {
   return (
     <>
       <Navbar />
       <PageRouter />
+      <Footer />
     </>
   );
 }
