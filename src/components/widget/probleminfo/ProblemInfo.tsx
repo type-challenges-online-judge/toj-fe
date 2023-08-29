@@ -36,7 +36,7 @@ const ProblemInfo = () => {
   }, []);
 
   return (
-    <div>
+    <>
       {problemInfo && (
         <div>
           <div>
@@ -80,7 +80,7 @@ const ProblemInfo = () => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
