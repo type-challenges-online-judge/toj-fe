@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 import { Outlet } from 'react-router-dom';
-import { CommonLayoutStyle } from './styles.css';
+import { CommonLayoutStyle } from './CommonLayout.css';
 
 const CommonLayout = () => {
   return (

@@ -1,9 +1,10 @@
 import React from 'react';
 import { ProblemInfo } from '../../components';
+import { ProblemPageStyle } from './ProblemPage.css';
 
 const ProblemPage = () => {
   return (
-    <div>
+    <div className={ProblemPageStyle}>
       <ProblemInfo />
     </div>
   );

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProblemList } from '../../apis/get';
+import { getProblemList } from '../../../apis/get';
 
 const ProblemInfo = () => {
-  // const { id } = useParams();
-  const id = 4;
+  //const { problemId } = useParams();
+
+  const problemId = 4;
   const [problemInfo, setProblemInfo] = useState<any | null>(null);
 
   useEffect(() => {
