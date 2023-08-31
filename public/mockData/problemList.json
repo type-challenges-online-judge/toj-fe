@@ -16,7 +16,7 @@
       "    completed: false,",
       "}"
     ],
-    "template": "type MyPick<T, K> = any",
+    "template": ["type MyPick<T, K> = any"],
     "testCases": [
       "import type { Equal, Expect } from '@type-challenges/utils'",
       "type cases = [",
