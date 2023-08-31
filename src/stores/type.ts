@@ -1,4 +1,4 @@
 export interface SampleStoreProps {
-  state: string
-  setState: (value: string) => void
+  state: string;
+  setState: (value: string) => void;
 }

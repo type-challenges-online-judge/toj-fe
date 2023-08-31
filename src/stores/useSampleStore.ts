@@ -1,9 +1,9 @@
-import { create } from 'zustand'
-import { immer } from 'zustand/middleware/immer'
-import { devtools } from 'zustand/middleware'
+import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
+import { devtools } from 'zustand/middleware';
 
 // type
-import type { SampleStoreProps } from './type'
+import type { SampleStoreProps } from './type';
 
 const useSanokeStore = create<SampleStoreProps>()(
   devtools(
@@ -11,11 +11,11 @@ const useSanokeStore = create<SampleStoreProps>()(
       state: '',
       setState: (value) => {
         set((state) => {
-          state.isEmotionModalOn = value
-        })
-      }
-    }))
-  )
-)
+          state.isEmotionModalOn = value;
+        });
+      },
+    })),
+  ),
+);
 
-export default useSanokeStore
+export default useSanokeStore;

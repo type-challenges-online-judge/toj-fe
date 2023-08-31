@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { SignButtonStyle } from './SignButton.css';
 
 interface SignButtonProps {
@@ -7,12 +5,12 @@ interface SignButtonProps {
   _onClick: () => void;
 }
 
-const SignButton = ({ text, _onClick }: SignButtonProps) => {
+function SignButton({ text, _onClick }: SignButtonProps) {
   return (
     <button className={SignButtonStyle} onClick={_onClick}>
       {text}
     </button>
   );
-};
+}
 
 export default SignButton;

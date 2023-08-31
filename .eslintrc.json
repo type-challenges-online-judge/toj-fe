@@ -1,61 +1,32 @@
 {
   "env": {
     "browser": true,
-    "es2021": true,
-    "node": true
+    "es2021": true
   },
   "extends": [
-    "airbnb",
-    "airbnb-typescript",
+    "standard-with-typescript",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
-    "plugin:prettier/recommended"
-    // "plugin:@typescript-eslint/recommended" >> "airbnb-typescript" 와 겹침
+    "plugin:prettier/recommended",
+    "prettier"
   ],
-  "ignorePatterns": ["vite.config.ts"],
   "overrides": [],
-  "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./tsconfig.json"
+    "project": ["./tsconfig.json"]
   },
-  "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
+  "plugins": ["react"],
   "rules": {
-    "@typescript-eslint/no-unused-expressions": "off", //parser는 @typescript-eslint 를 사용하고 있으므로 해당 옵션을 제거해야 함
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "@typescript-eslint/triple-slash-reference": "off",
+    "@typescript-eslint/restrict-template-expressions": "error",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "react/react-in-jsx-scope": "off",
     "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-shadow": "off",
-    "@typescript-eslint/naming-convention": "off",
-    "react/jsx-no-useless-fragment": "warn",
-    "no-nested-ternary": "off",
-    "react/no-array-index-key": "off",
-    "no-param-reassign": "off",
-    "import/order": [
-      "error",
-      {
-        "groups": ["builtin", "external", "internal", ["sibling", "parent", "index"], "type", "unknown"],
-        "pathGroups": [
-          { "pattern": "react", "group": "builtin", "position": "after" },
-          { "pattern": "react-dom", "group": "builtin", "position": "after" }
-        ],
-        "pathGroupsExcludedImportTypes": [],
-        "alphabetize": {
-          "order": "asc"
-        }
-      }
-    ],
-    "max-classes-per-file": "off",
-    "no-restricted-syntax": "off",
-    "no-await-in-loop": "off",
-    "no-alert": "off",
-    "no-console": "off",
-    "class-methods-use-this": "off",
-    // "import/no-extraneous-dependencies": "off",
-    // "import/no-unresolved": "off",
-    // "import/prefer-default-export": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/prop-types": "off",
-    "react/function-component-definition": [2, { "namedComponents": ["arrow-function", "function-declaration"] }],
     "prettier/prettier": [
       "error",
       {

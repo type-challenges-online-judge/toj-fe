@@ -10,7 +10,7 @@ import {
 } from './ProblemInfo.css';
 
 // 목데이터 전용으로 임시 생성.
-type problemInfoType = {
+interface problemInfoType {
   problemId: number;
   problemDiff: 'easy' | 'medium' | 'hard' | 'extreme';
   problemTitle: string;
@@ -18,9 +18,9 @@ type problemInfoType = {
   example: string[];
   template: string[];
   testCases: string[];
-};
+}
 const ProblemInfo = () => {
-  //const { problemId } = useParams();
+  // const { problemId } = useParams();
   const problemId = 4;
   const [problemInfo, setProblemInfo] = useState<problemInfoType | null>(null);
 
@@ -37,7 +37,7 @@ const ProblemInfo = () => {
 
   return (
     <>
-      {problemInfo && (
+      {problemInfo !== null && (
         <div>
           <div>
             <p className={ProblemTitleStyle}>
