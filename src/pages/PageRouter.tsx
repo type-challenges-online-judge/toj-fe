@@ -1,8 +1,6 @@
 import React from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { PAGE_URL } from '../config/path';
-import ProblemInfo from '../components/widget/probleminfo/ProblemInfo';
-import MainPage from './main/MainPage';
 
 // element
 import * as Switch from '../pages';
@@ -15,6 +13,7 @@ const PageRouter = () => {
         <Route path={PAGE_URL.Main} element={<CommonLayout />}>
           <Route index element={<Switch.MainPage />} />
           <Route path={`${PAGE_URL.Problem}/:problemId`} element={<Switch.ProblemPage />} />
+          <Route path={`${PAGE_URL.Submit}/:problemId`} element={<Switch.Submit />} />
         </Route>
       </Routes>
     </>
