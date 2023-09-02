@@ -9,14 +9,15 @@ import { checkURL } from '../../util/problem';
 
 const ProblemPage = () => {
   const { problemId } = useParams();
-  const location = useLocation();
-  const [problemInfo, setProblemInfo] = useState<ProblemInfoType | null>(null);
 
+  // 캐싱 데이터 사용
   const { isLoading, error, data } = useQuery({
     queryKey: ['problemInfo', { problemId }],
     queryFn: async () => {
       const res = await getProblemList();
-      const currentProblem = res.filter((i: any) => i.problemId === Number(problemId))[0];
+      const currentProblem = res.filter(
+        (i: ProblemInfoType) => i.problemId === Number(problemId),
+      )[0];
       return currentProblem;
     },
   });
@@ -25,7 +26,6 @@ const ProblemPage = () => {
     <div className={ProblemPageStyle}>
       {data !== undefined && (
         <>
-          {/* <ProblemMenus problemInfo={problemInfo} /> */}
           <ProblemInfo problemInfo={data} />
         </>
       )}
