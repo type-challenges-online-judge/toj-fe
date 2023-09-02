@@ -1,12 +1,10 @@
 import React from 'react';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import { PAGE_URL } from '../config/path';
-import ProblemInfo from '../components/widget/probleminfo/ProblemInfo';
-import MainPage from './main/MainPage';
+import { Route, Routes } from 'react-router-dom';
 
 // element
 import * as Switch from '../pages';
 import { CommonLayout } from '../components/layout';
+import { PAGE_URL } from '../config/path';
 
 const PageRouter = () => {
   return (
