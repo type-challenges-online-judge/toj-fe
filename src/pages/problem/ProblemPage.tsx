@@ -3,28 +3,30 @@ import { ProblemInfo, ProblemMenus } from '../../components';
 import { ProblemPageStyle } from './ProblemPage.css';
 import { getProblemList } from '../../apis/get';
 import { ProblemInfoType } from '../../type/problem';
+import { useLocation, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { checkURL } from '../../util/problem';
 
 const ProblemPage = () => {
-  // const { problemId } = useParams();
-  const problemId = 4;
+  const { problemId } = useParams();
+  const location = useLocation();
   const [problemInfo, setProblemInfo] = useState<ProblemInfoType | null>(null);
 
-  useEffect(() => {
-    const updateProblemList = async () => {
-      try {
-        const res = await getProblemList();
-        const currentProblem = res.filter((i: any) => i.problemId === problemId)[0];
-        setProblemInfo(currentProblem);
-      } catch (e) {}
-    };
-    updateProblemList();
-  }, []);
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['problemInfo', { problemId }],
+    queryFn: async () => {
+      const res = await getProblemList();
+      const currentProblem = res.filter((i: any) => i.problemId === Number(problemId))[0];
+      return currentProblem;
+    },
+  });
+
   return (
     <div className={ProblemPageStyle}>
-      {problemInfo !== null && (
+      {data !== undefined && (
         <>
-          <ProblemMenus problemInfo={problemInfo} />
-          <ProblemInfo problemInfo={problemInfo} />
+          {/* <ProblemMenus problemInfo={problemInfo} /> */}
+          <ProblemInfo problemInfo={data} />
         </>
       )}
     </div>

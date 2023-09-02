@@ -4,7 +4,7 @@ import { PAGE_URL } from '../config/path';
 
 // element
 import * as Switch from '../pages';
-import { CommonLayout } from '../components/layout';
+import { CommonLayout, CommonLayoutWithMenus } from '../components/layout';
 
 const PageRouter = () => {
   return (
@@ -12,8 +12,11 @@ const PageRouter = () => {
       <Routes>
         <Route path={PAGE_URL.Main} element={<CommonLayout />}>
           <Route index element={<Switch.MainPage />} />
+        </Route>
+        <Route path="/*" element={<CommonLayoutWithMenus />}>
           <Route path={`${PAGE_URL.Problem}/:problemId`} element={<Switch.ProblemPage />} />
           <Route path={`${PAGE_URL.Submit}/:problemId`} element={<Switch.Submit />} />
+          <Route path={`${PAGE_URL.Status}`} element={<Switch.Status />} />
         </Route>
       </Routes>
     </>
