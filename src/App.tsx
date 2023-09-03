@@ -1,4 +1,5 @@
 import './App.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // pages
 import { PageRouter } from './pages';
@@ -7,11 +8,14 @@ import { PageRouter } from './pages';
 import { Footer, Navbar } from './components';
 
 function App() {
+  const queryClient = new QueryClient();
   return (
     <>
-      <Navbar />
-      <PageRouter />
-      <Footer />
+      <QueryClientProvider client={queryClient}>
+        <Navbar />
+        <PageRouter />
+        <Footer />
+      </QueryClientProvider>
     </>
   );
 }

@@ -50,7 +50,7 @@
       "type head1 = First<arr1> // expected to be 'a'",
       "type head2 = First<arr2> // expected to be 3"
     ],
-    "template": "type First<T extends any[]> = any",
+    "template": ["type First<T extends any[]> = any"],
     "testCases": [
       "import type { Equal, Expect } from '@type-challenges/utils'",
       "type cases = [",
@@ -73,7 +73,7 @@
     "problemTitle": "Includes",
     "problemDescription": "JavaScript의 Array.includes 함수를 타입 시스템에서 구현하세요. 타입은 두 인수를 받고, true 또는 false를 반환해야 합니다.",
     "example": ["type isPillarMen = Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Dio'> // expected to be `false`"],
-    "template": "type Includes<T extends readonly any[], U> = any",
+    "template": ["type Includes<T extends readonly any[], U> = any"],
     "testCases": [
       "import type { Equal, Expect } from '@type-challenges/utils'",
       "type cases = [",
