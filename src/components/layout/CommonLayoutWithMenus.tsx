@@ -15,14 +15,14 @@ const CommonLayoutWithMenus = () => {
 
   useEffect(() => {
     const decideProblemId = () => {
-      // 다른 형태의 URL이라면 문제는 이미 선택이 됐고 , 이외의 기능(내 제출 등..)을 사용하는 것이므로
-      // problemId는 로컬스토리지에 저장된 값을 사용
+      // 다른 형태의 URL이라면 문제는 선택이 됐고 , 이외의 기능(내 제출 등..)을 사용하는 것이므로
+      // problemId는 로컬스토리지에서 사용
       if (!checkURL(location.pathname)) {
         const problemIdFromLocalStorage = JSON.parse(localStorage.getItem('problemId')!);
         setCurrentProblemId(problemIdFromLocalStorage);
       }
 
-      // problem/:problemId 형태의 URL이라면 :problemId 사용 및 로컬스토리지 저장
+      // problem/:problemId 형태의 URL이라면 :problemId 사용
       if (checkURL(location.pathname)) {
         localStorage.setItem('problemId', JSON.stringify(problemId));
         setCurrentProblemId(Number(problemId));

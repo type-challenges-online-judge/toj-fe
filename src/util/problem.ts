@@ -1,4 +1,10 @@
 export const checkURL = (pathname: string) => {
-  const pattern = /^\/(problem|submit)\/\d+/;
-  return pattern.test(pathname);
+  const regex = /problem/g;
+  const result = pathname.match(regex);
+
+  if (result === null) {
+    return false;
+  }
+
+  return true;
 };
