@@ -19,6 +19,9 @@ export const ProblemButtonStyle = style({
     '&.hard': {
       backgroundColor: '#DA4943',
     },
+    '&.extreme': {
+      backgroundColor: '#9C388B',
+    },
   },
 });
 
