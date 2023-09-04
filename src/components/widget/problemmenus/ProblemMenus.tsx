@@ -1,4 +1,4 @@
-import { ProblemInfoType } from 'type/problem';
+import { ProblemInfoType } from '@/type/problem';
 import { getProblemList } from '../../../apis/get';
 import { ProblemMenuButtons } from '../../../components';
 import { PAGE_URL } from '../../../config/path';

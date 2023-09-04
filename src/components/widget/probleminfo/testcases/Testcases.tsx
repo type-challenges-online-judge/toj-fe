@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProblemCategoryStyle, ProblemCodeBlockStyle, ProblemCodeStyle } from '../ProblemInfo.css';
-import { ProblemInfoType } from 'type/problem';
+import { ProblemInfoType } from '@/type/problem';
 
 interface TestcasesProps {
   problemInfo: ProblemInfoType;

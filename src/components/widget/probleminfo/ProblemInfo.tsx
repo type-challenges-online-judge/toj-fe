@@ -5,7 +5,7 @@ import { Title } from './title';
 import { Template } from './template';
 import { Example } from './example';
 import { Testcases } from './testcases';
-import { ProblemInfoType } from 'type/problem';
+import { ProblemInfoType } from '@/type/problem';
 import { MenuButton } from '../problemmenus/ProblemMenus.css';
 
 interface ProblemInfoProps {
