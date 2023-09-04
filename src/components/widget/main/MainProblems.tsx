@@ -25,6 +25,7 @@ const MainProblems = () => {
                 return (
                   <div key={idx}>
                     <MainProblemButton
+                      id={problem.problemId}
                       text={problem.problemTitle}
                       level={levelLabel.level}
                       _onClick={() => {

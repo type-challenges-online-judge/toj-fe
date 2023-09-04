@@ -1,15 +1,19 @@
+import { Level } from '@/type/problem';
 import { ProblemButtonStyle, ProblemButtonTextStyle } from './MainProblemButton.css';
 
 interface ProblemButtonProps {
+  id: number;
   text: string;
-  level: 'warm-up' | 'easy' | 'medium' | 'hard';
+  level: Level;
   _onClick: () => void;
 }
 
-const ProblemButton = ({ text, level, _onClick }: ProblemButtonProps) => {
+const ProblemButton = ({ id, text, level, _onClick }: ProblemButtonProps) => {
   return (
     <button className={`${ProblemButtonStyle} ${level}`} onClick={_onClick}>
-      <p className={ProblemButtonTextStyle}>{text}</p>
+      <p className={ProblemButtonTextStyle}>
+        {id.toString()} - {text}
+      </p>
     </button>
   );
 };
