@@ -1,10 +1,11 @@
 import { MainPageStyle } from './MainPage.css';
-import { Banner } from '../../components';
+import { Banner, MainProblems } from '../../components';
 
 const MainPage = () => {
   return (
     <div className={MainPageStyle}>
       <Banner />
+      <MainProblems />
     </div>
   );
 };
