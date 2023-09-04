@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProblemDiffStyle, ProblemTitleStyle } from '../ProblemInfo.css';
-import { ProblemInfoType } from 'type/problem';
+import { ProblemInfoType } from '@/type/problem';
 
 interface TitleProps {
   problemInfo: ProblemInfoType;
