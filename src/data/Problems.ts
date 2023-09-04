@@ -1,202 +1,182 @@
-import { Level } from '../type/problem';
+import { MainLevel, MainProblems } from '@/type/problem';
 
-interface Problem {
-  problemId: number;
-  problemLevel: Level;
-  problemTitle: string;
-}
+export const MAIN_LEVEL_PROBLEMS: MainProblems = {
+  'warm-up': [
+    {
+      problemId: 13,
+      problemTitle: 'Pick',
+    },
+  ],
+  easy: [
+    {
+      problemId: 4,
+      problemTitle: 'Pick',
+    },
+    {
+      problemId: 7,
+      problemTitle: 'Readonly',
+    },
+    {
+      problemId: 11,
+      problemTitle: 'Tuple to Object',
+    },
+    {
+      problemId: 14,
+      problemTitle: 'First of Array',
+    },
+    {
+      problemId: 18,
+      problemTitle: 'Length of Tuple',
+    },
+    {
+      problemId: 43,
+      problemTitle: 'Exclude',
+    },
+    {
+      problemId: 189,
+      problemTitle: 'Awaited',
+    },
+    {
+      problemId: 268,
+      problemTitle: 'If',
+    },
+    {
+      problemId: 533,
+      problemTitle: 'Concat',
+    },
+    {
+      problemId: 898,
+      problemTitle: 'Includes',
+    },
+    {
+      problemId: 3057,
+      problemTitle: 'Push',
+    },
+    {
+      problemId: 3060,
+      problemTitle: 'Unshift',
+    },
+    {
+      problemId: 3312,
+      problemTitle: 'Parameters',
+    },
+  ],
+  medium: [
+    {
+      problemId: 2,
+      problemTitle: 'Get Return Type',
+    },
+    {
+      problemId: 3,
+      problemTitle: 'Omit',
+    },
+    {
+      problemId: 8,
+      problemTitle: 'Readonly 2',
+    },
+    {
+      problemId: 9,
+      problemTitle: 'Deep Readonly',
+    },
+    {
+      problemId: 10,
+      problemTitle: 'Tuple to Union',
+    },
+    {
+      problemId: 12,
+      problemTitle: 'Chainable Options',
+    },
+    {
+      problemId: 15,
+      problemTitle: 'Last of Array',
+    },
+    {
+      problemId: 16,
+      problemTitle: 'Pop',
+    },
+    {
+      problemId: 20,
+      problemTitle: 'Promise.all',
+    },
+    {
+      problemId: 62,
+      problemTitle: 'Type Lookup',
+    },
+    {
+      problemId: 106,
+      problemTitle: 'Trim Left',
+    },
+    {
+      problemId: 108,
+      problemTitle: 'Trim',
+    },
+  ],
+  hard: [
+    {
+      problemId: 6,
+      problemTitle: 'Simple Vue',
+    },
+    {
+      problemId: 17,
+      problemTitle: 'Currying',
+    },
+    {
+      problemId: 55,
+      problemTitle: 'Union to Intersection',
+    },
+    {
+      problemId: 57,
+      problemTitle: 'Get Required',
+    },
+    {
+      problemId: 59,
+      problemTitle: 'Get Optional',
+    },
+  ],
+  extreme: [
+    {
+      problemId: 5,
+      problemTitle: 'Get Readonly Keys',
+    },
+    {
+      problemId: 151,
+      problemTitle: 'Query String Parser',
+    },
+    {
+      problemId: 216,
+      problemTitle: 'Slice',
+    },
+    {
+      problemId: 274,
+      problemTitle: 'Integers Comparator',
+    },
+    {
+      problemId: 462,
+      problemTitle: 'Currying 2',
+    },
+  ],
+};
 
-export const warmUpProblems: Problem[] = [
+// main
+export const MAIN_LEVELS: MainLevel[] = [
   {
-    problemId: 13,
-    problemLevel: 'warm-up',
-    problemTitle: 'Pick',
-  },
-];
-
-export const easyProblems: Problem[] = [
-  {
-    problemId: 4,
-    problemLevel: 'easy',
-    problemTitle: 'Pick',
+    level: 'warm-up',
+    count: 1,
   },
   {
-    problemId: 7,
-    problemLevel: 'easy',
-    problemTitle: 'Readonly',
+    level: 'easy',
+    count: 13,
   },
   {
-    problemId: 11,
-    problemLevel: 'easy',
-    problemTitle: 'Tuple to Object',
+    level: 'medium',
+    count: 93,
   },
   {
-    problemId: 14,
-    problemLevel: 'easy',
-    problemTitle: 'First of Array',
+    level: 'hard',
+    count: 46,
   },
   {
-    problemId: 18,
-    problemLevel: 'easy',
-    problemTitle: 'Length of Tuple',
-  },
-  {
-    problemId: 43,
-    problemLevel: 'easy',
-    problemTitle: 'Exclude',
-  },
-  {
-    problemId: 189,
-    problemLevel: 'easy',
-    problemTitle: 'Awaited',
-  },
-  {
-    problemId: 268,
-    problemLevel: 'easy',
-    problemTitle: 'If',
-  },
-  {
-    problemId: 533,
-    problemLevel: 'easy',
-    problemTitle: 'Concat',
-  },
-  {
-    problemId: 898,
-    problemLevel: 'easy',
-    problemTitle: 'Includes',
-  },
-  {
-    problemId: 3057,
-    problemLevel: 'easy',
-    problemTitle: 'Push',
-  },
-  {
-    problemId: 3060,
-    problemLevel: 'easy',
-    problemTitle: 'Unshift',
-  },
-  {
-    problemId: 3312,
-    problemLevel: 'easy',
-    problemTitle: 'Parameters',
-  },
-];
-
-export const mediumProblems: Problem[] = [
-  {
-    problemId: 2,
-    problemLevel: 'medium',
-    problemTitle: 'Get Return Type',
-  },
-  {
-    problemId: 3,
-    problemLevel: 'medium',
-    problemTitle: 'Omit',
-  },
-  {
-    problemId: 8,
-    problemLevel: 'medium',
-    problemTitle: 'Readonly 2',
-  },
-  {
-    problemId: 9,
-    problemLevel: 'medium',
-    problemTitle: 'Deep Readonly',
-  },
-  {
-    problemId: 10,
-    problemLevel: 'medium',
-    problemTitle: 'Tuple to Union',
-  },
-  {
-    problemId: 12,
-    problemLevel: 'medium',
-    problemTitle: 'Chainable Options',
-  },
-  {
-    problemId: 15,
-    problemLevel: 'medium',
-    problemTitle: 'Last of Array',
-  },
-  {
-    problemId: 16,
-    problemLevel: 'medium',
-    problemTitle: 'Pop',
-  },
-  {
-    problemId: 20,
-    problemLevel: 'medium',
-    problemTitle: 'Promise.all',
-  },
-  {
-    problemId: 62,
-    problemLevel: 'medium',
-    problemTitle: 'Type Lookup',
-  },
-  {
-    problemId: 106,
-    problemLevel: 'medium',
-    problemTitle: 'Trim Left',
-  },
-  {
-    problemId: 108,
-    problemLevel: 'medium',
-    problemTitle: 'Trim',
-  },
-];
-
-export const hardProblems: Problem[] = [
-  {
-    problemId: 6,
-    problemLevel: 'hard',
-    problemTitle: 'Simple Vue',
-  },
-  {
-    problemId: 17,
-    problemLevel: 'hard',
-    problemTitle: 'Currying',
-  },
-  {
-    problemId: 55,
-    problemLevel: 'hard',
-    problemTitle: 'Union to Intersection',
-  },
-  {
-    problemId: 57,
-    problemLevel: 'hard',
-    problemTitle: 'Get Required',
-  },
-  {
-    problemId: 59,
-    problemLevel: 'hard',
-    problemTitle: 'Get Optional',
-  },
-];
-
-export const extremeProblems: Problem[] = [
-  {
-    problemId: 5,
-    problemLevel: 'extreme',
-    problemTitle: 'Get Readonly Keys',
-  },
-  {
-    problemId: 151,
-    problemLevel: 'extreme',
-    problemTitle: 'Query String Parser',
-  },
-  {
-    problemId: 216,
-    problemLevel: 'extreme',
-    problemTitle: 'Slice',
-  },
-  {
-    problemId: 274,
-    problemLevel: 'extreme',
-    problemTitle: 'Integers Comparator',
-  },
-  {
-    problemId: 462,
-    problemLevel: 'extreme',
-    problemTitle: 'Currying 2',
+    level: 'extreme',
+    count: 14,
   },
 ];
