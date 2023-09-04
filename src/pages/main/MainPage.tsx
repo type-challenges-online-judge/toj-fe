@@ -1,7 +1,12 @@
 import { MainPageStyle } from './MainPage.css';
+import { Banner } from '../../components';
 
 const MainPage = () => {
-  return <div className={MainPageStyle}>메인페이지</div>;
+  return (
+    <div className={MainPageStyle}>
+      <Banner />
+    </div>
+  );
 };
 
 export default MainPage;

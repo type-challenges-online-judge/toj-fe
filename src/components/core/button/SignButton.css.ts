@@ -5,6 +5,8 @@ export const SignButtonStyle = style({
   padding: '5px 32px',
   border: '1px solid black',
   borderRadius: '20px',
+  backgroundColor: 'white',
+  cursor: 'pointer',
 });
 
 export const SignButtonTextStyle = style({

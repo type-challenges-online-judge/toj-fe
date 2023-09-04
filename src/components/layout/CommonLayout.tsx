@@ -1,4 +1,3 @@
-import { style } from '@vanilla-extract/css';
 import { Outlet } from 'react-router-dom';
 import { CommonLayoutStyle } from './CommonLayout.css';
 
