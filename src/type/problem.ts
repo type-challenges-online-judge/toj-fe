@@ -8,3 +8,5 @@ export interface ProblemInfoType {
   template: string[];
   testCases: string[];
 }
+
+export type Level = 'warm-up' | 'easy' | 'medium' | 'hard' | 'extreme';
