@@ -5,12 +5,13 @@ interface ProblemButtonProps {
   id: number;
   text: string;
   level: Level;
+  isSolved: boolean;
   _onClick: () => void;
 }
 
-const ProblemButton = ({ id, text, level, _onClick }: ProblemButtonProps) => {
+const ProblemButton = ({ id, text, level, isSolved = false, _onClick }: ProblemButtonProps) => {
   return (
-    <button className={`${ProblemButtonStyle} ${level}`} onClick={_onClick}>
+    <button className={`${ProblemButtonStyle} ${isSolved || level}`} onClick={_onClick}>
       <p className={ProblemButtonTextStyle}>
         {id.toString()} - {text}
       </p>

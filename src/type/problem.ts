@@ -11,7 +11,9 @@ export interface ProblemInfoType {
   testCases: string[];
 }
 
-export type MainProblem = Pick<ProblemInfoType, 'problemId' | 'problemTitle'>;
+export type MainProblem = Pick<ProblemInfoType, 'problemId' | 'problemTitle'> & {
+  isSolved?: boolean;
+};
 
 export interface MainProblems {
   'warm-up': MainProblem[];
