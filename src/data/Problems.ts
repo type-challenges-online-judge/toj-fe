@@ -11,6 +11,7 @@ export const MAIN_LEVEL_PROBLEMS: MainProblems = {
     {
       problemId: 4,
       problemTitle: 'Pick',
+      isSolved: true,
     },
     {
       problemId: 7,

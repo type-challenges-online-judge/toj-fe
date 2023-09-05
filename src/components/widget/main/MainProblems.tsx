@@ -28,6 +28,7 @@ const MainProblems = () => {
                       id={problem.problemId}
                       text={problem.problemTitle}
                       level={levelLabel.level}
+                      isSolved={problem.isSolved ?? false}
                       _onClick={() => {
                         navigate(`/problem/${problem.problemId}`);
                       }}

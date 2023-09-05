@@ -7,6 +7,9 @@ export const ProblemButtonStyle = style({
   cursor: 'pointer',
 
   selectors: {
+    '&.true': {
+      backgroundColor: '#CCCAC8',
+    },
     '&.warm-up': {
       backgroundColor: '#0F8383',
     },
