@@ -1,4 +1,4 @@
-import { MenuButton } from '../../widget/problemmenus/ProblemMenus.css';
+import { MenuButton } from './ProblemButton.css';
 
 interface ProblemMenuButtonsProps {
   text: string;

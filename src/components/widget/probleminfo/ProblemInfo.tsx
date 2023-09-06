@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { getProblemList } from '../../../apis/get';
 import { Title } from './title';
 import { Template } from './template';
 import { Example } from './example';
 import { Testcases } from './testcases';
 import { ProblemInfoType } from '@/type/problem';
-import { MenuButton } from '../problemmenus/ProblemMenus.css';
+import TsOnlineButton from '@/components/core/button/TsOnlineButton';
 
 interface ProblemInfoProps {
   problemInfo: ProblemInfoType;
@@ -17,6 +15,11 @@ const ProblemInfo = ({ problemInfo }: ProblemInfoProps) => {
       {problemInfo !== null && (
         <div>
           <Title problemInfo={problemInfo} />
+
+          <TsOnlineButton
+            text="TS 온라인에서 풀이"
+            _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
+          ></TsOnlineButton>
 
           <p>{problemInfo.problemDescription}</p>
 
