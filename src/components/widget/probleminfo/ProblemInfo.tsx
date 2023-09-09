@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Title } from './title';
 import { Template } from './template';
 import { Example } from './example';
@@ -7,7 +7,7 @@ import { ProblemInfoType } from '@/type/problem';
 import TsOnlineButton from '@/components/core/button/TsOnlineButton';
 
 interface ProblemInfoProps {
-  problemInfo: ProblemInfoType;
+  problemInfo: { problemDiff: string; problemInfo: ProblemInfoType };
 }
 const ProblemInfo = ({ problemInfo }: ProblemInfoProps) => {
   return (
@@ -21,7 +21,7 @@ const ProblemInfo = ({ problemInfo }: ProblemInfoProps) => {
             _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
           ></TsOnlineButton>
 
-          <p>{problemInfo.problemDescription}</p>
+          <p>{problemInfo.problemInfo.problemDescription}</p>
 
           <Example problemInfo={problemInfo} />
 

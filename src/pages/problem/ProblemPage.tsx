@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from 'react';
-import { ProblemInfo, ProblemMenus } from '../../components';
-import { ProblemPageStyle } from './ProblemPage.css';
-import { getProblemList } from '../../apis/get';
-import { ProblemInfoType } from '../../type/problem';
-import { useLocation, useParams } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { checkURL } from '../../util/problem';
+
+import { ProblemInfo } from '../../components';
+import { ProblemPageStyle } from './ProblemPage.css';
+import { getProblemDataById } from '../../util/problem';
+
+import { MainProblem } from '@/type/problem';
+import { getProblems } from '@/apis/get';
 
 const ProblemPage = () => {
   const { problemId } = useParams();
 
-  // 캐싱 데이터 사용
-  const { isLoading, error, data } = useQuery({
-    queryKey: ['problemInfo', { problemId }],
+  // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
+  const { data } = useQuery({
+    queryKey: ['problemInfo', { problemId: Number(problemId) }],
     queryFn: async () => {
-      const res = await getProblemList();
-      const currentProblem = res.filter(
-        (i: ProblemInfoType) => i.problemId === Number(problemId),
-      )[0];
-      return currentProblem;
+      const res: MainProblem = await getProblems();
+      return getProblemDataById(res, Number(problemId));
     },
+    staleTime: Infinity,
   });
 
   return (

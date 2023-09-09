@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
+import { MainProblem } from '@/type/problem';
+
 import { CommonLayoutStyle } from './CommonLayoutWithMenus.css';
-import { ProblemInfoType } from '../../type/problem';
-import { getProblemList } from '../../apis/get';
+
 import { ProblemMenus } from '../../components';
-import { checkURL } from '../../util/problem';
+import { checkURL, getProblemDataById } from '../../util/problem';
+import { getProblems } from '@/apis/get';
 
 const CommonLayoutWithMenus = () => {
   const { problemId } = useParams();
@@ -29,17 +31,14 @@ const CommonLayoutWithMenus = () => {
       }
     };
     decideProblemId();
-  }, [location.pathname]);
+  }, [location.pathname, problemId]);
 
-  const { isLoading, error, data } = useQuery({
-    queryKey: ['problemInfo', { problemId: currentProblemId }],
+  const { data } = useQuery({
+    queryKey: ['problemInfo', { problemId: Number(currentProblemId) }],
     queryFn: async () => {
-      const res = await getProblemList();
-      const currentProblem = res.filter(
-        (i: ProblemInfoType) => i.problemId === Number(currentProblemId),
-      )[0];
+      const res: MainProblem = await getProblems();
 
-      return currentProblem;
+      return getProblemDataById(res, Number(problemId));
     },
     staleTime: Infinity,
     enabled: currentProblemId !== null,
