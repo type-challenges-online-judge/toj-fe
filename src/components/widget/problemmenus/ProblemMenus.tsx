@@ -1,7 +1,8 @@
+import React from 'react';
+
 import { ProblemInfoType } from '@/type/problem';
 import { ProblemMenuButtons } from '../../../components';
 import { PAGE_URL } from '../../../config/path';
-import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ButtonList } from './ProblemMenus.css';
 

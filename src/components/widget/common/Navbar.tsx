@@ -4,7 +4,7 @@ import { LogoStyle, NavbarStyle } from './Navbar.css';
 import { SignButton } from '../../../components';
 
 const Navbar = () => {
-  const [isAuth, setIsAuth] = useState<boolean>(false);
+  const [isAuth] = useState<boolean>(false);
 
   return (
     <div className={NavbarStyle}>

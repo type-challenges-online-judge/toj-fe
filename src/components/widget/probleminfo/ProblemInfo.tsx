@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Title } from './title';
 import { Template } from './template';
 import { Example } from './example';

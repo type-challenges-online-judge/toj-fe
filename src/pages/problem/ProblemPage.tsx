@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
-import { ProblemInfo, ProblemMenus } from '../../components';
+import { ProblemInfo } from '../../components';
 import { ProblemPageStyle } from './ProblemPage.css';
-import { checkURL, getProblemDataById } from '../../util/problem';
+import { getProblemDataById } from '../../util/problem';
 
-import { MainProblem, ProblemInfoType } from '@/type/problem';
+import { MainProblem } from '@/type/problem';
 import { getProblems } from '@/apis/get';
 
 const ProblemPage = () => {
   const { problemId } = useParams();
 
   // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
-  const { isLoading, error, data } = useQuery({
+  const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(problemId) }],
     queryFn: async () => {
       const res: MainProblem = await getProblems();

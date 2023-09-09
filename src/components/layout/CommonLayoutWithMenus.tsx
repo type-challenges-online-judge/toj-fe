@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
-import { MainProblem, ProblemInfoType } from '@/type/problem';
+import { MainProblem } from '@/type/problem';
 
 import { CommonLayoutStyle } from './CommonLayoutWithMenus.css';
 
@@ -31,9 +31,9 @@ const CommonLayoutWithMenus = () => {
       }
     };
     decideProblemId();
-  }, [location.pathname]);
+  }, [location.pathname, problemId]);
 
-  const { isLoading, error, data } = useQuery({
+  const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(currentProblemId) }],
     queryFn: async () => {
       const res: MainProblem = await getProblems();
