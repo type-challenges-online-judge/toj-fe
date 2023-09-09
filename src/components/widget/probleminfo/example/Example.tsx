@@ -3,7 +3,7 @@ import { ProblemCategoryStyle, ProblemCodeBlockStyle, ProblemCodeStyle } from '.
 import { ProblemInfoType } from '@/type/problem';
 
 interface ExampleProps {
-  problemInfo: ProblemInfoType;
+  problemInfo: { problemDiff: string; problemInfo: ProblemInfoType };
 }
 
 const Example = ({ problemInfo }: ExampleProps) => {
@@ -11,7 +11,9 @@ const Example = ({ problemInfo }: ExampleProps) => {
     <div>
       <p className={ProblemCategoryStyle}>예시</p>
       <pre className={ProblemCodeBlockStyle}>
-        <code className={ProblemCodeStyle}>{problemInfo.example.map((line) => `${line}\n\n`)}</code>
+        <code className={ProblemCodeStyle}>
+          {problemInfo.problemInfo.example.map((line) => `${line}\n\n`)}
+        </code>
       </pre>
     </div>
   );

@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { ProblemInfo, ProblemMenus } from '../../components';
 import { ProblemPageStyle } from './ProblemPage.css';
-import { checkURL } from '../../util/problem';
+import { checkURL, getProblemDataById } from '../../util/problem';
 
 import { MainProblem, ProblemInfoType } from '@/type/problem';
 import { getProblems } from '@/apis/get';
@@ -16,16 +16,8 @@ const ProblemPage = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(problemId) }],
     queryFn: async () => {
-      let currentProblem;
-
       const res: MainProblem = await getProblems();
-      const values = Object.values(res);
-      values.forEach((i: ProblemInfoType[]) => {
-        const filterResult = i.filter((i) => i.problemId === Number(problemId));
-        if (filterResult.length > 0) currentProblem = filterResult[0];
-      });
-
-      return currentProblem;
+      return getProblemDataById(res, Number(problemId));
     },
     staleTime: Infinity,
   });

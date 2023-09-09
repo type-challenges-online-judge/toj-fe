@@ -6,7 +6,7 @@ import { MainProblem, ProblemInfoType } from '@/type/problem';
 import { CommonLayoutStyle } from './CommonLayoutWithMenus.css';
 
 import { ProblemMenus } from '../../components';
-import { checkURL } from '../../util/problem';
+import { checkURL, getProblemDataById } from '../../util/problem';
 import { getProblems } from '@/apis/get';
 
 const CommonLayoutWithMenus = () => {
@@ -36,16 +36,9 @@ const CommonLayoutWithMenus = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(currentProblemId) }],
     queryFn: async () => {
-      let currentProblem;
-
       const res: MainProblem = await getProblems();
-      const values = Object.values(res);
-      values.forEach((i: ProblemInfoType[]) => {
-        const filterResult = i.filter((i) => i.problemId === Number(currentProblemId));
-        if (filterResult.length > 0) currentProblem = filterResult[0];
-      });
 
-      return currentProblem;
+      return getProblemDataById(res, Number(problemId));
     },
     staleTime: Infinity,
     enabled: currentProblemId !== null,

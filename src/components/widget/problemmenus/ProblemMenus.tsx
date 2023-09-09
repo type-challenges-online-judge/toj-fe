@@ -1,5 +1,4 @@
 import { ProblemInfoType } from '@/type/problem';
-import { getProblemList } from '../../../apis/get';
 import { ProblemMenuButtons } from '../../../components';
 import { PAGE_URL } from '../../../config/path';
 import React, { useEffect, useState } from 'react';
@@ -7,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { ButtonList } from './ProblemMenus.css';
 
 interface ProblemMenusProps {
-  problemInfo: ProblemInfoType;
+  problemInfo: { problemDiff: string; problemInfo: ProblemInfoType };
 }
 
 const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
@@ -25,9 +24,9 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
       <ul className={ButtonList}>
         <li>
           <ProblemMenuButtons
-            text={problemInfo.problemTitle}
+            text={problemInfo.problemInfo.problemTitle}
             _onClick={() => {
-              navigate(`/${PAGE_URL.Problem}/${problemInfo.problemId}`);
+              navigate(`/${PAGE_URL.Problem}/${problemInfo.problemInfo.problemId}`);
             }}
           />
         </li>
@@ -36,7 +35,7 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
           <ProblemMenuButtons
             text="제출하기"
             _onClick={() => {
-              navigate(`/${PAGE_URL.Submit}/${problemInfo.problemId}`);
+              navigate(`/${PAGE_URL.Submit}/${problemInfo.problemInfo.problemId}`);
             }}
           />
         </li>
@@ -45,7 +44,7 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
             text="답안 보기"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemInfo.problemId}&user_id=minh0518&mine=false`,
+                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemInfo.problemInfo.problemId}&user_id=minh0518&mine=false`,
               );
             }}
           />
@@ -55,7 +54,7 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
             text="내 제출"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemInfo.problemId}&user_id=minh0518&mine=true`,
+                `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemInfo.problemInfo.problemId}&user_id=minh0518&mine=true`,
               );
             }}
           />

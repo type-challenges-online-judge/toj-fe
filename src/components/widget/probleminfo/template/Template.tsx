@@ -3,7 +3,7 @@ import { ProblemCategoryStyle, ProblemCodeBlockStyle, ProblemCodeStyle } from '.
 import { ProblemInfoType } from '@/type/problem';
 
 interface TemplateProps {
-  problemInfo: ProblemInfoType;
+  problemInfo: { problemDiff: string; problemInfo: ProblemInfoType };
 }
 const Template = ({ problemInfo }: TemplateProps) => {
   return (
@@ -12,7 +12,7 @@ const Template = ({ problemInfo }: TemplateProps) => {
 
       <pre className={ProblemCodeBlockStyle}>
         <code className={ProblemCodeStyle}>
-          {problemInfo.template.map((line) => `${line}\n\n`)}
+          {problemInfo.problemInfo.template.map((line) => `${line}\n\n`)}
         </code>
       </pre>
     </div>
