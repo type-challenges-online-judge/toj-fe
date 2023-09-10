@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
-import { MainProblem } from '@/type/problem';
-
 import { CommonLayoutStyle } from './CommonLayoutWithMenus.css';
 
-import { ProblemMenus } from '../../components';
-import { checkURL, getProblemDataById } from '../../util/problem';
+// components
+import { ProblemMenus } from '@/components/widget';
+
+// api
 import { getProblems } from '@/apis/get';
+
+// types
+import { MainProblem } from '@/type/problem';
+
+// util
+import { checkURL, getProblemDataById } from '@/util/problem';
 
 const CommonLayoutWithMenus = () => {
   const { problemId } = useParams();

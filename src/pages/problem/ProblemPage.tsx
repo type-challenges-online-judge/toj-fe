@@ -1,13 +1,19 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { ProblemPageStyle } from './ProblemPage.css';
 import { useQuery } from '@tanstack/react-query';
 
-import { ProblemInfo } from '../../components';
-import { ProblemPageStyle } from './ProblemPage.css';
-import { getProblemDataById } from '../../util/problem';
+// components
+import { ProblemInfo } from '@/components/widget';
 
-import { MainProblem } from '@/type/problem';
+// api
 import { getProblems } from '@/apis/get';
+
+// types
+import { MainProblem } from '@/type/problem';
+
+// util
+import { getProblemDataById } from '@/util/problem';
 
 const ProblemPage = () => {
   const { problemId } = useParams();

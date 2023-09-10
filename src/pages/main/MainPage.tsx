@@ -1,5 +1,5 @@
+import { Banner, MainProblems } from '@/components/widget';
 import { MainPageStyle } from './MainPage.css';
-import { Banner, MainProblems } from '../../components';
 
 const MainPage = () => {
   return (
