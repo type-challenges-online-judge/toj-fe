@@ -14,7 +14,7 @@ import { MainProblem } from '@/type/problem';
 import { getProblems } from '@/apis/get';
 
 // util
-import { getProblemDataById } from '@/util/problem';
+import { fetchProblemDataById, getProblemDataById } from '@/util/problem';
 
 const Submit = () => {
   const [code, setCode] = useState<string>('');
@@ -23,11 +23,7 @@ const Submit = () => {
 
   const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(problemId) }],
-    queryFn: async () => {
-      const res: MainProblem = await getProblems();
-      return getProblemDataById(res, Number(problemId));
-    },
-
+    queryFn: async () => await fetchProblemDataById(Number(problemId)),
     staleTime: Infinity,
   });
 

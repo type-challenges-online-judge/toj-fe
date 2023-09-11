@@ -13,7 +13,7 @@ import { getProblems } from '@/apis/get';
 import { MainProblem } from '@/type/problem';
 
 // util
-import { checkURL, getProblemDataById } from '@/util/problem';
+import { checkURL, fetchProblemDataById, getProblemDataById } from '@/util/problem';
 
 const CommonLayoutWithMenus = () => {
   const { problemId } = useParams();
@@ -26,7 +26,7 @@ const CommonLayoutWithMenus = () => {
       // 다른 형태의 URL이라면 문제는 이미 선택이 됐고 , 이외의 기능(내 제출 등..)을 사용하는 것이므로
       // problemId는 로컬스토리지에 저장된 값을 사용
       if (!checkURL(location.pathname)) {
-        const problemIdFromLocalStorage = JSON.parse(localStorage.getItem('problemId')!);
+        const problemIdFromLocalStorage = Number(JSON.parse(localStorage.getItem('problemId')!));
         setCurrentProblemId(problemIdFromLocalStorage);
       }
 
@@ -39,13 +39,11 @@ const CommonLayoutWithMenus = () => {
     decideProblemId();
   }, [location.pathname, problemId]);
 
-  const { data } = useQuery({
-    queryKey: ['problemInfo', { problemId: Number(currentProblemId) }],
-    queryFn: async () => {
-      const res: MainProblem = await getProblems();
+  console.log(problemId);
 
-      return getProblemDataById(res, Number(problemId));
-    },
+  const { data } = useQuery({
+    queryKey: ['problemInfo', { problemId: currentProblemId }],
+    queryFn: async () => await fetchProblemDataById(currentProblemId!),
     staleTime: Infinity,
     enabled: currentProblemId !== null,
   });

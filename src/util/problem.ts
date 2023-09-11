@@ -1,3 +1,4 @@
+import { getProblems } from '@/apis/get';
 import { Level, MainProblem } from '@/type/problem';
 
 export const checkURL = (pathname: string) => {
@@ -11,4 +12,10 @@ export const getProblemDataById = (data: MainProblem, targetId: number) => {
     const filterResult = data[key].filter((i) => i.problemId === targetId);
     if (filterResult.length !== 0) return { problemDiff: key, problemInfo: filterResult[0] };
   }
+};
+
+export const fetchProblemDataById = async (problemId: number) => {
+  console.log(problemId);
+  const res: MainProblem = await getProblems();
+  return getProblemDataById(res, problemId);
 };

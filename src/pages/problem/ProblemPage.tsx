@@ -13,7 +13,7 @@ import { getProblems } from '@/apis/get';
 import { MainProblem } from '@/type/problem';
 
 // util
-import { getProblemDataById } from '@/util/problem';
+import { fetchProblemDataById, getProblemDataById } from '@/util/problem';
 
 const ProblemPage = () => {
   const { problemId } = useParams();
@@ -21,10 +21,7 @@ const ProblemPage = () => {
   // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
   const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(problemId) }],
-    queryFn: async () => {
-      const res: MainProblem = await getProblems();
-      return getProblemDataById(res, Number(problemId));
-    },
+    queryFn: async () => await fetchProblemDataById(Number(problemId)),
     staleTime: Infinity,
   });
 
