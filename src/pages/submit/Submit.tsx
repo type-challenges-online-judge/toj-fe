@@ -1,12 +1,19 @@
 import React, { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-typescript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
-import { CodeInput } from './Submit.css';
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+
+import { CodeInput, CodeInputWrapper } from './Submit.css';
+
+// types
 import { MainProblem } from '@/type/problem';
+
+// api
 import { getProblems } from '@/apis/get';
+
+// util
 import { getProblemDataById } from '@/util/problem';
 
 const Submit = () => {
@@ -37,8 +44,9 @@ const Submit = () => {
 
   return (
     <div>
-      <div className={CodeInput}>
+      <div className={CodeInputWrapper}>
         <AceEditor
+          className={CodeInput}
           placeholder="code input"
           mode="typescript"
           theme="tomorrow"
@@ -53,7 +61,7 @@ const Submit = () => {
           highlightActiveLine={true}
           tabSize={2}
           editorProps={{ $blockScrolling: true }}
-          width="100%"
+          width="800px"
         />
       </div>
     </div>
