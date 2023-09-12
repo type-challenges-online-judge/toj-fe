@@ -1,16 +1,20 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ButtonList } from './ProblemMenus.css';
-import { PAGE_URL } from '@/config/path';
 
 // components
 import { ProblemMenuButtons } from '@/components/core';
 
 // types
-import { ProblemInfoType } from '@/type/problem';
+import { Level, ProblemInfoType } from '@/type/problem';
+
+// style
+import { SingleButton, ButtonList } from './ProblemMenus.css';
+
+// const
+import { PAGE_URL } from '@/config/path';
 
 interface ProblemMenusProps {
-  problemInfo: { problemDiff: string; problemInfo: ProblemInfoType };
+  problemInfo: { problemDiff: Level; problemInfo: ProblemInfoType };
 }
 
 const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
@@ -26,8 +30,10 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
   return (
     <div>
       <ul className={ButtonList}>
-        <li>
+        <li className={`${SingleButton} isFirst`}>
           <ProblemMenuButtons
+            problemDiff={problemInfo.problemDiff}
+            problemId={problemInfo.problemInfo.problemId}
             text={problemInfo.problemInfo.problemTitle}
             _onClick={() => {
               navigate(`/${PAGE_URL.Problem}/${problemInfo.problemInfo.problemId}`);
@@ -35,7 +41,7 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
           />
         </li>
 
-        <li>
+        <li className={SingleButton}>
           <ProblemMenuButtons
             text="제출하기"
             _onClick={() => {
@@ -43,7 +49,7 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
             }}
           />
         </li>
-        <li>
+        <li className={SingleButton}>
           <ProblemMenuButtons
             text="답안 보기"
             _onClick={() => {
@@ -53,7 +59,7 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
             }}
           />
         </li>
-        <li>
+        <li className={`${SingleButton} isLast`}>
           <ProblemMenuButtons
             text="내 제출"
             _onClick={() => {
