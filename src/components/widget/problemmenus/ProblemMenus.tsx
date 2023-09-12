@@ -1,10 +1,13 @@
 import React from 'react';
-
-import { ProblemInfoType } from '@/type/problem';
-import { ProblemMenuButtons } from '../../../components';
-import { PAGE_URL } from '../../../config/path';
 import { useNavigate } from 'react-router-dom';
 import { ButtonList } from './ProblemMenus.css';
+import { PAGE_URL } from '@/config/path';
+
+// components
+import { ProblemMenuButtons } from '@/components/core';
+
+// types
+import { ProblemInfoType } from '@/type/problem';
 
 interface ProblemMenusProps {
   problemInfo: { problemDiff: string; problemInfo: ProblemInfoType };

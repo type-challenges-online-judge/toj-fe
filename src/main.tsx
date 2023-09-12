@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import App from './App.tsx';
 import { worker } from './mocks/worker';
+
 if (process.env.NODE_ENV === 'development') {
   worker.start();
 }

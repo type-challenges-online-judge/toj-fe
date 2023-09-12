@@ -1,5 +1,7 @@
 import React from 'react';
 import { ProblemCategoryStyle, ProblemCodeBlockStyle, ProblemCodeStyle } from '../ProblemInfo.css';
+
+// types
 import { ProblemInfoType } from '@/type/problem';
 
 interface ExampleProps {

@@ -1,10 +1,14 @@
 import React from 'react';
+
+// components
 import { Title } from './title';
 import { Template } from './template';
 import { Example } from './example';
 import { Testcases } from './testcases';
+import { TsOnlineButton } from '@/components/core';
+
+// types
 import { ProblemInfoType } from '@/type/problem';
-import TsOnlineButton from '@/components/core/button/TsOnlineButton';
 
 interface ProblemInfoProps {
   problemInfo: { problemDiff: string; problemInfo: ProblemInfoType };
