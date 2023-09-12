@@ -5,7 +5,7 @@ import { ProblemDiffStyle, ProblemTitleStyle } from '../ProblemInfo.css';
 import { Level, ProblemInfoType } from '@/type/problem';
 
 interface TitleProps {
-  problemInfo: { problemDiff: string; problemInfo: ProblemInfoType };
+  problemInfo: { problemDiff: Level; problemInfo: ProblemInfoType };
 }
 
 const Title = ({ problemInfo }: TitleProps) => {
@@ -13,8 +13,8 @@ const Title = ({ problemInfo }: TitleProps) => {
     <div>
       <p className={ProblemTitleStyle}>
         {problemInfo.problemInfo.problemTitle}
-        <span className={ProblemDiffStyle[problemInfo.problemDiff as Level]}>
-          {problemInfo.problemDiff}
+        <span className={ProblemDiffStyle[problemInfo?.problemDiff]}>
+          {problemInfo?.problemDiff}
         </span>
       </p>
     </div>

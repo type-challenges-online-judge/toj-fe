@@ -7,14 +7,8 @@ import 'ace-builds/src-noconflict/theme-tomorrow';
 
 import { CodeInput, CodeInputWrapper } from './Submit.css';
 
-// types
-import { MainProblem } from '@/type/problem';
-
-// api
-import { getProblems } from '@/apis/get';
-
 // util
-import { fetchProblemDataById, getProblemDataById } from '@/util/problem';
+import { fetchProblemDataById } from '@/util/problem';
 
 const Submit = () => {
   const [code, setCode] = useState<string>('');

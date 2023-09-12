@@ -2,10 +2,10 @@ import React from 'react';
 import { ProblemCategoryStyle, ProblemCodeBlockStyle, ProblemCodeStyle } from '../ProblemInfo.css';
 
 // types
-import { ProblemInfoType } from '@/type/problem';
+import { Level, ProblemInfoType } from '@/type/problem';
 
 interface TemplateProps {
-  problemInfo: { problemDiff: string; problemInfo: ProblemInfoType };
+  problemInfo: { problemDiff: Level; problemInfo: ProblemInfoType };
 }
 const Template = ({ problemInfo }: TemplateProps) => {
   return (
@@ -14,7 +14,7 @@ const Template = ({ problemInfo }: TemplateProps) => {
 
       <pre className={ProblemCodeBlockStyle}>
         <code className={ProblemCodeStyle}>
-          {problemInfo.problemInfo.template.map((line) => `${line}\n\n`)}
+          {problemInfo?.problemInfo.template.map((line) => `${line}\n\n`)}
         </code>
       </pre>
     </div>

@@ -8,30 +8,36 @@ import { Testcases } from './testcases';
 import { TsOnlineButton } from '@/components/core';
 
 // types
-import { ProblemInfoType } from '@/type/problem';
+import { fetchProblemDataById } from '@/util/problem';
+import { useQuery } from '@tanstack/react-query';
 
-interface ProblemInfoProps {
-  problemInfo: { problemDiff: string; problemInfo: ProblemInfoType };
-}
-const ProblemInfo = ({ problemInfo }: ProblemInfoProps) => {
+const ProblemInfo = () => {
+  const problemId: number = Number(JSON.parse(localStorage.getItem('problemId')!));
+  // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
+  const { data } = useQuery({
+    queryKey: ['problemInfo', { problemId: Number(problemId) }],
+    queryFn: async () => await fetchProblemDataById(Number(problemId)),
+    staleTime: Infinity,
+  });
+
   return (
     <>
-      {problemInfo !== null && (
+      {data !== undefined && (
         <div>
-          <Title problemInfo={problemInfo} />
+          <Title problemInfo={data} />
 
           <TsOnlineButton
             text="TS 온라인에서 풀이"
             _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
           ></TsOnlineButton>
 
-          <p>{problemInfo.problemInfo.problemDescription}</p>
+          <p>{data?.problemInfo.problemDescription}</p>
 
-          <Example problemInfo={problemInfo} />
+          <Example problemInfo={data} />
 
-          <Template problemInfo={problemInfo} />
+          <Template problemInfo={data} />
 
-          <Testcases problemInfo={problemInfo} />
+          <Testcases problemInfo={data} />
         </div>
       )}
     </>
