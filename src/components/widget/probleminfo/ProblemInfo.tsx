@@ -2,10 +2,8 @@ import React from 'react';
 
 // components
 import { Title } from './title';
-import { Template } from './template';
-import { Example } from './example';
-import { Testcases } from './testcases';
 import { TsOnlineButton } from '@/components/core';
+import { ProblemDetails } from './problemdetails';
 
 // types
 import { fetchProblemDataById } from '@/util/problem';
@@ -33,11 +31,11 @@ const ProblemInfo = () => {
 
           <p>{data.problemInfo.problemDescription}</p>
 
-          <Example problemInfo={data} />
+          <ProblemDetails text="예시" codeArr={data.problemInfo.example} />
 
-          <Template problemInfo={data} />
+          <ProblemDetails text="제출 템플릿" codeArr={data.problemInfo.template} />
 
-          <Testcases problemInfo={data} />
+          <ProblemDetails text="테스트케이스" codeArr={data.problemInfo.testCases} />
         </div>
       )}
     </>
