@@ -31,7 +31,7 @@ const ProblemInfo = () => {
             _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
           ></TsOnlineButton>
 
-          <p>{data?.problemInfo.problemDescription}</p>
+          <p>{data.problemInfo.problemDescription}</p>
 
           <Example problemInfo={data} />
 
