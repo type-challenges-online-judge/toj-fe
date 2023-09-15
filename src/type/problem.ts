@@ -27,3 +27,25 @@ export interface MainLevel {
   level: Level;
   count: number;
 }
+
+// API 전용
+export interface TestCasesType {
+  case: string;
+  type: string;
+}
+
+export interface ProblemDetailType {
+  message: string;
+  data: {
+    createdAt: string;
+    description: string;
+    id: number;
+    language: string;
+    level: Level;
+    number: number;
+    template: string;
+    title: string;
+    updatedAt: string;
+    testCase: TestCasesType[];
+  };
+}
