@@ -7,14 +7,8 @@ import 'ace-builds/src-noconflict/theme-tomorrow';
 
 import { CodeInput, CodeInputWrapper } from './Submit.css';
 
-// types
-import { MainProblem } from '@/type/problem';
-
-// api
-import { getProblems } from '@/apis/get';
-
 // util
-import { getProblemDataById } from '@/util/problem';
+import { fetchProblemDataById } from '@/util/problem';
 
 const Submit = () => {
   const [code, setCode] = useState<string>('');
@@ -23,11 +17,7 @@ const Submit = () => {
 
   const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(problemId) }],
-    queryFn: async () => {
-      const res: MainProblem = await getProblems();
-      return getProblemDataById(res, Number(problemId));
-    },
-
+    queryFn: async () => await fetchProblemDataById(Number(problemId)),
     staleTime: Infinity,
   });
 
