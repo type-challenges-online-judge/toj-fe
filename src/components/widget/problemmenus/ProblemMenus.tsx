@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ProblemMenuButtons } from '@/components/core';
 
 // types
-import { Level, ProblemDetailType, ProblemInfoType } from '@/type/problem';
+import { ProblemDetailType } from '@/type/problem';
 
 // style
 import { SingleButton, ButtonList } from './ProblemMenus.css';

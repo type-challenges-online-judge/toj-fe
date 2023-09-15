@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 // import 'ace-builds/src-noconflict/mode-typescript';
 // import 'ace-builds/src-noconflict/theme-tomorrow';
 
-import { CodeInput, CodeInputWrapper } from './Submit.css';
+// import { CodeInput, CodeInputWrapper } from './Submit.css';
 import { ProblemDetailType } from '@/type/problem';
 import { getProblemDetail } from '@/apis/get';
 

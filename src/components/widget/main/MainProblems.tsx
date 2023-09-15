@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import {
   MainLevelsWrapperStyle,
@@ -7,15 +7,15 @@ import {
   MainProblemsWrapperStyle,
 } from './MainProblems.css';
 
-import { LevelLabel, MainProblemButton } from '@/components';
-import { MainLevel, MainProblem, ProblemInfoType } from '@/type/problem';
-import { MAIN_LEVELS } from '@/data/Problems';
-// import { getProblems } from '@/apis/get';
+// import { LevelLabel, MainProblemButton } from '@/components';
+// import { MainLevel, MainProblem } from '@/type/problem';
+// import { MAIN_LEVELS } from '@/data/Problems';
 
+// 기존 API로직 때문에 에러가 발생하게 되므로 민지님이 추후 수정해 주세요
 const MainProblems = () => {
   const navigate = useNavigate();
 
-  const [problemData, setProblemData] = useState<MainProblem | null>(null);
+  // const [problemData, setProblemData] = useState<MainProblem | null>(null);
 
   // useEffect(() => {
   //   const getProblemData = async () => {
@@ -31,7 +31,7 @@ const MainProblems = () => {
 
   return (
     <div className={MainProblemsWrapperStyle}>
-      {MAIN_LEVELS.map((levelLabel: MainLevel, index: number) => {
+      {/* {MAIN_LEVELS.map((levelLabel: MainLevel, index: number) => {
         return (
           <div key={index} className={MainLevelsWrapperStyle}>
             <LevelLabel level={levelLabel.level} count={levelLabel.count} />
@@ -56,7 +56,7 @@ const MainProblems = () => {
             )}
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 };

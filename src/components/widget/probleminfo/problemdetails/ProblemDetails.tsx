@@ -4,7 +4,7 @@ import React from 'react';
 import { ProblemCategoryStyle, ProblemCodeBlockStyle, ProblemCodeStyle } from '../ProblemInfo.css';
 
 // types
-import { ProblemDetailType, ProblemInfoType } from '@/type/problem';
+import { ProblemDetailType } from '@/type/problem';
 import { extractExample, extractTestCases } from '@/util/problem';
 
 interface codeArrProps {
