@@ -15,6 +15,7 @@ const Submit = () => {
   const [isStart, setIsStart] = useState(true);
   const { problemId } = useParams();
 
+  // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
   const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(problemId) }],
     queryFn: async () => await fetchProblemDataById(Number(problemId)),
