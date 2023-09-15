@@ -5,7 +5,7 @@ import { Title } from './title';
 import { Template } from './template';
 import { Example } from './example';
 import { Testcases } from './testcases';
-import { TsOnlineButton } from '@/components/core';
+import { BasicButton } from '@/components/core';
 
 // types
 import { ProblemInfoType } from '@/type/problem';
@@ -20,10 +20,10 @@ const ProblemInfo = ({ problemInfo }: ProblemInfoProps) => {
         <div>
           <Title problemInfo={problemInfo} />
 
-          <TsOnlineButton
+          <BasicButton
             text="TS 온라인에서 풀이"
             _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
-          ></TsOnlineButton>
+          />
 
           <p>{problemInfo.problemInfo.problemDescription}</p>
 
