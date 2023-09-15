@@ -10,24 +10,24 @@ import {
 import { LevelLabel, MainProblemButton } from '@/components';
 import { MainLevel, MainProblem, ProblemInfoType } from '@/type/problem';
 import { MAIN_LEVELS } from '@/data/Problems';
-import { getProblems } from '@/apis/get';
+// import { getProblems } from '@/apis/get';
 
 const MainProblems = () => {
   const navigate = useNavigate();
 
   const [problemData, setProblemData] = useState<MainProblem | null>(null);
 
-  useEffect(() => {
-    const getProblemData = async () => {
-      try {
-        const res = await getProblems<MainProblem>();
-        setProblemData(res);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-    getProblemData();
-  }, []);
+  // useEffect(() => {
+  //   const getProblemData = async () => {
+  //     try {
+  //       const res = await getProblems<MainProblem>();
+  //       setProblemData(res);
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
+  //   };
+  //   getProblemData();
+  // }, []);
 
   return (
     <div className={MainProblemsWrapperStyle}>

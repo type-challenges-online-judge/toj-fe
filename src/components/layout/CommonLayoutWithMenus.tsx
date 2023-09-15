@@ -7,7 +7,9 @@ import { CommonLayoutStyle } from './CommonLayoutWithMenus.css';
 import { ProblemMenus } from '@/components/widget';
 
 // util
-import { checkURL, fetchProblemDataById } from '@/util/problem';
+import { checkURL } from '@/util/problem';
+import { getProblemDetail } from '@/apis/get';
+import { ProblemDetailType } from '@/type/problem';
 
 const CommonLayoutWithMenus = () => {
   const { problemId } = useParams();
@@ -32,14 +34,17 @@ const CommonLayoutWithMenus = () => {
 
   const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: currentProblemId }],
-    queryFn: async () => await fetchProblemDataById(currentProblemId!),
+    queryFn: async () => {
+      const res = await getProblemDetail<ProblemDetailType>(Number(currentProblemId));
+      return res.data;
+    },
     staleTime: Infinity,
     enabled: currentProblemId !== null,
   });
 
   return (
     <div className={CommonLayoutStyle}>
-      {data !== undefined && <ProblemMenus problemInfo={data} />}
+      {data !== undefined && <ProblemMenus problemDetail={data} />}
       <Outlet />
     </div>
   );

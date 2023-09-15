@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-import AceEditor from 'react-ace';
-import 'ace-builds/src-noconflict/mode-typescript';
-import 'ace-builds/src-noconflict/theme-tomorrow';
+// import AceEditor from 'react-ace';
+// import 'ace-builds/src-noconflict/mode-typescript';
+// import 'ace-builds/src-noconflict/theme-tomorrow';
 
 import { CodeInput, CodeInputWrapper } from './Submit.css';
+import { ProblemDetailType } from '@/type/problem';
+import { getProblemDetail } from '@/apis/get';
 
 // util
-import { fetchProblemDataById } from '@/util/problem';
 
 const Submit = () => {
   const [code, setCode] = useState<string>('');
@@ -18,14 +19,17 @@ const Submit = () => {
   // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
   const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(problemId) }],
-    queryFn: async () => await fetchProblemDataById(Number(problemId)),
+    queryFn: async () => {
+      const res = await getProblemDetail<ProblemDetailType>(Number(problemId));
+      return res.data;
+    },
     staleTime: Infinity,
   });
 
   useEffect(() => {
     const getFirstValue = () => {
       if (isStart && data !== undefined) {
-        const templateStr = data?.problemInfo.template?.join('');
+        const templateStr = data?.template;
         setIsStart(false);
         setCode(templateStr);
       }
@@ -35,7 +39,7 @@ const Submit = () => {
 
   return (
     <div>
-      <div className={CodeInputWrapper}>
+      {/* <div className={CodeInputWrapper}>
         <AceEditor
           className={CodeInput}
           placeholder="code input"
@@ -54,7 +58,7 @@ const Submit = () => {
           editorProps={{ $blockScrolling: true }}
           width="800px"
         />
-      </div>
+      </div> */}
     </div>
   );
 };

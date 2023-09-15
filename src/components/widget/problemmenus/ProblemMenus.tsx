@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ProblemMenuButtons } from '@/components/core';
 
 // types
-import { Level, ProblemInfoType } from '@/type/problem';
+import { Level, ProblemDetailType, ProblemInfoType } from '@/type/problem';
 
 // style
 import { SingleButton, ButtonList } from './ProblemMenus.css';
@@ -14,10 +14,10 @@ import { SingleButton, ButtonList } from './ProblemMenus.css';
 import { PAGE_URL } from '@/config/path';
 
 interface ProblemMenusProps {
-  problemInfo: { problemDiff: Level; problemInfo: ProblemInfoType };
+  problemDetail: ProblemDetailType['data'];
 }
 
-const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
+const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
   const navigate = useNavigate();
 
   // 내 제출
@@ -32,11 +32,11 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
       <ul className={ButtonList}>
         <li className={`${SingleButton} isFirst`}>
           <ProblemMenuButtons
-            problemDiff={problemInfo.problemDiff}
-            problemId={problemInfo.problemInfo.problemId}
-            text={problemInfo.problemInfo.problemTitle}
+            problemDiff={problemDetail.level}
+            problemId={problemDetail.id}
+            text={problemDetail.title}
             _onClick={() => {
-              navigate(`/${PAGE_URL.Problem}/${problemInfo.problemInfo.problemId}`);
+              navigate(`/${PAGE_URL.Problem}/${problemDetail.id}`);
             }}
           />
         </li>
@@ -45,7 +45,7 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
           <ProblemMenuButtons
             text="제출하기"
             _onClick={() => {
-              navigate(`/${PAGE_URL.Submit}/${problemInfo.problemInfo.problemId}`);
+              navigate(`/${PAGE_URL.Submit}/${problemDetail.id}`);
             }}
           />
         </li>
@@ -54,7 +54,7 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
             text="답안 보기"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemInfo.problemInfo.problemId}&user_id=minh0518&mine=false`,
+                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemDetail.id}&user_id=minh0518&mine=false`,
               );
             }}
           />
@@ -64,7 +64,7 @@ const ProblemMenus = ({ problemInfo }: ProblemMenusProps) => {
             text="내 제출"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemInfo.problemInfo.problemId}&user_id=minh0518&mine=true`,
+                `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemDetail.id}&user_id=minh0518&mine=true`,
               );
             }}
           />
