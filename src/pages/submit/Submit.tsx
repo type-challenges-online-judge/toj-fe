@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
-// import AceEditor from 'react-ace';
-// import 'ace-builds/src-noconflict/mode-typescript';
-// import 'ace-builds/src-noconflict/theme-tomorrow';
+import AceEditor from 'react-ace';
+import 'ace-builds/src-noconflict/mode-typescript';
+import 'ace-builds/src-noconflict/theme-tomorrow';
 
-// import { CodeInput, CodeInputWrapper } from './Submit.css';
+import { CodeInput, CodeInputWrapper } from './Submit.css';
 import { ProblemDetailType } from '@/type/problem';
 import { getProblemDetail } from '@/apis/get';
 
@@ -30,6 +30,7 @@ const Submit = () => {
     const getFirstValue = () => {
       if (isStart && data !== undefined) {
         const templateStr = data?.template;
+        console.log(data);
         setIsStart(false);
         setCode(templateStr);
       }
@@ -39,7 +40,7 @@ const Submit = () => {
 
   return (
     <div>
-      {/* <div className={CodeInputWrapper}>
+      <div className={CodeInputWrapper}>
         <AceEditor
           className={CodeInput}
           placeholder="code input"
@@ -58,7 +59,7 @@ const Submit = () => {
           editorProps={{ $blockScrolling: true }}
           width="800px"
         />
-      </div> */}
+      </div>
     </div>
   );
 };

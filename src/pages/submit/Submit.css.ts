@@ -6,6 +6,5 @@ export const CodeInputWrapper = style({
 });
 
 export const CodeInput = style({
-  marginTop: '150px',
-  border: '1px solid black',
+  marginTop: '100px',
 });
