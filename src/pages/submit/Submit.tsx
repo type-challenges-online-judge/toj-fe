@@ -1,25 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { useNavigate, useParams } from 'react-router-dom';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-typescript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 
-import { CodeInput, CodeInputWrapper } from './Submit.css';
-
-// types
-import { MainProblem } from '@/type/problem';
-
-// api
 import { getProblems } from '@/apis/get';
-
-// util
+import { submitAnswer } from '@/apis/problem';
+import { BasicButton } from '@/components';
+import { MainProblem } from '@/type/problem';
 import { getProblemDataById } from '@/util/problem';
+
+import { CodeInput, CodeInputWrapper } from './Submit.css';
 
 const Submit = () => {
   const [code, setCode] = useState<string>('');
   const [isStart, setIsStart] = useState(true);
   const { problemId } = useParams();
+
+  const navigate = useNavigate();
 
   const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(problemId) }],
@@ -30,6 +29,24 @@ const Submit = () => {
 
     staleTime: Infinity,
   });
+
+  const { mutate: submitAnswerMutation } = useMutation(
+    async (code: string) => await submitAnswer(code),
+    {
+      onSuccess() {},
+      onError: (err) => {
+        console.error(err);
+      },
+    },
+  );
+
+  const submitAnswerOnClick = () => {
+    submitAnswerMutation(code, {
+      onSuccess: async () => {
+        navigate(`/status?result_id=-1&problem_id=${problemId}&user_id=minh0518&mine=true`);
+      },
+    });
+  };
 
   useEffect(() => {
     const getFirstValue = () => {
@@ -61,8 +78,10 @@ const Submit = () => {
           highlightActiveLine={true}
           tabSize={2}
           editorProps={{ $blockScrolling: true }}
-          width="800px"
+          width="100%"
         />
+
+        <BasicButton text="제출하기" _onClick={submitAnswerOnClick} />
       </div>
     </div>
   );
