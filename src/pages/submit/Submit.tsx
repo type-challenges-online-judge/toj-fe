@@ -8,8 +8,7 @@ import 'ace-builds/src-noconflict/theme-tomorrow';
 import { getProblems } from '@/apis/get';
 import { submitAnswer } from '@/apis/problem';
 import { BasicButton } from '@/components';
-import { MainProblem } from '@/type/problem';
-import { getProblemDataById } from '@/util/problem';
+import { fetchProblemDataById } from '@/util/problem';
 
 import { CodeInput, CodeInputWrapper } from './Submit.css';
 
@@ -20,13 +19,10 @@ const Submit = () => {
 
   const navigate = useNavigate();
 
+  // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
   const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(problemId) }],
-    queryFn: async () => {
-      const res: MainProblem = await getProblems();
-      return getProblemDataById(res, Number(problemId));
-    },
-
+    queryFn: async () => await fetchProblemDataById(Number(problemId)),
     staleTime: Infinity,
   });
 
