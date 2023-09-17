@@ -5,7 +5,6 @@ import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-typescript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 
-import { getProblems } from '@/apis/get';
 import { submitAnswer } from '@/apis/problem';
 import { BasicButton } from '@/components';
 import { fetchProblemDataById } from '@/util/problem';
