@@ -21,7 +21,7 @@ export const NavbarStyle = style({
 });
 
 export const LogoStyle = style({
-  padding: '0 !important',
+  padding: '0',
   backgroundColor: 'white',
   border: 'none',
   fontWeight: '700',
