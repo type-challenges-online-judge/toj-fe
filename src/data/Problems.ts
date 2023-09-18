@@ -1,5 +1,5 @@
 // import { MainLevel, MainProblems } from '@/type/problem';
-import { MainLevel } from '@/type/problem';
+// import { MainLevel } from '@/type/problem';
 
 // export const MAIN_LEVEL_PROBLEMS: MainProblems = {
 //   'warm-up': [
@@ -160,25 +160,25 @@ import { MainLevel } from '@/type/problem';
 // };
 
 // main
-export const MAIN_LEVELS: MainLevel[] = [
-  {
-    level: 'warm-up',
-    count: 1,
-  },
-  {
-    level: 'easy',
-    count: 13,
-  },
-  {
-    level: 'medium',
-    count: 93,
-  },
-  {
-    level: 'hard',
-    count: 46,
-  },
-  {
-    level: 'extreme',
-    count: 14,
-  },
-];
+// export const MAIN_LEVELS: MainLevel[] = [
+//   {
+//     level: 'warm-up',
+//     count: 1,
+//   },
+//   {
+//     level: 'easy',
+//     count: 13,
+//   },
+//   {
+//     level: 'medium',
+//     count: 93,
+//   },
+//   {
+//     level: 'hard',
+//     count: 46,
+//   },
+//   {
+//     level: 'extreme',
+//     count: 14,
+//   },
+// ];

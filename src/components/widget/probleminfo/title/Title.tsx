@@ -2,20 +2,18 @@ import React from 'react';
 import { ProblemDiffStyle, ProblemTitleStyle } from '../ProblemInfo.css';
 
 // types
-import { Level, ProblemInfoType } from '@/type/problem';
+import { ProblemDetailType } from '@/type/problem';
 
 interface TitleProps {
-  problemInfo: { problemDiff: Level; problemInfo: ProblemInfoType };
+  problemDetail: ProblemDetailType['data'];
 }
 
-const Title = ({ problemInfo }: TitleProps) => {
+const Title = ({ problemDetail }: TitleProps) => {
   return (
     <div>
       <p className={ProblemTitleStyle}>
-        {problemInfo.problemInfo.problemTitle}
-        <span className={ProblemDiffStyle[problemInfo?.problemDiff]}>
-          {problemInfo?.problemDiff}
-        </span>
+        {problemDetail.title}
+        <span className={ProblemDiffStyle[problemDetail.level]}>{problemDetail.level}</span>
       </p>
     </div>
   );
