@@ -797,7 +797,8 @@ export const handlers = [
     return await res(ctx.status(200), ctx.json(submitLogData));
   }),
   rest.post<SubmitType>('/submit', async (req, res, ctx) => {
-    submitLogData.push(req.body);
+    const jsonData = await req.json();
+    submitLogData.push(jsonData);
     return await res(ctx.status(201));
   }),
 ];
