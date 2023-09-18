@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { SignButton } from '@/components';
 
 import { LogoStyle, NavbarStyle } from './Navbar.css';
-import { SignButton } from '../../../components';
 
 const Navbar = () => {
   const [isAuth] = useState<boolean>(false);
 
+  const navigate = useNavigate();
+
+  const goMain = () => {
+    navigate('/');
+  };
+
   return (
     <div className={NavbarStyle}>
-      <p className={LogoStyle}>TOJ</p>
+      <button className={LogoStyle} onClick={goMain}>
+        TOJ
+      </button>
       <SignButton text={isAuth ? 'LOGOUT' : 'LOGIN'} _onClick={() => {}} />
     </div>
   );

@@ -643,9 +643,15 @@ const problemData = {
   ],
 };
 
+const submitData = [];
+
 // API
 export const handlers = [
   rest.get('/problems', async (req, res, ctx) => {
     return await res(ctx.status(200), ctx.json(problemData));
+  }),
+  rest.post('/submit', async (req, res, ctx) => {
+    submitData.push(req.body);
+    return await res(ctx.status(201));
   }),
 ];

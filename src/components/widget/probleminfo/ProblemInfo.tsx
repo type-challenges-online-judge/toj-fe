@@ -1,8 +1,8 @@
 import React from 'react';
 
 // components
+import { BasicButton } from '@/components/core';
 import { Title } from './title';
-import { TsOnlineButton } from '@/components/core';
 import { ProblemDetails } from './problemdetails';
 
 // types
@@ -31,10 +31,10 @@ const ProblemInfo = () => {
         <div>
           <Title problemDetail={data} />
 
-          <TsOnlineButton
+          <BasicButton
             text="TS 온라인에서 풀이"
             _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
-          ></TsOnlineButton>
+          />
 
           <p>{extractDescription(data.description)}</p>
 

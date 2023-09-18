@@ -21,8 +21,11 @@ export const NavbarStyle = style({
 });
 
 export const LogoStyle = style({
-  margin: '0 !important',
+  padding: '0',
+  backgroundColor: 'white',
+  border: 'none',
   fontWeight: '700',
   fontSize: '17px',
   color: 'black',
+  cursor: 'pointer',
 });

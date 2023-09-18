@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-export const TsOnlineButtonStyle = style({
+export const BasicButtonStyle = style({
   backgroundColor: '#3178C6',
   fontSize: '0.9rem',
   color: 'white',
