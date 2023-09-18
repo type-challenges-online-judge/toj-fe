@@ -11,6 +11,7 @@ import { BasicButton } from '@/components';
 import { ProblemDetailType } from '@/type/problem';
 
 import { CodeInput, CodeInputWrapper } from './Submit.css';
+import { SubmitType } from '@/type/status';
 
 const Submit = () => {
   const [code, setCode] = useState<string>('');
@@ -30,7 +31,7 @@ const Submit = () => {
   });
 
   const { mutate: submitAnswerMutation } = useMutation(
-    async (code: string) => await submitAnswer(code),
+    async (submitData: SubmitType) => await submitAnswer(submitData),
     {
       onSuccess() {},
       onError: (err) => {
@@ -40,11 +41,25 @@ const Submit = () => {
   );
 
   const submitAnswerOnClick = () => {
-    submitAnswerMutation(code, {
-      onSuccess: async () => {
-        navigate(`/status?result_id=-1&problem_id=${problemId}&user_id=minh0518&mine=true`);
-      },
-    });
+    if (problemId !== undefined) {
+      submitAnswerMutation(
+        {
+          userId: '123',
+          problemId: Number(problemId),
+          submitNumber: Math.floor(Math.random() * 1000) + 1,
+          accuracyScore: Math.floor(Math.random() * 101),
+          validate: Math.floor(Math.random() * 1001),
+          codeLength: Math.floor(Math.random() * 1000),
+          sumbitDate: '2023-09-13T14:12:57',
+          code,
+        },
+        {
+          onSuccess: async () => {
+            navigate(`/status?result_id=-1&problem_id=${problemId}&user_id=minh0518&mine=true`);
+          },
+        },
+      );
+    }
   };
 
   useEffect(() => {
