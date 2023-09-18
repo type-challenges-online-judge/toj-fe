@@ -1,7 +1,7 @@
-import { MainProblem } from '@/type/problem';
+import { ProblemDetailType } from '@/type/problem';
 import axios from 'axios';
 
-export const getProblems = async <T extends MainProblem>() => {
-  const res = await axios.get<T>('/problems');
+export const getProblemDetail = async <T extends ProblemDetailType>(id: number) => {
+  const res = await axios.get<T>(`/api/problem/detail/${id}`);
   return res.data;
 };

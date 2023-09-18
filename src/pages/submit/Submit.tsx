@@ -6,8 +6,9 @@ import 'ace-builds/src-noconflict/mode-typescript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 
 import { submitAnswer } from '@/apis/problem';
+import { getProblemDetail } from '@/apis/get';
 import { BasicButton } from '@/components';
-import { fetchProblemDataById } from '@/util/problem';
+import { ProblemDetailType } from '@/type/problem';
 
 import { CodeInput, CodeInputWrapper } from './Submit.css';
 
@@ -21,7 +22,10 @@ const Submit = () => {
   // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
   const { data } = useQuery({
     queryKey: ['problemInfo', { problemId: Number(problemId) }],
-    queryFn: async () => await fetchProblemDataById(Number(problemId)),
+    queryFn: async () => {
+      const res = await getProblemDetail<ProblemDetailType>(Number(problemId));
+      return res.data;
+    },
     staleTime: Infinity,
   });
 
@@ -46,7 +50,8 @@ const Submit = () => {
   useEffect(() => {
     const getFirstValue = () => {
       if (isStart && data !== undefined) {
-        const templateStr = data?.problemInfo.template?.join('');
+        const templateStr = data?.template;
+        console.log(data);
         setIsStart(false);
         setCode(templateStr);
       }
