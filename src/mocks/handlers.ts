@@ -1,3 +1,4 @@
+import { SubmitType } from '@/type/status';
 import { rest } from 'msw';
 
 // mock data
@@ -643,15 +644,161 @@ const problemData = {
   ],
 };
 
-const submitData = [];
+const submitLogData = [
+  {
+    userId: '123',
+    problemId: 172,
+    submitNumber: 2,
+    accuracyScore: 100,
+    validate: 100,
+    codeLength: 324, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '456',
+    problemId: 172,
+    submitNumber: 3,
+    accuracyScore: 0,
+    validate: 0,
+    codeLength: 754, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '456',
+    problemId: 172,
+    submitNumber: 28,
+    accuracyScore: 88,
+    validate: 80,
+    codeLength: 241, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '123',
+    problemId: 243,
+    submitNumber: 2,
+    accuracyScore: 100,
+    validate: 100,
+    codeLength: 324, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '789',
+    problemId: 243,
+    submitNumber: 52,
+    accuracyScore: 100,
+    validate: 100,
+    codeLength: 431, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+
+  {
+    userId: '123',
+    problemId: 174,
+    submitNumber: 2,
+    accuracyScore: 100,
+    validate: 100,
+    codeLength: 324, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '789',
+    problemId: 174,
+    submitNumber: 598,
+    accuracyScore: 100,
+    validate: 75,
+    codeLength: 164, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '101112',
+    problemId: 174,
+    submitNumber: 75,
+    accuracyScore: 100,
+    validate: 100,
+    codeLength: 572, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '123',
+    problemId: 201,
+    submitNumber: 2,
+    accuracyScore: 100,
+    validate: 100,
+    codeLength: 324, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '0000',
+    problemId: 201,
+    submitNumber: 913,
+    accuracyScore: 50,
+    validate: 50,
+    codeLength: 29, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '123',
+    problemId: 220,
+    submitNumber: 2,
+    accuracyScore: 100,
+    validate: 100,
+    codeLength: 324, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '131415',
+    problemId: 220,
+    submitNumber: 9,
+    accuracyScore: 33,
+    validate: 10,
+    codeLength: 64, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '131415',
+    problemId: 220,
+    submitNumber: 9,
+    accuracyScore: 100,
+    validate: 100,
+    codeLength: 64, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+  {
+    userId: '123',
+    problemId: 235,
+    submitNumber: 2,
+    accuracyScore: 40,
+    validate: 0,
+    codeLength: 324, // Byte
+    sumbitDate: '2023-09-13T14:12:57',
+    code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
+  },
+];
 
 // API
 export const handlers = [
   rest.get('/problems', async (req, res, ctx) => {
     return await res(ctx.status(200), ctx.json(problemData));
   }),
-  rest.post('/submit', async (req, res, ctx) => {
-    submitData.push(req.body);
+  rest.get('/submit', async (req, res, ctx) => {
+    return await res(ctx.status(200), ctx.json(submitLogData));
+  }),
+  rest.post<SubmitType>('/submit', async (req, res, ctx) => {
+    const jsonData = await req.json();
+    submitLogData.push(jsonData);
     return await res(ctx.status(201));
   }),
 ];
