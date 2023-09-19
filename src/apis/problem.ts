@@ -1,7 +1,6 @@
 import { SubmitType } from '@/type/status';
 import axios, { AxiosResponse } from 'axios';
 import { API } from './instance';
-import { ProblemDetailType } from '@/type/problem';
 
 // API
 export const problemApi = {

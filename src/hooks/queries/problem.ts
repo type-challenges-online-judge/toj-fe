@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { problemApi } from '@/apis/problem';
-import { ProblemDetailType } from '@/type/problem';
 
 export const useGetProblems = <T>(options?: T) => {
   return useQuery(['getProblems'], async () => await problemApi.getProblems(), {
