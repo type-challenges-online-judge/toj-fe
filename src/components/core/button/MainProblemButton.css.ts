@@ -10,7 +10,7 @@ export const ProblemButtonStyle = style({
     '&.true': {
       backgroundColor: '#CCCAC8',
     },
-    '&.warm-up': {
+    '&.warm': {
       backgroundColor: '#0F8383',
     },
     '&.easy': {

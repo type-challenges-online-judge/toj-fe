@@ -9,7 +9,7 @@ const ProblemDiffFont = style({
   marginLeft: '30px',
 });
 export const ProblemDiffStyle = {
-  'warm-up': style([ProblemDiffFont, { color: '#0F8383' }]),
+  warm: style([ProblemDiffFont, { color: '#0F8383' }]),
   easy: style([ProblemDiffFont, { color: '#7BA918' }]),
   medium: style([ProblemDiffFont, { color: '#D49228' }]),
   hard: style([ProblemDiffFont, { color: '#D74640' }]),

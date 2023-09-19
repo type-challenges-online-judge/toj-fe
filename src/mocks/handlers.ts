@@ -2,7 +2,7 @@ import { rest } from 'msw';
 
 // mock data
 const problemData = {
-  'warm-up': [
+  warm: [
     {
       problemId: 13,
       problemTitle: 'Pick',
