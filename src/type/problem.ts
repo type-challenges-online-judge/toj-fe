@@ -1,4 +1,34 @@
-export type Level = 'warm-up' | 'easy' | 'medium' | 'hard' | 'extreme';
+export type Level = 'warm' | 'easy' | 'medium' | 'hard' | 'extreme';
+
+export type ProblemsType = Record<Level, ProblemType[]>;
+
+export interface ProblemType {
+  id: number;
+  title: string;
+  number: number;
+}
+
+// API 전용
+export interface TestCasesType {
+  case: string;
+  type: string;
+}
+
+export interface ProblemDetailType {
+  message: string;
+  data: {
+    createdAt: string;
+    description: string;
+    id: number;
+    language: string;
+    level: Level;
+    number: number;
+    template: string;
+    title: string;
+    updatedAt: string;
+    testCase: TestCasesType[];
+  };
+}
 
 // // 목데이터 전용으로 임시 생성.
 // export interface ProblemInfoType {
@@ -27,25 +57,3 @@ export type Level = 'warm-up' | 'easy' | 'medium' | 'hard' | 'extreme';
 //   level: Level;
 //   count: number;
 // }
-
-// API 전용
-export interface TestCasesType {
-  case: string;
-  type: string;
-}
-
-export interface ProblemDetailType {
-  message: string;
-  data: {
-    createdAt: string;
-    description: string;
-    id: number;
-    language: string;
-    level: Level;
-    number: number;
-    template: string;
-    title: string;
-    updatedAt: string;
-    testCase: TestCasesType[];
-  };
-}

@@ -21,7 +21,7 @@ export const ProblemDiffAndId = style({
   color: 'white',
 
   selectors: {
-    '&.warm-up': {
+    '&.warm': {
       backgroundColor: '#0F8383',
     },
     '&.easy': {

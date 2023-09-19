@@ -18,7 +18,7 @@ export const CountStyle = style({
   padding: '4px 8px',
 
   selectors: {
-    '&.warm-up': {
+    '&.warm': {
       backgroundColor: '#0F8383',
     },
     '&.easy': {
