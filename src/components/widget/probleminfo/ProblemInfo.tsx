@@ -1,48 +1,41 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 
 // components
 import { BasicButton } from '@/components/core';
 import { Title } from './title';
 import { ProblemDetails } from './problemdetails';
 
-// types
-import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'react-router-dom';
-import { getProblemDetail } from '@/apis/get';
-import { ProblemDetailType } from '@/type/problem';
 import { extractDescription } from '@/util/problem';
+import { useGetProblemDetail } from '@/hooks/queries/problem';
+import { ProblemDetailType } from '@/type/problem';
 
 const ProblemInfo = () => {
   const { problemId } = useParams();
 
   // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
-  const { data } = useQuery({
-    queryKey: ['problemInfo', { problemId: Number(problemId) }],
-    queryFn: async () => {
-      const res = await getProblemDetail<ProblemDetailType>(Number(problemId));
-      return res.data;
-    },
-    staleTime: Infinity,
-  });
+  const { data: { data: problemDetailData = null } = {} } = useGetProblemDetail<ProblemDetailType>(
+    Number(problemId),
+  );
 
   return (
     <>
-      {data !== undefined && (
+      {problemDetailData !== null && (
         <div>
-          <Title problemDetail={data} />
+          <Title problemDetail={problemDetailData} />
 
           <BasicButton
             text="TS 온라인에서 풀이"
             _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
           />
 
-          <p>{extractDescription(data.description)}</p>
+          <p>{extractDescription(problemDetailData.description)}</p>
 
-          <ProblemDetails text="예시" codeBlock={data.description} />
+          <ProblemDetails text="예시" codeBlock={problemDetailData.description} />
 
-          <ProblemDetails text="제출 템플릿" codeBlock={data.template} />
+          <ProblemDetails text="제출 템플릿" codeBlock={problemDetailData.template} />
 
-          <ProblemDetails text="테스트 케이스" codeBlock={data.testCase} />
+          <ProblemDetails text="테스트 케이스" codeBlock={problemDetailData.testCase} />
         </div>
       )}
     </>

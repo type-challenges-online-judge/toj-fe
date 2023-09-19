@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { CommonLayoutStyle } from './CommonLayoutWithMenus.css';
 
@@ -8,7 +7,7 @@ import { ProblemMenus } from '@/components/widget';
 
 // util
 import { checkURL } from '@/util/problem';
-import { getProblemDetail } from '@/apis/get';
+import { useGetProblemDetail } from '@/hooks/queries/problem';
 import { ProblemDetailType } from '@/type/problem';
 
 const CommonLayoutWithMenus = () => {
@@ -32,19 +31,12 @@ const CommonLayoutWithMenus = () => {
     decideProblemId();
   }, [location.pathname, problemId]);
 
-  const { data } = useQuery({
-    queryKey: ['problemInfo', { problemId: currentProblemId }],
-    queryFn: async () => {
-      const res = await getProblemDetail<ProblemDetailType>(Number(currentProblemId));
-      return res.data;
-    },
-    staleTime: Infinity,
-    enabled: currentProblemId !== null,
-  });
+  const { data: { data: problemDetailData = null } = {} } =
+    useGetProblemDetail<ProblemDetailType>(currentProblemId);
 
   return (
     <div className={CommonLayoutStyle}>
-      {data !== undefined && <ProblemMenus problemDetail={data} />}
+      {problemDetailData !== null && <ProblemMenus problemDetail={problemDetailData} />}
       <Outlet />
     </div>
   );
