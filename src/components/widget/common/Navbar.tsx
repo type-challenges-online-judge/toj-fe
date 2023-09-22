@@ -24,7 +24,7 @@ const Navbar = () => {
       const response = await loginApi.postLogin(codeQueryString!);
 
       if (response?.status === 201) {
-        // URL 쿼리스트링
+        // URL에서 code 쿼리스트링 제거
         urlParams.delete('code');
         navigate(`${location.pathname}?${urlParams.toString()}`, { replace: true });
       }
