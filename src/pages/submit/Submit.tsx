@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-typescript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 
 import { submitAnswer } from '@/apis/problem';
-import { getProblemDetail } from '@/apis/get';
 import { BasicButton } from '@/components';
-import { ProblemDetailType } from '@/type/problem';
 
 import { CodeInput, CodeInputWrapper } from './Submit.css';
 import { SubmitType } from '@/type/status';
+import { useGetProblemDetail } from '@/hooks/queries/problem';
+import { ProblemDetailType } from '@/type/problem';
 
 const Submit = () => {
   const [code, setCode] = useState<string>('');
@@ -21,14 +21,9 @@ const Submit = () => {
   const navigate = useNavigate();
 
   // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
-  const { data } = useQuery({
-    queryKey: ['problemInfo', { problemId: Number(problemId) }],
-    queryFn: async () => {
-      const res = await getProblemDetail<ProblemDetailType>(Number(problemId));
-      return res.data;
-    },
-    staleTime: Infinity,
-  });
+  const { data: { data: problemDetailData = null } = {} } = useGetProblemDetail<ProblemDetailType>(
+    Number(problemId),
+  );
 
   const { mutate: submitAnswerMutation } = useMutation(
     async (submitData: SubmitType) => await submitAnswer(submitData),
@@ -64,15 +59,14 @@ const Submit = () => {
 
   useEffect(() => {
     const getFirstValue = () => {
-      if (isStart && data !== undefined) {
-        const templateStr = data?.template;
-        console.log(data);
+      if (isStart && problemDetailData !== null) {
+        const templateStr = problemDetailData.template;
         setIsStart(false);
         setCode(templateStr);
       }
     };
     getFirstValue();
-  }, [data]);
+  }, [problemDetailData]);
 
   return (
     <div>

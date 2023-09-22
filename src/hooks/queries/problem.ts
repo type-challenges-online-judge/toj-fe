@@ -13,3 +13,17 @@ export const useGetProblems = <T>(options?: T) => {
     ...options,
   });
 };
+
+export const useGetProblemDetail = <T>(problemId: number | null, options?: T) => {
+  return useQuery<T>({
+    queryKey: ['problemDetail', { problemId }],
+    queryFn: async (): Promise<T> => {
+      const res = await problemApi.getProblemDetail<T>(problemId!);
+      return res.data;
+    },
+    staleTime: Infinity,
+    retry: 0,
+    enabled: problemId !== null,
+    ...options,
+  });
+};
