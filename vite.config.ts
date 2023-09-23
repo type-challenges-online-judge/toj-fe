@@ -6,6 +6,7 @@ import path from 'path';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react(), vanillaExtractPlugin()],
+  envPrefix: 'REACT_APP_',
   server: {
     port: 3000,
     proxy: {
