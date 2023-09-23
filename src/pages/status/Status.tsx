@@ -2,14 +2,6 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-// 내 제출
-// https://localhost:3000/status?result_id=1&problem_id=4&snsId=123&mine=true
-// problem_id , snsId , result_id=1(1이면 맞은 문제, -1이면 모두 ) , mine=true
-
-// 정답
-// https://localhost:3000/status?result_id=1&problem_id=4&snsId=123&mine=false
-// problem_id , snsId , result_id=1 , mine=false
-
 const Status = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
