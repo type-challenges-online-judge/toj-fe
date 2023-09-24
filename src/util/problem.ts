@@ -34,7 +34,6 @@ export const extractExample = (readmeString: string) => {
   const startIndex = readmeString.indexOf('<!--info-header-end-->');
   const leftString = readmeString.slice(startIndex + '<!--info-header-end-->'.length);
 
-  // ```ts 또는 ~~~ts로 시작하고 ``` 또는 ~~~로 끝나는 패턴을 찾는 정규식
   const target = leftString.match(/(~~~|```) ?(ts|typescript)([\s\S]*?)\1/);
 
   const exampleCode = target !== null ? target[3].trim() : '';
