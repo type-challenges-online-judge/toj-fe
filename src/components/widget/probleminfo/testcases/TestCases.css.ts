@@ -22,3 +22,14 @@ export const TestCaseTotalCount = style({
   fontWeight: 'bolder',
   color: '#3178C6',
 });
+
+export const TestCaseContentsWrapper = style({
+  display: 'flex',
+  flexWrap: 'wrap',
+});
+
+export const TestCaseContent = style({
+  marginRight: '30px',
+  boxSizing: 'border-box',
+  minWidth: '45%',
+});
