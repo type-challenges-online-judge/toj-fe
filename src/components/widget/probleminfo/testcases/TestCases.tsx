@@ -1,5 +1,6 @@
 import React from 'react';
-import { ProblemDetailType } from '@/type/problem';
+
+// styles
 import { ProblemCategoryStyle, ProblemCodeBlockStyle, ProblemCodeStyle } from '../ProblemInfo.css';
 import {
   TestCasesWrapperStyle,
@@ -9,6 +10,9 @@ import {
   TestCaseContent,
   TestCaseContentsWrapper,
 } from './TestCases.css';
+
+// types
+import { ProblemDetailType } from '@/type/problem';
 
 interface TestCasesProps {
   text: string;
