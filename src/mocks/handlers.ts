@@ -9,7 +9,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 324, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -19,7 +19,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 324, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -29,7 +29,7 @@ const submitLogData = [
     accuracyScore: 0,
     validate: 0,
     codeLength: 754, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -39,7 +39,7 @@ const submitLogData = [
     accuracyScore: 88,
     validate: 80,
     codeLength: 241, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -49,7 +49,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 324, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -59,7 +59,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 431, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
 
@@ -70,7 +70,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 324, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -80,7 +80,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 75,
     codeLength: 164, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -90,7 +90,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 572, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -100,7 +100,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 572, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -110,7 +110,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 324, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -120,7 +120,7 @@ const submitLogData = [
     accuracyScore: 50,
     validate: 50,
     codeLength: 29, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -130,7 +130,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 324, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -140,7 +140,7 @@ const submitLogData = [
     accuracyScore: 33,
     validate: 10,
     codeLength: 64, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -150,7 +150,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 64, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -160,7 +160,7 @@ const submitLogData = [
     accuracyScore: 40,
     validate: 0,
     codeLength: 324, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
   {
@@ -170,7 +170,7 @@ const submitLogData = [
     accuracyScore: 100,
     validate: 100,
     codeLength: 324, // Byte
-    sumbitDate: '2023-09-13T14:12:57',
+    submitDate: '2023-09-13T14:12:57',
     code: 'type First<T extends any[]> = T extends [] ? never : T[0]',
   },
 ];

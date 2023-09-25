@@ -45,7 +45,7 @@ const Submit = () => {
           accuracyScore: Math.floor(Math.random() * 101),
           validate: Math.floor(Math.random() * 1001),
           codeLength: Math.floor(Math.random() * 1000),
-          sumbitDate: '2023-09-13T14:12:57',
+          submitDate: '2023-09-13T14:12:57',
           code,
         },
         {

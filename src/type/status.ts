@@ -6,6 +6,6 @@ export interface SubmitType {
   accuracyScore: number;
   validate: number;
   codeLength: number; // Byte
-  sumbitDate: string;
+  submitDate: string;
   code: string;
 }
