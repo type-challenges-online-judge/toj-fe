@@ -66,6 +66,8 @@ const Submit = () => {
       }
     };
     getFirstValue();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problemDetailData]);
 
   return (
