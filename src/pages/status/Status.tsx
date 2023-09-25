@@ -15,7 +15,7 @@ const Status = () => {
 
   useEffect(() => {
     const getSubmitStatus = async () => {
-      const res = await axios.get('status', {
+      await axios.get('status', {
         params: {
           result_id: resultId,
           problem_id: problemId,
@@ -25,6 +25,8 @@ const Status = () => {
       });
     };
     getSubmitStatus();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <div>문제 기록 페이지 (내 제출 ,정답 보기)</div>;

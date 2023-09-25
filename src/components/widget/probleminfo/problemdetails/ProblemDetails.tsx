@@ -10,7 +10,6 @@ import {
 
 // types
 import { ProblemDetailType } from '@/type/problem';
-import { extractExample } from '@/util/problem';
 
 interface ProblemDetailsProps {
   text: string;
@@ -18,25 +17,12 @@ interface ProblemDetailsProps {
 }
 
 const ProblemDetails = ({ text, codeBlock }: ProblemDetailsProps) => {
-  const renderBasedOnType = (
-    text: ProblemDetailsProps['text'],
-    codeBlock: ProblemDetailsProps['codeBlock'],
-  ) => {
-    if (text === '예시') {
-      console.log(codeBlock);
-      console.log(extractExample(codeBlock));
-
-      return <code className={ProblemCodeStyle}>{extractExample(codeBlock)}</code>;
-    }
-    if (text === '제출 템플릿') {
-      return <code className={ProblemCodeStyle}>{codeBlock}</code>;
-    }
-  };
-
   return (
     <div className={ProblemDetailsWrapperStyle}>
       <p className={ProblemCategoryStyle}>{text}</p>
-      <pre className={ProblemCodeBlockStyle}>{renderBasedOnType(text, codeBlock)}</pre>
+      <pre className={ProblemCodeBlockStyle}>
+        <code className={ProblemCodeStyle}>{codeBlock}</code>
+      </pre>
     </div>
   );
 };

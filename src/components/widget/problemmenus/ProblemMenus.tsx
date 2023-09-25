@@ -8,7 +8,7 @@ import { ProblemMenuButtons } from '@/components/core';
 import { ProblemDetailType } from '@/type/problem';
 
 // style
-import { SingleButton, ButtonList } from './ProblemMenus.css';
+import { SingleButton, ButtonList, ProblemMunusWrapperStyle } from './ProblemMenus.css';
 
 // const
 import { PAGE_URL } from '@/config/path';
@@ -29,7 +29,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
   // problem_id , snsId , result_id=1 , mine=false
 
   return (
-    <div>
+    <div className={ProblemMunusWrapperStyle}>
       <ul className={ButtonList}>
         <li className={`${SingleButton} isFirst`}>
           <ProblemMenuButtons

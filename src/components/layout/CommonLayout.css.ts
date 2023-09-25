@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 export const CommonLayoutStyle = style({
+  minWidth: '800px',
   maxWidth: '1200px',
   margin: '0 auto',
   minHeight: 'calc(100vh - 61.77px)',

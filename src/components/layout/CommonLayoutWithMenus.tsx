@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
-import { CommonLayoutStyle } from './CommonLayoutWithMenus.css';
 
 // components
 import { ProblemMenus } from '@/components/widget';
@@ -9,6 +8,7 @@ import { ProblemMenus } from '@/components/widget';
 import { checkURL } from '@/util/problem';
 import { useGetProblemDetail } from '@/hooks/queries/problem';
 import { ProblemDetailType } from '@/type/problem';
+import { CommonLayoutStyle } from './CommonLayout.css';
 
 const CommonLayoutWithMenus = () => {
   const { problemId } = useParams();

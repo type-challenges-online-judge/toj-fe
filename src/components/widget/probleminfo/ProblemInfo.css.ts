@@ -30,14 +30,14 @@ export const ExampleAndTemplatesStyle = style({
 
 // ProblemDetails
 export const ProblemDetailsWrapperStyle = style({
-  marginRight: '200px',
+  margin: '30px 200px 30px 0',
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'flex-start',
 });
 
 export const ProblemCategoryStyle = style({
-  fontSize: '1.2rem',
+  fontSize: '1.8rem',
 });
 
 export const ProblemCodeBlockStyle = style({
