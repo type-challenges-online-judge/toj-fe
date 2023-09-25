@@ -30,6 +30,8 @@ const Navbar = () => {
       }
     };
     if (codeQueryString !== null) login();
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeQueryString]);
 
   const goMain = () => {

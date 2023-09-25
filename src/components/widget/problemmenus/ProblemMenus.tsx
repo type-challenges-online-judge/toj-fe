@@ -21,12 +21,13 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
   const navigate = useNavigate();
 
   // 내 제출
-  // https://localhost:3000/status?result_id=-1&problem_id=4&user_id=minh0518&mine=true
-  // problem_id , user_id , result_id=-1(음수면 그냥 죄다 보여줌) , mine=true
+  // https://localhost:3000/status?result_id=1&problem_id=4&snsId=123&mine=true
+  // problem_id , snsId , result_id=1(1이면 맞은 문제, -1이면 모두 ) , mine=true
 
   // 정답
-  // https://localhost:3000/status?result_id=1&problem_id=4&user_id=minh0518&mine=false
-  // problem_id , user_id , result_id=1(1이면 맞은 문제들) , mine=false
+  // https://localhost:3000/status?result_id=1&problem_id=4&snsId=123&mine=false
+  // problem_id , snsId , result_id=1 , mine=false
+
   return (
     <div>
       <ul className={ButtonList}>
@@ -54,7 +55,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
             text="답안 보기"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemDetail.id}&user_id=minh0518&mine=false`,
+                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemDetail.id}&snsId=123&mine=false`,
               );
             }}
           />
@@ -64,7 +65,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
             text="내 제출"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemDetail.id}&user_id=minh0518&mine=true`,
+                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemDetail.id}&snsId=123&mine=true`,
               );
             }}
           />
