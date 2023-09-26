@@ -19,6 +19,8 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
     'submitDate',
   ];
 
+  const COLUMN_EXTRA_TEXTS = ['', '', '', '점', '점', 'byte', ''];
+
   const openShowedCode = (submitNumber: number) => {
     setShowedCode((prevShowedCode) => {
       const newShowedCode = new Set(prevShowedCode);
@@ -44,7 +46,7 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
         {COLUMN_KEYS.map((columnKey: string, idx: number) => {
           return (
             <td key={idx} className={TdStyle}>
-              {item[columnKey as keyof SubmitType]}
+              {item[columnKey as keyof SubmitType]} {COLUMN_EXTRA_TEXTS[idx]}
             </td>
           );
         })}

@@ -7,7 +7,6 @@ export const HeadStyle = style({
 export const TdStyle = style({
   padding: '5px 8px',
   border: '1px solid #CEC9C9',
-  fontWeight: '700',
   textAlign: 'center',
 });
 
