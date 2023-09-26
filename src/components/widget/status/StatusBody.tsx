@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { SubmitType } from '@/type/status';
 
@@ -10,6 +10,10 @@ interface StatusBodyProps {
 
 const StatusBody = ({ items }: StatusBodyProps) => {
   const [showedCode, setShowedCode] = useState<Set<number>>(new Set());
+
+  useEffect(() => {
+    setShowedCode(new Set());
+  }, [items]);
 
   return (
     <tbody>
