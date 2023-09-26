@@ -6,9 +6,11 @@ import { BasicButton } from '@/components/core';
 import { Title } from './title';
 import { ProblemDetails } from './problemdetails';
 
-import { extractDescription } from '@/util/problem';
+import { extractDescription, extractExample } from '@/util/problem';
 import { useGetProblemDetail } from '@/hooks/queries/problem';
 import { ProblemDetailType } from '@/type/problem';
+import { TestCases } from '.';
+import { ExampleAndTemplatesStyle, ProblemInfoWrapper } from './ProblemInfo.css';
 
 const ProblemInfo = () => {
   const { problemId } = useParams();
@@ -18,10 +20,16 @@ const ProblemInfo = () => {
     Number(problemId),
   );
 
+  const [description, example, teaplate] = [
+    problemDetailData !== null ? extractDescription(problemDetailData.description) : '',
+    problemDetailData !== null ? extractExample(problemDetailData.description) : '',
+    problemDetailData !== null ? problemDetailData.template : '',
+  ];
+
   return (
     <>
       {problemDetailData !== null && (
-        <div>
+        <div className={ProblemInfoWrapper}>
           <Title problemDetail={problemDetailData} />
 
           <BasicButton
@@ -29,13 +37,15 @@ const ProblemInfo = () => {
             _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
           />
 
-          <p>{extractDescription(problemDetailData.description)}</p>
+          <p>{description}</p>
 
-          <ProblemDetails text="예시" codeBlock={problemDetailData.description} />
+          <div className={ExampleAndTemplatesStyle}>
+            {example.length !== 0 && <ProblemDetails text="예시" codeBlock={example} />}
 
-          <ProblemDetails text="제출 템플릿" codeBlock={problemDetailData.template} />
+            <ProblemDetails text="제출 템플릿" codeBlock={teaplate} />
+          </div>
 
-          <ProblemDetails text="테스트 케이스" codeBlock={problemDetailData.testCase} />
+          <TestCases text="테스트 케이스" testCases={problemDetailData.testCase}></TestCases>
         </div>
       )}
     </>

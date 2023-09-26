@@ -1,6 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
 export const FooterStyle = style({
+  minWidth: '800px',
   display: 'flex',
   justifyContent: 'flex-start',
   alignItems: 'center',

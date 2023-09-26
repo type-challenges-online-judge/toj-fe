@@ -1,5 +1,9 @@
 import { style } from '@vanilla-extract/css';
 
+export const ProblemMunusWrapperStyle = style({
+  minWidth: '800px',
+});
+
 export const ButtonList = style({
   display: 'flex',
   justifyContent: 'flex-start',
