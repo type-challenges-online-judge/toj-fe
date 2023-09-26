@@ -16,5 +16,5 @@ export const MainLevelProblemsWrapperStyle = style({
 export const MainLevelsWrapperStyle = style({
   display: 'flex',
   flexDirection: 'column',
-  gap: '4px',
+  gap: '10px',
 });

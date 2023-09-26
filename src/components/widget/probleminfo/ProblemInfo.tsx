@@ -1,13 +1,21 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { ExampleAndTemplatesStyle, ProblemInfoWrapper } from './ProblemInfo.css';
 
 // components
 import { BasicButton } from '@/components/core';
 import { Title } from './title';
 import { ProblemDetails } from './problemdetails';
+import { ProblemDescription } from './problemdescription';
+import { TestCases } from './testcases';
 
-import { extractDescription } from '@/util/problem';
+// utils
+import { extractDescription, extractExample } from '@/util/problem';
+
+// hooks
 import { useGetProblemDetail } from '@/hooks/queries/problem';
+
+// types
 import { ProblemDetailType } from '@/type/problem';
 
 const ProblemInfo = () => {
@@ -18,10 +26,16 @@ const ProblemInfo = () => {
     Number(problemId),
   );
 
+  const [description, example, teaplate] = [
+    problemDetailData !== null ? extractDescription(problemDetailData.description) : '',
+    problemDetailData !== null ? extractExample(problemDetailData.description) : '',
+    problemDetailData !== null ? problemDetailData.template : '',
+  ];
+
   return (
     <>
       {problemDetailData !== null && (
-        <div>
+        <div className={ProblemInfoWrapper}>
           <Title problemDetail={problemDetailData} />
 
           <BasicButton
@@ -29,13 +43,15 @@ const ProblemInfo = () => {
             _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
           />
 
-          <p>{extractDescription(problemDetailData.description)}</p>
+          <ProblemDescription description={description} />
 
-          <ProblemDetails text="예시" codeBlock={problemDetailData.description} />
+          <div className={ExampleAndTemplatesStyle}>
+            {example.length !== 0 && <ProblemDetails text="예시" codeBlock={example} />}
 
-          <ProblemDetails text="제출 템플릿" codeBlock={problemDetailData.template} />
+            <ProblemDetails text="제출 템플릿" codeBlock={teaplate} />
+          </div>
 
-          <ProblemDetails text="테스트 케이스" codeBlock={problemDetailData.testCase} />
+          <TestCases text="테스트 케이스" testCases={problemDetailData.testCase}></TestCases>
         </div>
       )}
     </>

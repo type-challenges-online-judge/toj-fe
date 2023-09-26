@@ -1,5 +1,11 @@
 import { style } from '@vanilla-extract/css';
 
+export const ProblemInfoWrapper = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '50px',
+});
+
 export const ProblemTitleStyle = style({
   fontSize: '2.8rem',
 });
@@ -16,13 +22,27 @@ export const ProblemDiffStyle = {
   extreme: style([ProblemDiffFont, { color: '#AC258C' }]),
 };
 
+export const ExampleAndTemplatesStyle = style({
+  display: 'flex',
+  justifyContent: 'flex-start',
+  flexWrap: 'wrap',
+});
+
+// ProblemDetails
+export const ProblemDetailsWrapperStyle = style({
+  margin: '30px 200px 30px 0',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'flex-start',
+});
+
 export const ProblemCategoryStyle = style({
-  fontSize: '1.2rem',
+  fontSize: '1.8rem',
 });
 
 export const ProblemCodeBlockStyle = style({
   background: '#F5F5F5',
-  padding: '30px 0',
+  padding: '30px 30px',
   borderRadius: '10px',
 });
 

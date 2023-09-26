@@ -7,20 +7,36 @@ export const checkURL = (pathname: string) => {
 };
 
 // data.description의 README에서 문제 설명 부분 추출
-export const extractDescription = (readmeString: string) => {
-  const startIndex = readmeString.indexOf('<!--info-header-end-->');
-  const leftString = readmeString.slice(startIndex + '<!--info-header-end-->'.length);
-  const target = leftString.match(/(.+?)\n\n/);
-  const description = target !== null ? target[1].trim() : '';
-  return description;
+export const extractDescription = (mdString: string) => {
+  const startIdx = mdString.indexOf('<!--info-header-end-->');
+  if (startIdx === -1) return '';
+
+  const leftString = mdString.slice(startIdx + '<!--info-header-end-->'.length);
+  const tsIdx = leftString.search(/(```|~~~)(ts|typescript)/);
+  if (tsIdx !== -1) {
+    let extractedString = leftString.slice(0, tsIdx).trim();
+    const pattern =
+      /(예시\s?:?|For example\s?:?|for example\s?:?|### for example|A few examples\s?:?|a few examples\s?:?)\s*$/i;
+    extractedString = extractedString.replace(pattern, '').trim();
+
+    return extractedString;
+  }
+  const footerStartIdx = leftString.indexOf('<!--info-footer-start-->');
+  if (footerStartIdx !== -1) {
+    return leftString.slice(0, footerStartIdx).trim();
+  }
+
+  return leftString.trim();
 };
 
 // data.description의 README에서 문제 예시 추출
 export const extractExample = (readmeString: string) => {
   const startIndex = readmeString.indexOf('<!--info-header-end-->');
   const leftString = readmeString.slice(startIndex + '<!--info-header-end-->'.length);
-  const target = leftString.match(/```ts([\s\S]*?)```/);
-  const exampleCode = target !== null ? target[1].trim() : '';
+
+  const target = leftString.match(/(~~~|```) ?(ts|typescript)([\s\S]*?)\1/);
+
+  const exampleCode = target !== null ? target[3].trim() : '';
   return exampleCode;
 };
 
