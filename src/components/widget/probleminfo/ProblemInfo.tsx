@@ -1,16 +1,22 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { ExampleAndTemplatesStyle, ProblemInfoWrapper } from './ProblemInfo.css';
 
 // components
 import { BasicButton } from '@/components/core';
 import { Title } from './title';
 import { ProblemDetails } from './problemdetails';
+import { ProblemDescription } from './problemdescription';
+import { TestCases } from './testcases';
 
+// utils
 import { extractDescription, extractExample } from '@/util/problem';
+
+// hooks
 import { useGetProblemDetail } from '@/hooks/queries/problem';
+
+// types
 import { ProblemDetailType } from '@/type/problem';
-import { TestCases } from '.';
-import { ExampleAndTemplatesStyle, ProblemInfoWrapper } from './ProblemInfo.css';
 
 const ProblemInfo = () => {
   const { problemId } = useParams();
@@ -37,7 +43,7 @@ const ProblemInfo = () => {
             _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
           />
 
-          <p>{description}</p>
+          <ProblemDescription description={description} />
 
           <div className={ExampleAndTemplatesStyle}>
             {example.length !== 0 && <ProblemDetails text="예시" codeBlock={example} />}

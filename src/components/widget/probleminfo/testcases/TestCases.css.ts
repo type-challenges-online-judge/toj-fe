@@ -11,10 +11,10 @@ export const TestCaseCount = style({
 });
 
 export const TestCaseCountFont = style({
-  fontSize: '1.1rem',
-  color: '#9CA3AF',
   paddingBottom: '5px',
   borderBottom: '2px solid #0090F9',
+  fontSize: '1.1rem',
+  color: '#9CA3AF',
 });
 
 export const TestCaseTotalCount = style({
@@ -29,7 +29,7 @@ export const TestCaseContentsWrapper = style({
 });
 
 export const TestCaseContent = style({
+  minWidth: '45%',
   marginRight: '30px',
   boxSizing: 'border-box',
-  minWidth: '45%',
 });
