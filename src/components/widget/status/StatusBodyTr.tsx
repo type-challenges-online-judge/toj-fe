@@ -1,3 +1,5 @@
+import AceEditor from 'react-ace';
+
 import { SubmitType } from '@/type/status';
 
 import { TdStyle, TrStyle } from './Status.css';
@@ -55,7 +57,21 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
       {showedCode.has(item.submitNumber) && (
         <tr>
           <td colSpan={7}>
-            <div>{item.code}</div>
+            <AceEditor
+              placeholder="code input"
+              mode="typescript"
+              theme="tomorrow"
+              name="typescript-editor"
+              fontSize={16}
+              value={item.code}
+              showPrintMargin={true}
+              showGutter={true}
+              highlightActiveLine={true}
+              tabSize={2}
+              editorProps={{ $blockScrolling: true }}
+              readOnly
+              style={{ width: 'calc(100% - 40px)', height: '500px', margin: '10px 20px' }}
+            />
           </td>
         </tr>
       )}
