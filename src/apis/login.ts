@@ -10,6 +10,8 @@ export const loginApi = {
       });
       const { accessToken } = apiResponse.data.data;
 
+      localStorage.setItem('accessToken', JSON.stringify(accessToken));
+
       API.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
       return apiResponse;
