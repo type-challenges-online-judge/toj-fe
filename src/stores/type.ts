@@ -1,4 +1,7 @@
-export interface SampleStoreProps {
-  state: string;
-  setState: (value: string) => void;
+export interface IsAuthType {
+  isAuth: boolean;
+}
+
+export interface IsAuthActionType {
+  setLoginState: (loginState: boolean) => void;
 }
