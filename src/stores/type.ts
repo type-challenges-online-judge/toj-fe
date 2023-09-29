@@ -3,5 +3,13 @@ export interface IsAuthType {
 }
 
 export interface IsAuthActionType {
-  setLoginState: (loginState: boolean) => void;
+  setIsAuthState: (loginState: boolean) => void;
+}
+
+export interface UserInfoType {
+  userInfo: { snsId: number; name: string; profileUrl: string };
+}
+
+export interface UserInfoActionType {
+  setUserInfoState: (userInfo: UserInfoType) => void;
 }

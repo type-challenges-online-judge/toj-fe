@@ -1,4 +1,5 @@
 import { useIsAuthStore } from '@/stores/useAuthStore';
+import { useUserInfoStore } from '@/stores/useUserInfoStore';
 import axios, { AxiosError } from 'axios';
 
 export const API = axios.create({});
@@ -8,7 +9,14 @@ export const tmpHandleLogout = () => {
 
   delete API.defaults.headers.common.Authorization;
 
-  useIsAuthStore.getState().setLoginState(false);
+  useIsAuthStore.getState().setIsAuthState(false);
+  useUserInfoStore.getState().setUserInfoState({
+    userInfo: {
+      snsId: 0,
+      name: '',
+      profileUrl: '',
+    },
+  });
 };
 
 // accessToken 만료 시 진행

@@ -12,7 +12,7 @@ export const useIsAuthStore = create(
   persist<IsAuthType & IsAuthActionType>(
     (set) => ({
       ...initailState,
-      setLoginState: (loginState: boolean) => {
+      setIsAuthState: (loginState: boolean) => {
         set({ isAuth: loginState });
       },
     }),
@@ -27,5 +27,5 @@ export const useIsAuth = () => {
 };
 
 export const useIsAuthActions = () => {
-  return useIsAuthStore((state) => state.setLoginState);
+  return useIsAuthStore((state) => state.setIsAuthState);
 };

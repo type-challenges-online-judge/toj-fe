@@ -15,6 +15,7 @@ import { GIT_HUB_LOGIN_URL } from '@/config/const';
 
 // store
 import { useIsAuth, useIsAuthActions } from '@/stores/useAuthStore';
+import { useUserInfoActions } from '@/stores/useUserInfoStore';
 
 const Navbar = () => {
   const location = useLocation();
@@ -23,18 +24,22 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const isAuth = useIsAuth();
-  const setLoginState = useIsAuthActions();
+  const setIsAuthState = useIsAuthActions();
+  const setUserInfoState = useUserInfoActions();
 
   useEffect(() => {
     const login = async () => {
       const response = await loginApi.postLogin(codeQueryString!);
 
       if (response?.status === 201) {
-        setLoginState(true);
+        setIsAuthState(true);
 
         // URL에서 code 쿼리스트링 제거
         urlParams.delete('code');
         navigate(`${location.pathname}?${urlParams.toString()}`, { replace: true });
+
+        const response = await userApi.getUserInfo();
+        setUserInfoState({ userInfo: response?.data.data });
       }
     };
     if (codeQueryString !== null) login();
@@ -53,14 +58,14 @@ const Navbar = () => {
       </button>
 
       {/* 테스트 용으로 임시 구현 */}
-      <button
+      {/* <button
         className={LogoStyle}
         onClick={async () => {
           await userApi.getUserInfo();
         }}
       >
         유저 정보 테스트 버튼
-      </button>
+      </button> */}
       <SignButton
         text={isAuth ? 'LOGOUT' : 'LOGIN'}
         _onClick={() => {
