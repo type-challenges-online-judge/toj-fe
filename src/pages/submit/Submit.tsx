@@ -5,20 +5,20 @@ import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-typescript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
 
-import { submitAnswer } from '@/apis/problem';
+import { problemApi } from '@/apis/problem';
 import { BasicButton } from '@/components';
 
 import { CodeInput, CodeInputWrapper } from './Submit.css';
-import { SubmitType } from '@/type/status';
 import { useGetProblemDetail } from '@/hooks/queries/problem';
 import { ProblemDetailType } from '@/type/problem';
+import { useUserInfo } from '@/stores/useUserInfoStore';
 
 const Submit = () => {
   const [code, setCode] = useState<string>('');
   const [isStart, setIsStart] = useState(true);
   const { problemId } = useParams();
-
   const navigate = useNavigate();
+  const useInfo = useUserInfo();
 
   // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
   const { data: { data: problemDetailData = null } = {} } = useGetProblemDetail<ProblemDetailType>(
@@ -26,35 +26,21 @@ const Submit = () => {
   );
 
   const { mutate: submitAnswerMutation } = useMutation(
-    async (submitData: SubmitType) => await submitAnswer(submitData),
+    ['submit', problemId],
+    async () => {
+      return await problemApi.postSumbitCode(problemId as string, code);
+    },
     {
-      onSuccess() {},
+      onSuccess: (data) => {
+        navigate(`/status?result_id=-1&problem_id=${problemId}&snsId=${useInfo.snsId}`);
+      },
       onError: (err) => {
         console.error(err);
       },
     },
   );
-
-  const submitAnswerOnClick = () => {
-    if (problemId !== undefined) {
-      submitAnswerMutation(
-        {
-          userId: '123',
-          problemId: Number(problemId),
-          submitNumber: Math.floor(Math.random() * 1000) + 1,
-          accuracyScore: Math.floor(Math.random() * 101),
-          validate: Math.floor(Math.random() * 1001),
-          codeLength: Math.floor(Math.random() * 1000),
-          sumbitDate: '2023-09-13T14:12:57',
-          code,
-        },
-        {
-          onSuccess: async () => {
-            navigate(`/status?result_id=-1&problem_id=${problemId}&user_id=minh0518&mine=true`);
-          },
-        },
-      );
-    }
+  const submitAnswerOnClick = async () => {
+    if (problemId !== undefined) submitAnswerMutation();
   };
 
   useEffect(() => {

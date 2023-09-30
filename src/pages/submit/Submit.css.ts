@@ -10,5 +10,5 @@ export const CodeInputWrapper = style({
 
 export const CodeInput = style({
   marginBottom: '10px',
-  border: '1px solid black',
+  border: '1px solid #F4F6F8',
 });
