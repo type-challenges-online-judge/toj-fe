@@ -12,6 +12,8 @@ import { SingleButton, ButtonList, ProblemMunusWrapperStyle } from './ProblemMen
 
 // const
 import { PAGE_URL } from '@/config/path';
+import { useUserInfo } from '@/stores/useUserInfoStore';
+import { useIsAuth } from '@/stores/useAuthStore';
 
 interface ProblemMenusProps {
   problemDetail: ProblemDetailType['data'];
@@ -20,13 +22,19 @@ interface ProblemMenusProps {
 const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
   const navigate = useNavigate();
 
-  // 내 제출
-  // https://localhost:3000/status?result_id=1&problem_id=4&snsId=123&mine=true
-  // problem_id , snsId , result_id=1(1이면 맞은 문제, -1이면 모두 ) , mine=true
+  const isAuth = useIsAuth();
+  const userInfo = useUserInfo();
 
-  // 정답
-  // https://localhost:3000/status?result_id=1&problem_id=4&snsId=123&mine=false
-  // problem_id , snsId , result_id=1 , mine=false
+  /**
+   *
+   * 제출 현황 페이지 이동시 사용되는 URL 명세입니다.
+   * https://localhost:3000/status?result_id=1&problem_id=172&[snsId=123]
+   * @route GET /status
+   * @param {string} query.result_id -  1:정답 , 2:오답 , 3:정확성 , -1:전부
+   * @param {number} query.problem_id - 문제의 ID를 나타냅니다.
+   * @param {string} query.snsId - GITHUB의 유저ID값을 의미합니다 (존재할 경우 내 제출, 없을 경우 모든 유저 제출)
+   * @returns {Object} Response object
+   */
 
   return (
     <div className={ProblemMunusWrapperStyle}>
@@ -44,6 +52,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
 
         <li className={SingleButton}>
           <ProblemMenuButtons
+            isAuth={isAuth}
             text="제출하기"
             _onClick={() => {
               navigate(`/${PAGE_URL.Submit}/${problemDetail.id}`);
@@ -54,18 +63,17 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
           <ProblemMenuButtons
             text="답안 보기"
             _onClick={() => {
-              navigate(
-                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemDetail.id}&snsId=123&mine=false`,
-              );
+              navigate(`/${PAGE_URL.Status}?result_id=1&problem_id=${problemDetail.id}`);
             }}
           />
         </li>
         <li className={`${SingleButton} isLast`}>
           <ProblemMenuButtons
+            isAuth={isAuth}
             text="내 제출"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemDetail.id}&snsId=123&mine=true`,
+                `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemDetail.id}&snsId=${userInfo.snsId}`,
               );
             }}
           />
