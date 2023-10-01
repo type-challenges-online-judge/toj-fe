@@ -1,4 +1,4 @@
-import { ProblemDetailType } from '@/type/problem';
+import { GetProblemDetailType } from '@/type/problem';
 
 // "problem/", "submit/"" URL 판별
 export const checkURL = (pathname: string) => {
@@ -41,6 +41,6 @@ export const extractExample = (readmeString: string) => {
 };
 
 // 테스트케이스 문자열 반환
-export const extractTestCases = (arr: ProblemDetailType['data']['testCase']) => {
+export const extractTestCases = (arr: GetProblemDetailType['data']['testCase']) => {
   return arr.map((i) => i.case).join('\n\n');
 };

@@ -9,11 +9,11 @@ import {
 } from '../ProblemInfo.css';
 
 // types
-import { ProblemDetailType } from '@/type/problem';
+import { GetProblemDetailType } from '@/type/problem';
 
 interface ProblemDetailsProps {
   text: string;
-  codeBlock: ProblemDetailType['data']['description'] | ProblemDetailType['data']['template'];
+  codeBlock: GetProblemDetailType['data']['description'] | GetProblemDetailType['data']['template'];
 }
 
 const ProblemDetails = ({ text, codeBlock }: ProblemDetailsProps) => {

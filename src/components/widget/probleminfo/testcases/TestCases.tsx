@@ -12,11 +12,11 @@ import {
 } from './TestCases.css';
 
 // types
-import { ProblemDetailType } from '@/type/problem';
+import { GetProblemDetailType } from '@/type/problem';
 
 interface TestCasesProps {
   text: string;
-  testCases: ProblemDetailType['data']['testCase'];
+  testCases: GetProblemDetailType['data']['testCase'];
 }
 const TestCases = ({ text, testCases }: TestCasesProps) => {
   const [correctCases, validCases] = [
