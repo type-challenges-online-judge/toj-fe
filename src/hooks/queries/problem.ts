@@ -2,8 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 
 import { problemApi } from '@/apis/problem';
 
-export const useGetProblems = <T>(options?: T) => {
-  return useQuery(['getProblems'], async () => await problemApi.getProblems(), {
+export const useGetProblems = <T, K = any>(options?: K) => {
+  return useQuery(['getProblems'], async () => await problemApi.getProblems<T>(), {
     retry: 0,
     onError: (err) => {
       console.log(err);
@@ -14,7 +14,7 @@ export const useGetProblems = <T>(options?: T) => {
   });
 };
 
-export const useGetProblemDetail = <T>(problemId: number | null, options?: T) => {
+export const useGetProblemDetail = <T, K = any>(problemId: number | null, options?: K) => {
   return useQuery<T>({
     queryKey: ['problemDetail', { problemId }],
     queryFn: async (): Promise<T> => {
