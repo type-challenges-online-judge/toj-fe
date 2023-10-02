@@ -17,7 +17,6 @@ export const useUserInfoStore = create(
     (set) => ({
       ...initailState,
       setUserInfoState: (userInfo: UserInfoType) => {
-        console.log(userInfo);
         set({ ...userInfo });
       },
     }),

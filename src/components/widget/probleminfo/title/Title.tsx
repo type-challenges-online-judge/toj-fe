@@ -2,10 +2,10 @@ import React from 'react';
 import { ProblemDiffStyle, ProblemTitleStyle } from '../ProblemInfo.css';
 
 // types
-import { ProblemDetailType } from '@/type/problem';
+import { GetProblemDetailType } from '@/type/problem';
 
 interface TitleProps {
-  problemDetail: ProblemDetailType['data'];
+  problemDetail: GetProblemDetailType['data'];
 }
 
 const Title = ({ problemDetail }: TitleProps) => {
