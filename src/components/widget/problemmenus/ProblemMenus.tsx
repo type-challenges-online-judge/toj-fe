@@ -55,7 +55,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
             text="답안 보기"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemDetail.id}&snsId=123&mine=false`,
+                `/${PAGE_URL.Status}?resultId=1&problemId=${problemDetail.id}&snsId=123&mine=false`,
               );
             }}
           />
@@ -65,7 +65,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
             text="내 제출"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=1&problem_id=${problemDetail.id}&snsId=123&mine=true`,
+                `/${PAGE_URL.Status}?resultId=1&problemId=${problemDetail.id}&snsId=123&mine=true`,
               );
             }}
           />
