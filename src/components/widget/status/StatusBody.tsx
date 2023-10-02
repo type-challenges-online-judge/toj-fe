@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
-import { SubmitType } from '@/type/status';
+import { StatusType } from '@/type/status';
 
 import { StatusBodyTr } from '..';
 
 interface StatusBodyProps {
-  items: SubmitType[];
+  items: StatusType[];
 }
 
 const StatusBody = ({ items }: StatusBodyProps) => {
@@ -17,10 +17,11 @@ const StatusBody = ({ items }: StatusBodyProps) => {
 
   return (
     <tbody>
-      {items.map((item: SubmitType) => {
+      {items.map((item: StatusType) => {
+        console.log(item);
         return (
           <StatusBodyTr
-            key={item.submitNumber}
+            key={item.id}
             item={item}
             showedCode={showedCode}
             setShowedCode={setShowedCode}
