@@ -1,15 +1,26 @@
-import { useGetProblemDetail } from '@/hooks/queries/problem';
-import { useUserInfo } from '@/stores/useUserInfoStore';
-import { ProblemDetailType } from '@/type/problem';
-import { useMutation } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { CodeInput, CodeInputWrapper } from './ProblemSubmit.css';
+
+// hooks
+import { useGetProblemDetail } from '@/hooks/queries/problem';
+import { useMutation } from '@tanstack/react-query';
+
+// store
+import { useUserInfo } from '@/stores/useUserInfoStore';
+
+// types
+import { GetProblemDetailType, PostSubmitResponseType } from '@/type/problem';
+
+// components
+import { BasicButton } from '@/components';
+
+// api
+import { problemApi } from '@/apis/problem';
+
 import AceEditor from 'react-ace';
 import 'ace-builds/src-noconflict/mode-typescript';
 import 'ace-builds/src-noconflict/theme-tomorrow';
-import { BasicButton } from '@/components';
-import { CodeInput, CodeInputWrapper } from './ProblemSubmit.css';
-import { problemApi } from '@/apis/problem';
 
 const ProblemSubmit = () => {
   const [code, setCode] = useState<string>('');
@@ -19,14 +30,13 @@ const ProblemSubmit = () => {
   const useInfo = useUserInfo();
 
   // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
-  const { data: { data: problemDetailData = null } = {} } = useGetProblemDetail<ProblemDetailType>(
-    Number(problemId),
-  );
+  const { data: { data: problemDetailData = null } = {} } =
+    useGetProblemDetail<GetProblemDetailType>(Number(problemId));
 
   const { mutate: submitAnswerMutation } = useMutation(
     ['submit', problemId],
     async () => {
-      return await problemApi.postSumbitCode(problemId as string, code);
+      return await problemApi.postSumbitCode<PostSubmitResponseType>(problemId as string, code);
     },
     {
       onSuccess: (data) => {

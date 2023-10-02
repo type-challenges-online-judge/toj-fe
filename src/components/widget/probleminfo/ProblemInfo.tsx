@@ -16,15 +16,14 @@ import { extractDescription, extractExample } from '@/util/problem';
 import { useGetProblemDetail } from '@/hooks/queries/problem';
 
 // types
-import { ProblemDetailType } from '@/type/problem';
+import { GetProblemDetailType } from '@/type/problem';
 
 const ProblemInfo = () => {
   const { problemId } = useParams();
 
   // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
-  const { data: { data: problemDetailData = null } = {} } = useGetProblemDetail<ProblemDetailType>(
-    Number(problemId),
-  );
+  const { data: { data: problemDetailData = null } = {} } =
+    useGetProblemDetail<GetProblemDetailType>(Number(problemId));
 
   const [description, example, teaplate] = [
     problemDetailData !== null ? extractDescription(problemDetailData.description) : '',

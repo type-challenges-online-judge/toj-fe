@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { ProblemMenuButtons } from '@/components/core';
 
 // types
-import { ProblemDetailType } from '@/type/problem';
+import { GetProblemDetailType } from '@/type/problem';
 
 // style
 import { SingleButton, ButtonList, ProblemMunusWrapperStyle } from './ProblemMenus.css';
@@ -16,7 +16,7 @@ import { useUserInfo } from '@/stores/useUserInfoStore';
 import { useIsAuth } from '@/stores/useAuthStore';
 
 interface ProblemMenusProps {
-  problemDetail: ProblemDetailType['data'];
+  problemDetail: GetProblemDetailType['data'];
 }
 
 const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
@@ -42,7 +42,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
         <li className={`${SingleButton} isFirst`}>
           <ProblemMenuButtons
             problemDiff={problemDetail.level}
-            problemId={problemDetail.id}
+            problemId={problemDetail.number}
             text={problemDetail.title}
             _onClick={() => {
               navigate(`/${PAGE_URL.Problem}/${problemDetail.id}`);

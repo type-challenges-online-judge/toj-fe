@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { MainProblemButton, LevelLabel } from '@/components';
 import { useGetProblems } from '@/hooks/queries/problem';
-import { Level, ProblemType, ProblemsType } from '@/type/problem';
+import { GetProblemListType, Level, ProblemType, ProblemsType } from '@/type/problem';
 
 import {
   MainLevelsWrapperStyle,
@@ -13,7 +13,7 @@ import {
 
 const MainProblems = () => {
   const [problems, setProblems] = useState<ProblemsType>();
-  const { data: { data: unsortedProblems = null } = {} } = useGetProblems();
+  const { data: { data: unsortedProblems = null } = {} } = useGetProblems<GetProblemListType>();
 
   const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ const MainProblems = () => {
       };
 
       for (const unsortedProblem of unsortedProblems.data) {
-        sortedProblems[unsortedProblem.level as Level].push({
+        sortedProblems[unsortedProblem.level].push({
           id: unsortedProblem.id,
           title: unsortedProblem.title,
           number: unsortedProblem.number,

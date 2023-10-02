@@ -7,7 +7,7 @@ import { ProblemMenus } from '@/components/widget';
 // util
 import { checkURL } from '@/util/problem';
 import { useGetProblemDetail } from '@/hooks/queries/problem';
-import { ProblemDetailType } from '@/type/problem';
+import { GetProblemDetailType } from '@/type/problem';
 import { CommonLayoutStyle } from './CommonLayout.css';
 
 const CommonLayoutWithMenus = () => {
@@ -32,7 +32,7 @@ const CommonLayoutWithMenus = () => {
   }, [location.pathname, problemId]);
 
   const { data: { data: problemDetailData = null } = {} } =
-    useGetProblemDetail<ProblemDetailType>(currentProblemId);
+    useGetProblemDetail<GetProblemDetailType>(currentProblemId);
 
   return (
     <div className={CommonLayoutStyle}>

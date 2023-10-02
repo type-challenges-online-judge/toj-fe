@@ -17,6 +17,10 @@ import { GIT_HUB_LOGIN_URL } from '@/config/const';
 import { useIsAuth, useIsAuthActions } from '@/stores/useAuthStore';
 import { useUserInfoActions } from '@/stores/useUserInfoStore';
 
+// type
+import { GetUserInfoType } from '@/type/user';
+import { PostLoginResponseType } from '@/type/login';
+
 const Navbar = () => {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
@@ -29,7 +33,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const login = async () => {
-      const response = await loginApi.postLogin(codeQueryString!);
+      const response = await loginApi.postLogin<PostLoginResponseType>(codeQueryString!);
+      console.log(response);
 
       if (response?.status === 201) {
         setIsAuthState(true);
@@ -38,8 +43,8 @@ const Navbar = () => {
         urlParams.delete('code');
         navigate(`${location.pathname}?${urlParams.toString()}`, { replace: true });
 
-        const response = await userApi.getUserInfo();
-        setUserInfoState({ userInfo: response?.data.data });
+        const response = await userApi.getUserInfo<GetUserInfoType>();
+        setUserInfoState({ userInfo: response!.data.data });
       }
     };
     if (codeQueryString !== null) login();
