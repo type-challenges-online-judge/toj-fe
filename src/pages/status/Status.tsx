@@ -14,8 +14,8 @@ const Status = () => {
   const queryParams = new URLSearchParams(location.search);
 
   const [resultId, problemId, snsId, mine] = [
-    Number(queryParams.get('result_id')),
-    Number(queryParams.get('problem_id')),
+    Number(queryParams.get('resultId')),
+    Number(queryParams.get('problemId')),
     Number(queryParams.get('snsId')),
     queryParams.get('mine') === 'true',
   ];

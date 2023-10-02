@@ -196,8 +196,8 @@ export const handlers = [
     const location = req.url.searchParams;
 
     const [resultId, problemId, snsId, mine] = [
-      Number(location.get('result_id')),
-      Number(location.get('problem_id')),
+      Number(location.get('resultId')),
+      Number(location.get('problemId')),
       Number(location.get('snsId')),
       location.get('mine') === 'true',
     ];
