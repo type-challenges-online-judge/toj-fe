@@ -50,7 +50,7 @@ const Submit = () => {
         },
         {
           onSuccess: async () => {
-            navigate(`/status?result_id=-1&problem_id=${problemId}&user_id=minh0518&mine=true`);
+            navigate(`/status?resultId=-1&problemId=${problemId}&snsId=123&mine=true`);
           },
         },
       );
