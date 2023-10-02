@@ -1,5 +1,5 @@
-import { SubmitType } from '@/type/status';
-import axios, { AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
+
 import { API } from './instance';
 
 // API
@@ -12,15 +12,4 @@ export const problemApi = {
     const res = await API.post<T>(`/api/submit/${id}`, { code: codeStr });
     return res;
   },
-};
-
-// MSW
-export const submitAnswer = async (submitData: SubmitType) => {
-  const res = await axios.post('/submit', submitData, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  return res.data;
 };

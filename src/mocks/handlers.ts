@@ -1,4 +1,3 @@
-import { SubmitType } from '@/type/status';
 import { rest } from 'msw';
 
 const submitLogData = [
@@ -211,11 +210,5 @@ export const handlers = [
     if (resultId === 3) data = data?.filter((i) => i.accuracyScore === 100 && i.validate !== 100);
 
     return await res(ctx.status(200), ctx.json(data));
-  }),
-
-  rest.post<SubmitType>('/submit', async (req, res, ctx) => {
-    const jsonData = await req.json();
-    submitLogData.push(jsonData);
-    return await res(ctx.status(201));
   }),
 ];
