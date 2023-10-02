@@ -10,7 +10,7 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 if (process.env.NODE_ENV === 'development') {
-  // worker.start();
+  worker.start();
 }
 const queryClient = new QueryClient({
   defaultOptions: {

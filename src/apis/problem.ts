@@ -9,7 +9,7 @@ export const problemApi = {
     return await API.get<T>(`/api/problem/detail/${id}`);
   },
   postSumbitCode: async (id: string, codeStr: string) => {
-    const res = await API.post(`/api/problem/submit/${id}`, { code: codeStr });
+    const res = await API.post(`/api/submit/${id}`, { code: codeStr });
     return res;
   },
 };
