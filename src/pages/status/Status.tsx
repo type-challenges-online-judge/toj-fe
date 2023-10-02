@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { StatusBody, StatusHeader } from '@/components';
 import { useGetStatusList } from '@/hooks/queries/status';
-import { StatusType } from '@/type/status';
 
 import { TableStyle } from './Status.css';
 
@@ -22,19 +21,22 @@ const Status = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
 
-  const [resultId, problemId, snsId] = [
-    Number(queryParams.get('result_id')),
+  const [problemId, snsId] = [
     Number(queryParams.get('problem_id')),
     Number(queryParams.get('sns_id')),
-    // queryParams.get('mine') === 'true',
   ];
 
-  const items = useGetStatusList({ problemId })[1].data?.data.data as StatusType[];
+  const data = useGetStatusList({ problemId, snsId });
+
+  useEffect(() => {
+    data[1].refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [snsId]);
 
   return (
     <table className={TableStyle}>
       <StatusHeader />
-      {items != null && <StatusBody items={items} />}
+      {data[1].data?.data.data != null && <StatusBody items={data[1].data?.data.data} />}
     </table>
   );
 };

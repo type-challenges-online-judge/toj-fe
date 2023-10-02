@@ -8,7 +8,7 @@ interface SubmitProps {
   size?: number;
 }
 
-export const useGetStatusList = <T>(submitProps: SubmitProps, options?: T) => {
+export const useGetStatusList = (submitProps: SubmitProps) => {
   const [size, setSize] = useState<number>();
 
   return useQueries({

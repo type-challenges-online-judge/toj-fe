@@ -58,7 +58,7 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
               tabSize={2}
               editorProps={{ $blockScrolling: true }}
               readOnly
-              style={{ width: 'calc(100% - 40px)', height: '500px', margin: '10px 20px' }}
+              style={{ width: 'calc(100% - 40px)', height: '250px', margin: '10px 20px' }}
             />
           </td>
         </tr>

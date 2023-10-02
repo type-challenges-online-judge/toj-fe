@@ -18,7 +18,6 @@ const StatusBody = ({ items }: StatusBodyProps) => {
   return (
     <tbody>
       {items.map((item: StatusType) => {
-        console.log(item);
         return (
           <StatusBodyTr
             key={item.id}
