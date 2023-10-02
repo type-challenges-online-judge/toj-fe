@@ -8,6 +8,10 @@ export const problemApi = {
   getProblemDetail: async <T>(id: number): Promise<AxiosResponse<T>> => {
     return await API.get<T>(`/api/problem/detail/${id}`);
   },
+  postSumbitCode: async (id: string, codeStr: string) => {
+    const res = await API.post(`/api/submit/${id}`, { code: codeStr });
+    return res;
+  },
 };
 
 // MSW
