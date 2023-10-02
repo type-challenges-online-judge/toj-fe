@@ -1,4 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+
+import { StatusBody, StatusHeader } from '@/components';
+import { SubmitType } from '@/type/status';
+
+import { TableStyle } from './Status.css';
 
 /**
  *
@@ -12,32 +19,42 @@ import React from 'react';
  */
 
 const Status = () => {
-  // const location = useLocation();
-  // const queryParams = new URLSearchParams(location.search);
+  const [items, setItems] = useState<SubmitType[]>([]);
 
-  // const [resultId, problemId, snsId] = [
-  //   Number(queryParams.get('result_id')),
-  //   Number(queryParams.get('problem_id')),
-  //   Number(queryParams.get('snsId')),
-  // ];
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
 
-  // MSW 메소드 사용 중단
-  // useEffect(() => {
-  //   const getSubmitStatus = async () => {
-  //     await axios.get('status', {
-  //       params: {
-  //         result_id: resultId,
-  //         problem_id: problemId,
-  //         snsId,
-  //       },
-  //     });
-  //   };
-  //   getSubmitStatus();
+  const [resultId, problemId, snsId] = [
+    Number(queryParams.get('result_id')),
+    Number(queryParams.get('problem_id')),
+    Number(queryParams.get('sns_id')),
+    // queryParams.get('mine') === 'true',
+  ];
 
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
+  useEffect(() => {
+    const getSubmitStatus = async () => {
+      await axios
+        .get('/status', {
+          params: {
+            result_id: resultId,
+            problem_id: problemId,
+            snsId,
+          },
+        })
+        .then((res) => {
+          setItems(res.data);
+        });
+    };
 
-  return <div>문제 기록 페이지 (내 제출 ,정답 보기)</div>;
+    getSubmitStatus();
+  }, [problemId, resultId, snsId]);
+
+  return (
+    <table className={TableStyle}>
+      <StatusHeader />
+      <StatusBody items={items} />
+    </table>
+  );
 };
 
 export default Status;

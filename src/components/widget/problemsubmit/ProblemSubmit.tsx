@@ -40,7 +40,7 @@ const ProblemSubmit = () => {
     },
     {
       onSuccess: (data) => {
-        navigate(`/status?result_id=-1&problem_id=${problemId}&snsId=${useInfo.snsId}`);
+        navigate(`/status?result_id=-1&problem_id=${problemId}&sns_id=${useInfo.snsId}`);
       },
       onError: (err) => {
         console.error(err);

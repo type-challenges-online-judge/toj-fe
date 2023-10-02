@@ -27,8 +27,8 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
 
   /**
    *
-   * 아래 메뉴들 중, 제출 현황 페이지로 이동시 사용되는 URL 명세입니다.
-   * https://localhost:3000/status?result_id=1&problem_id=172&[snsId=123]
+   * 제출 현황 페이지 이동시 사용되는 URL 명세입니다.
+   * https://localhost:3000/status?result_id=1&problem_id=172&[sns_id=123]
    * @route GET /status
    * @param {string} query.result_id -  1:정답 , 2:오답 , 3:정확성 , -1:전부
    * @param {number} query.problem_id - 문제의 ID를 나타냅니다.
@@ -73,7 +73,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
             text="내 제출"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemDetail.id}&snsId=${userInfo.snsId}`,
+                `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemDetail.id}&sns_id=${userInfo.snsId}`,
               );
             }}
           />
