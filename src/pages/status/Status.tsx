@@ -18,24 +18,8 @@ const Status = () => {
   // const [resultId, problemId, snsId] = [
   //   Number(queryParams.get('result_id')),
   //   Number(queryParams.get('problem_id')),
-  //   Number(queryParams.get('snsId')),
+  //   Number(queryParams.get('sns_id')),
   // ];
-
-  // MSW 메소드 사용 중단
-  // useEffect(() => {
-  //   const getSubmitStatus = async () => {
-  //     await axios.get('status', {
-  //       params: {
-  //         result_id: resultId,
-  //         problem_id: problemId,
-  //         snsId,
-  //       },
-  //     });
-  //   };
-  //   getSubmitStatus();
-
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
 
   return <div>문제 기록 페이지 (내 제출 ,정답 보기)</div>;
 };
