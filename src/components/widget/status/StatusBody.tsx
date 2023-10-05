@@ -9,9 +9,7 @@ interface StatusBodyProps {
 }
 
 const StatusBody = ({ items }: StatusBodyProps) => {
-  console.log(items);
   const [showedCode, setShowedCode] = useState<Set<number>>(new Set());
-  console.log(showedCode);
 
   useEffect(() => {
     setShowedCode(new Set());
@@ -19,16 +17,16 @@ const StatusBody = ({ items }: StatusBodyProps) => {
 
   return (
     <tbody>
-      {items.map((item: SubmitType, index) => {
+      {/* {items.map((item: SubmitType) => {
         return (
           <StatusBodyTr
-            key={index}
+            key={item.submitNumber}
             item={item}
             showedCode={showedCode}
             setShowedCode={setShowedCode}
           />
         );
-      })}
+      })} */}
     </tbody>
   );
 };
