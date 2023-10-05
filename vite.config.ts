@@ -21,7 +21,7 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
   },
-  // build: {
-  //   sourcemap: true,
-  // },
+  build: {
+    sourcemap: true,
+  },
 });
