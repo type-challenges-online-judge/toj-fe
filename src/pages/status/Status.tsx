@@ -28,7 +28,6 @@ const Status = () => {
     Number(queryParams.get('result_id')),
     Number(queryParams.get('problem_id')),
     Number(queryParams.get('sns_id')),
-    // queryParams.get('mine') === 'true',
   ];
 
   useEffect(() => {
