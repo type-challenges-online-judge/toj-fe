@@ -5,7 +5,6 @@ import { Level } from '@/type/problem';
 import { MenuButton, ProblemDiffAndId } from './ProblemButton.css';
 
 interface ProblemMenuButtonsProps {
-  isAuth?: boolean;
   problemDiff?: Level;
   problemId?: number;
   text: string;
@@ -13,14 +12,13 @@ interface ProblemMenuButtonsProps {
 }
 
 const ProblemMenuButtons = ({
-  isAuth,
   problemDiff,
   problemId,
   text,
   _onClick,
 }: ProblemMenuButtonsProps) => {
   return (
-    <button onClick={_onClick} className={MenuButton} disabled={isAuth === false}>
+    <button onClick={_onClick} className={MenuButton}>
       {problemDiff !== undefined && problemId !== undefined && (
         <div className={`${ProblemDiffAndId} ${problemDiff}`}>
           <span>{problemId}</span>

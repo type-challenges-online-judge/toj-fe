@@ -8,6 +8,7 @@ export const loginApi = {
       const apiResponse = await API.post('/api/auth/login', null, {
         params: { code: gitHubAuthCode },
       });
+
       const { accessToken } = apiResponse.data.data;
 
       localStorage.setItem('accessToken', JSON.stringify(accessToken));
