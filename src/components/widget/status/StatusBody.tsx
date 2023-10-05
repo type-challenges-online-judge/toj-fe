@@ -17,16 +17,16 @@ const StatusBody = ({ items }: StatusBodyProps) => {
 
   return (
     <tbody>
-      {/* {items.map((item: SubmitType) => {
+      {items.map((item: SubmitType, index) => {
         return (
           <StatusBodyTr
-            key={item.submitNumber}
+            key={index}
             item={item}
             showedCode={showedCode}
             setShowedCode={setShowedCode}
           />
         );
-      })} */}
+      })}
     </tbody>
   );
 };
