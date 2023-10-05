@@ -17,7 +17,7 @@ const StatusBody = ({ items }: StatusBodyProps) => {
 
   return (
     <tbody>
-      {items.map((item: SubmitType) => {
+      {/* {items.map((item: SubmitType) => {
         return (
           <StatusBodyTr
             key={item.submitNumber}
@@ -26,7 +26,7 @@ const StatusBody = ({ items }: StatusBodyProps) => {
             setShowedCode={setShowedCode}
           />
         );
-      })}
+      })} */}
     </tbody>
   );
 };
