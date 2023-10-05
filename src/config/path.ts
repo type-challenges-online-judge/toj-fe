@@ -3,4 +3,5 @@ export enum PAGE_URL {
   Problem = 'problem',
   Submit = 'submit',
   Status = 'status',
+  Login = 'login',
 }

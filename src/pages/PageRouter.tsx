@@ -12,6 +12,7 @@ const PageRouter = () => {
       <Routes>
         <Route path={PAGE_URL.Main} element={<CommonLayout />}>
           <Route index element={<Switch.MainPage />} />
+          <Route path={`${PAGE_URL.Login}`} element={<Switch.LoginPage />} />
         </Route>
         <Route path="/*" element={<CommonLayoutWithMenus />}>
           <Route path={`${PAGE_URL.Problem}/:problemId`} element={<Switch.ProblemPage />} />
