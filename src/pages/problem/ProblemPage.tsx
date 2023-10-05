@@ -3,6 +3,7 @@ import { ProblemPageStyle } from './ProblemPage.css';
 
 // components
 import { ProblemInfo } from '@/components/widget';
+import { SubmitType } from '@/type/status';
 
 const ProblemPage = () => {
   return (

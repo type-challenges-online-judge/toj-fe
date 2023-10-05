@@ -201,10 +201,7 @@ export const handlers = [
       Number(location.get('sns_id')),
     ];
 
-    console.log(resultId, problemId, snsId); // 로그를 통해 쿼리 매개변수 값을 확인할 수 있습니다.
-
     let data = submitLogData.filter((i) => i.problemId === problemId);
-    console.log(resultId, problemId, snsId);
 
     if (snsId !== 0) data = data.filter((i) => i.userId === snsId);
     if (resultId === 1) data = data?.filter((i) => i.accuracyScore === 100 && i.validate === 100);

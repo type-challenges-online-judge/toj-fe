@@ -34,7 +34,6 @@ const Navbar = () => {
   useEffect(() => {
     const login = async () => {
       const response = await loginApi.postLogin<PostLoginResponseType>(codeQueryString!);
-      console.log(response);
 
       if (response?.status === 201) {
         setIsAuthState(true);
