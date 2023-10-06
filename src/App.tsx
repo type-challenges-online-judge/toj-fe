@@ -1,8 +1,6 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
 import './App.css';
-
-// pages
-import { PageRouter } from './pages';
 
 // components
 import { Footer, Navbar } from './components';
@@ -21,7 +19,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <PageRouter />
+      <Outlet />
       <Footer />
     </>
   );

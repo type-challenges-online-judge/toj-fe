@@ -1,27 +1,51 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
 // element
 import * as Switch from '@/pages';
 import { PAGE_URL } from '@/config/path';
 import { CommonLayout, CommonLayoutWithMenus } from '@/components/layout';
+import App from '@/App';
 
-const PageRouter = () => {
-  return (
-    <>
-      <Routes>
-        <Route path={PAGE_URL.Main} element={<CommonLayout />}>
-          <Route index element={<Switch.MainPage />} />
-          <Route path={`${PAGE_URL.Login}`} element={<Switch.LoginPage />} />
-        </Route>
-        <Route path="/*" element={<CommonLayoutWithMenus />}>
-          <Route path={`${PAGE_URL.Problem}/:problemId`} element={<Switch.ProblemPage />} />
-          <Route path={`${PAGE_URL.Submit}/:problemId`} element={<Switch.Submit />} />
-          <Route path={`${PAGE_URL.Status}`} element={<Switch.Status />} />
-        </Route>
-      </Routes>
-    </>
-  );
-};
+const router = createBrowserRouter([
+  {
+    path: `${PAGE_URL.Main}`,
+    element: <App />,
+    children: [
+      {
+        path: '',
+        element: <CommonLayout />,
+        children: [
+          {
+            index: true,
+            element: <Switch.MainPage />,
+          },
+        ],
+      },
+      {
+        path: '/*',
+        element: <CommonLayoutWithMenus />,
+        children: [
+          {
+            path: `${PAGE_URL.Problem}/:problemId`,
+            element: <Switch.ProblemPage />,
+          },
+          {
+            path: `${PAGE_URL.Submit}/:problemId`,
+            element: <Switch.Submit />,
+          },
+          {
+            path: `${PAGE_URL.Status}`,
+            element: <Switch.Status />,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    path: `${PAGE_URL.Login}`,
+    element: <Switch.LoginPage />,
+  },
+]);
 
-export default PageRouter;
+export default router;
