@@ -39,7 +39,7 @@ const Navbar = () => {
         text={isAuth ? 'LOGOUT' : 'LOGIN'}
         _onClick={() => {
           if (!isAuth) navigate(`/login`);
-          if (isAuth) tmpHandleLogout('/');
+          if (isAuth) tmpHandleLogout();
         }}
         iconSize={20}
       />

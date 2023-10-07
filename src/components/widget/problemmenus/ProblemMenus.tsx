@@ -35,10 +35,10 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
   const isAuth = useIsAuth();
   const userInfo = useUserInfo();
 
-  const redirectLogin = () => {
-    alert('로그인이 필요한 서비스 입니다');
-    navigate(`/login`);
-  };
+  // const redirectLogin = () => {
+  //   alert('로그인이 필요한 서비스 입니다');
+  //   navigate(`/login`);
+  // };
 
   return (
     <div className={ProblemMunusWrapperStyle}>
@@ -58,10 +58,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
           <ProblemMenuButtons
             text="제출하기"
             _onClick={() => {
-              if (!isAuth) {
-                redirectLogin();
-              }
-              if (isAuth) navigate(`/${PAGE_URL.Submit}/${problemDetail.id}`);
+              navigate(`/${PAGE_URL.Submit}/${problemDetail.id}`);
             }}
           />
         </li>
@@ -77,14 +74,9 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
           <ProblemMenuButtons
             text="내 제출"
             _onClick={() => {
-              if (!isAuth) {
-                redirectLogin();
-              }
-              if (isAuth) {
-                navigate(
-                  `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemDetail.id}&sns_id=${userInfo.snsId}`,
-                );
-              }
+              navigate(
+                `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemDetail.id}&sns_id=${userInfo.snsId}`,
+              );
             }}
           />
         </li>

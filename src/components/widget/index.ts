@@ -17,5 +17,6 @@ export { default as ProblemMenus } from './problemmenus/ProblemMenus';
 
 // login
 export { default as Login } from './login/Login';
+export { default as LoginProcess } from './login/LoginProcess';
 
 export * from './probleminfo';
