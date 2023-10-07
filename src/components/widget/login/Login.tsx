@@ -12,7 +12,7 @@ import { SignButton } from '@/components';
 import { GIT_HUB_LOGIN_URL } from '@/config/const';
 
 // store
-import { useIsAuthActions } from '@/stores/useAuthStore';
+import { useIsAuth, useIsAuthActions } from '@/stores/useAuthStore';
 import { useUserInfoActions } from '@/stores/useUserInfoStore';
 
 // types
@@ -26,6 +26,7 @@ const Login = () => {
   const navigate = useNavigate();
   const setIsAuthState = useIsAuthActions();
   const setUserInfoState = useUserInfoActions();
+  const isAuth = useIsAuth();
 
   useEffect(() => {
     const login = async () => {
@@ -33,20 +34,18 @@ const Login = () => {
 
       if (response?.status === 201) {
         setIsAuthState(true);
-
-        // code 쿼리스트링 제거
-        // urlParams.delete('code');
-        // navigate(`${location.pathname}?${urlParams.toString()}`, { replace: true });
-
         const response = await userApi.getUserInfo<GetUserInfoType>();
         setUserInfoState({ userInfo: response!.data.data });
         navigate(`/`);
       }
     };
+    // {replace:true}를 사용하면 뒤로가기를 했을 때 깃허브 로그인페이지로 가버리므로 생략
+    if (isAuth) navigate(`/`); // 로그인 후 뒤로가기로 접근 방지
+
     if (codeQueryString !== null) login();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [codeQueryString]);
+  }, [codeQueryString, isAuth]);
 
   return (
     <div>

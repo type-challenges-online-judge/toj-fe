@@ -4,8 +4,8 @@ import axios, { AxiosError } from 'axios';
 
 export const API = axios.create({});
 
-export const tmpHandleLogout = (url: string) => {
-  window.location.href = `${url}`;
+export const tmpHandleLogout = (url?: string) => {
+  if (url !== undefined) window.location.href = `${url}`;
 
   localStorage.removeItem('accessToken');
 
