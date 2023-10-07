@@ -72,6 +72,10 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: `${PAGE_URL.Login}/process`,
+    element: <Switch.LoginProcessPage />,
+  },
 ]);
 
 export default router;
