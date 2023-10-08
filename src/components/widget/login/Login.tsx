@@ -7,19 +7,7 @@ import { SignButton } from '@/components';
 // const
 import { GIT_HUB_LOGIN_URL } from '@/config/const';
 
-// store
-import { useIsAuth } from '@/stores/useAuthStore';
-
 const Login = () => {
-  const navigate = useNavigate();
-  const isAuth = useIsAuth();
-
-  useEffect(() => {
-    if (isAuth) {
-      navigate('/', { replace: true });
-    }
-  }, [isAuth, navigate]);
-
   return (
     <div>
       <SignButton
