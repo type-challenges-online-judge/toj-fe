@@ -21,7 +21,7 @@ export const useGetProblemDetail = <T, K = any>(problemId: number | null, option
       const res = await problemApi.getProblemDetail<T>(problemId!);
       return res.data;
     },
-    staleTime: Infinity,
+    staleTime: 36000000,
     retry: 0,
     enabled: problemId !== null,
     ...options,
