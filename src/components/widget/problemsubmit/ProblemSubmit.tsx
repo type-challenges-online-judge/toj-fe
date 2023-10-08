@@ -29,7 +29,6 @@ const ProblemSubmit = () => {
   const navigate = useNavigate();
   const useInfo = useUserInfo();
 
-  // 캐싱 데이터 사용 (없을 경우 queryFn 적용)
   const { data: { data: problemDetailData = null } = {} } =
     useGetProblemDetail<GetProblemDetailType>(Number(problemId));
 
@@ -40,7 +39,8 @@ const ProblemSubmit = () => {
     },
     {
       onSuccess: (data) => {
-        navigate(`/status?result_id=-1&problem_id=${problemId}&sns_id=${useInfo.snsId}`);
+        // 내 제출 , 전체 보기
+        navigate(`/status?problem_id=${problemId}&sns_id=${useInfo.snsId}`);
       },
       onError: (err) => {
         console.error(err);
@@ -52,14 +52,14 @@ const ProblemSubmit = () => {
   };
 
   useEffect(() => {
-    const getFirstValue = () => {
+    const makeTemplateCodeAtFirst = () => {
       if (isStart && problemDetailData !== null) {
         const templateStr = problemDetailData.template;
         setIsStart(false);
         setCode(templateStr);
       }
     };
-    getFirstValue();
+    makeTemplateCodeAtFirst();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [problemDetailData]);

@@ -18,11 +18,11 @@ import { useIsAuth } from '@/stores/useAuthStore';
 /**
  *
  * 제출 현황 페이지 이동시 사용되는 URL 명세입니다.
- * https://localhost:3000/status?result_id=1&problem_id=172&[sns_id=123]
+ * https://localhost:3000/status?[result_type=right]&problem_id=172&[snsId=123]
  * @route GET /status
- * @param {string} query.result_id -  1:정답 , 2:오답 , 3:정확성 , -1:전부
+ * @param {string} query.result_id -  정답 옵션입니다 right, wrong, correct, valid (없을 경우 전체보기)
  * @param {number} query.problem_id - 문제의 ID를 나타냅니다.
- * @param {string} query.snsId - GITHUB의 유저ID값을 의미합니다 (존재할 경우 내 제출, 없을 경우 모든 유저 제출)
+ * @param {string} query.sns_id - GITHUB의 유저ID값을 의미합니다 (존재할 경우 내 제출, 없을 경우 모든 유저 제출)
  * @returns {Object} Response object
  */
 
@@ -34,11 +34,6 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
   const navigate = useNavigate();
   const isAuth = useIsAuth();
   const userInfo = useUserInfo();
-
-  // const redirectLogin = () => {
-  //   alert('로그인이 필요한 서비스 입니다');
-  //   navigate(`/login`);
-  // };
 
   return (
     <div className={ProblemMunusWrapperStyle}>
@@ -66,7 +61,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
           <ProblemMenuButtons
             text="답안 보기"
             _onClick={() => {
-              navigate(`/${PAGE_URL.Status}?result_id=1&problem_id=${problemDetail.id}`);
+              navigate(`/${PAGE_URL.Status}?result_type=right&problem_id=${problemDetail.id}`);
             }}
           />
         </li>
@@ -75,7 +70,7 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
             text="내 제출"
             _onClick={() => {
               navigate(
-                `/${PAGE_URL.Status}?result_id=-1&problem_id=${problemDetail.id}&sns_id=${userInfo.snsId}`,
+                `/${PAGE_URL.Status}?problem_id=${problemDetail.id}&sns_id=${userInfo.snsId}`,
               );
             }}
           />
