@@ -29,7 +29,7 @@ const LoginProcess = () => {
         setIsAuthState(true);
         const response = await userApi.getUserInfo<GetUserInfoType>();
         setUserInfoState({ userInfo: response!.data.data });
-        navigate('/login', { replace: true });
+        navigate('/', { replace: true });
       }
     };
     if (codeQueryString !== null) loginProcess();
