@@ -15,26 +15,30 @@ import { PAGE_URL } from '@/config/path';
 import { useUserInfo } from '@/stores/useUserInfoStore';
 import { useIsAuth } from '@/stores/useAuthStore';
 
+/**
+ *
+ * 제출 현황 페이지 이동시 사용되는 URL 명세입니다.
+ * https://localhost:3000/status?result_id=1&problem_id=172&[sns_id=123]
+ * @route GET /status
+ * @param {string} query.result_id -  1:정답 , 2:오답 , 3:정확성 , -1:전부
+ * @param {number} query.problem_id - 문제의 ID를 나타냅니다.
+ * @param {string} query.snsId - GITHUB의 유저ID값을 의미합니다 (존재할 경우 내 제출, 없을 경우 모든 유저 제출)
+ * @returns {Object} Response object
+ */
+
 interface ProblemMenusProps {
   problemDetail: GetProblemDetailType['data'];
 }
 
 const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
   const navigate = useNavigate();
-
   const isAuth = useIsAuth();
   const userInfo = useUserInfo();
 
-  /**
-   *
-   * 제출 현황 페이지 이동시 사용되는 URL 명세입니다.
-   * https://localhost:3000/status?result_id=1&problem_id=172&[sns_id=123]
-   * @route GET /status
-   * @param {string} query.result_id -  1:정답 , 2:오답 , 3:정확성 , -1:전부
-   * @param {number} query.problem_id - 문제의 ID를 나타냅니다.
-   * @param {string} query.snsId - GITHUB의 유저ID값을 의미합니다 (존재할 경우 내 제출, 없을 경우 모든 유저 제출)
-   * @returns {Object} Response object
-   */
+  // const redirectLogin = () => {
+  //   alert('로그인이 필요한 서비스 입니다');
+  //   navigate(`/login`);
+  // };
 
   return (
     <div className={ProblemMunusWrapperStyle}>
@@ -52,7 +56,6 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
 
         <li className={SingleButton}>
           <ProblemMenuButtons
-            isAuth={isAuth}
             text="제출하기"
             _onClick={() => {
               navigate(`/${PAGE_URL.Submit}/${problemDetail.id}`);
@@ -69,7 +72,6 @@ const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
         </li>
         <li className={`${SingleButton} isLast`}>
           <ProblemMenuButtons
-            isAuth={isAuth}
             text="내 제출"
             _onClick={() => {
               navigate(

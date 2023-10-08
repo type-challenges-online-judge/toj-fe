@@ -12,7 +12,10 @@ export default defineConfig({
     proxy: {
       // 프록시 설정
       '/api': {
-        target: 'https://port-0-nestjs-147bpb2mlma5e3oj.sel5.cloudtype.app',
+        target:
+          process.env.NODE_ENV === 'development'
+            ? `https://port-0-toj-be-147bpb2mlma5e3oj.sel5.cloudtype.app`
+            : `https://port-0-toj-be-12fhqa2blnfvxkti.sel5.cloudtype.app`,
         changeOrigin: true,
         secure: false,
       },
@@ -21,4 +24,7 @@ export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: '/src' }],
   },
+  // build: {
+  //   sourcemap: true,
+  // },
 });

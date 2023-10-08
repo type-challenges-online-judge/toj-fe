@@ -4,12 +4,15 @@ import axios, { AxiosError } from 'axios';
 
 export const API = axios.create({});
 
-export const tmpHandleLogout = () => {
+export const tmpHandleLogout = (url?: string) => {
+  if (url !== undefined) window.location.href = `${url}`;
+
   localStorage.removeItem('accessToken');
 
   delete API.defaults.headers.common.Authorization;
 
   useIsAuthStore.getState().setIsAuthState(false);
+
   useUserInfoStore.getState().setUserInfoState({
     userInfo: {
       snsId: 0,
@@ -26,7 +29,7 @@ API.interceptors.response.use(
     if (!(error instanceof AxiosError)) return;
     if (error.response !== undefined && error.response.status === 401) {
       alert('로그인 해 주세요');
-      tmpHandleLogout();
+      tmpHandleLogout('/login');
     }
 
     // return await Promise.reject(error);

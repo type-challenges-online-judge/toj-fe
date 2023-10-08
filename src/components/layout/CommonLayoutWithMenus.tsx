@@ -13,7 +13,6 @@ import { CommonLayoutStyle } from './CommonLayout.css';
 const CommonLayoutWithMenus = () => {
   const { problemId } = useParams();
   const location = useLocation();
-
   const [currentProblemId, setCurrentProblemId] = useState<number | null>(null);
 
   useEffect(() => {

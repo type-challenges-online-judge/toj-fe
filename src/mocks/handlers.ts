@@ -3,7 +3,7 @@ import { rest } from 'msw';
 const submitLogData = [
   {
     userId: 456,
-    problemId: 173,
+    problemId: 339,
     submitNumber: 23,
     accuracyScore: 100,
     validate: 100,
@@ -13,7 +13,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 173,
+    problemId: 339,
     submitNumber: 2,
     accuracyScore: 100,
     validate: 100,
@@ -23,7 +23,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 173,
+    problemId: 339,
     submitNumber: 3,
     accuracyScore: 0,
     validate: 0,
@@ -33,7 +33,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 173,
+    problemId: 339,
     submitNumber: 28,
     accuracyScore: 88,
     validate: 80,
@@ -43,7 +43,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 174,
+    problemId: 335,
     submitNumber: 2,
     accuracyScore: 100,
     validate: 100,
@@ -53,7 +53,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 174,
+    problemId: 335,
     submitNumber: 52,
     accuracyScore: 100,
     validate: 100,
@@ -64,7 +64,7 @@ const submitLogData = [
 
   {
     userId: 123,
-    problemId: 176,
+    problemId: 349,
     submitNumber: 2,
     accuracyScore: 100,
     validate: 100,
@@ -74,7 +74,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 176,
+    problemId: 349,
     submitNumber: 598,
     accuracyScore: 100,
     validate: 75,
@@ -84,7 +84,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 176,
+    problemId: 349,
     submitNumber: 75,
     accuracyScore: 100,
     validate: 100,
@@ -94,7 +94,7 @@ const submitLogData = [
   },
   {
     userId: 456,
-    problemId: 176,
+    problemId: 349,
     submitNumber: 215,
     accuracyScore: 100,
     validate: 100,
@@ -104,7 +104,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 261,
+    problemId: 342,
     submitNumber: 2,
     accuracyScore: 100,
     validate: 100,
@@ -114,7 +114,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 261,
+    problemId: 342,
     submitNumber: 913,
     accuracyScore: 50,
     validate: 50,
@@ -124,7 +124,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 207,
+    problemId: 347,
     submitNumber: 2,
     accuracyScore: 100,
     validate: 100,
@@ -134,7 +134,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 207,
+    problemId: 347,
     submitNumber: 9,
     accuracyScore: 33,
     validate: 10,
@@ -144,7 +144,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 207,
+    problemId: 347,
     submitNumber: 9,
     accuracyScore: 100,
     validate: 100,
@@ -154,7 +154,7 @@ const submitLogData = [
   },
   {
     userId: 123,
-    problemId: 224,
+    problemId: 372,
     submitNumber: 2,
     accuracyScore: 40,
     validate: 0,
@@ -164,7 +164,7 @@ const submitLogData = [
   },
   {
     userId: 456,
-    problemId: 224,
+    problemId: 372,
     submitNumber: 64,
     accuracyScore: 100,
     validate: 100,
@@ -194,17 +194,15 @@ export const handlers = [
   rest.get('/status', async (req, res, ctx) => {
     const location = req.url.searchParams;
 
-    const [resultId, problemId, snsId, mine] = [
-      Number(location.get('resultId')),
-      Number(location.get('problemId')),
-      Number(location.get('snsId')),
-      location.get('mine') === 'true',
+    const [resultId, problemId, snsId] = [
+      Number(location.get('result_id')),
+      Number(location.get('problem_id')),
+      Number(location.get('sns_id')),
     ];
 
     let data = submitLogData.filter((i) => i.problemId === problemId);
 
-    if (mine) data = data.filter((i) => i.userId === snsId);
-
+    if (snsId !== 0) data = data.filter((i) => i.userId === snsId);
     if (resultId === 1) data = data?.filter((i) => i.accuracyScore === 100 && i.validate === 100);
     if (resultId === 2) data = data?.filter((i) => i.accuracyScore !== 100 || i.validate !== 100);
     if (resultId === 3) data = data?.filter((i) => i.accuracyScore === 100 && i.validate !== 100);

@@ -14,7 +14,6 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
   const openShowedCode = (submitNumber: number) => {
     setShowedCode((prevShowedCode) => {
       const newShowedCode = new Set(prevShowedCode);
-
       if (prevShowedCode.has(submitNumber)) {
         newShowedCode.delete(submitNumber);
       } else {
