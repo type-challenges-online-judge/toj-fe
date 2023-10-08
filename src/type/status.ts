@@ -12,3 +12,13 @@ export interface StatusType {
   user: UserType;
   valid_score: number;
 }
+
+export type SubmitResultsType = null | 'right' | 'wrong' | 'correct' | 'valid';
+
+export interface SubmitProps {
+  problemId?: number;
+  snsId?: number;
+  size?: number;
+  resultType: SubmitResultsType;
+  currentPage: number;
+}

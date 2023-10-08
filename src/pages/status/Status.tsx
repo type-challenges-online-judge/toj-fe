@@ -1,43 +1,55 @@
-import React, { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
-import { StatusBody, StatusHeader } from '@/components';
+import { PaginationButtons, StatusBody, StatusHeader } from '@/components';
 import { useGetStatusList } from '@/hooks/queries/status';
 
 import { TableStyle } from './Status.css';
+import { SubmitProps, SubmitResultsType } from '@/type/status';
+import { COUNT_PER_PAGE } from '@/config/const';
 
 /**
  *
- * 제출 현황 페이에서 사용되는 URL 명세입니다.
- * https://localhost:3000/status?result_id=1&problem_id=172&[snsId=123]
+ * 제출 현황 페이지에서 사용되는 URL 명세입니다.
+ * https://localhost:3000/status?[result_type=right]&problem_id=172&[snsId=123]
  * @route GET /status
- * @param {string} query.result_id -  1:정답 , 2:오답 , 3:정확성 , -1:전부
+ * @param {string} query.result_id -  정답 옵션입니다 right, wrong, correct, valid (없을 경우 전체보기)
  * @param {number} query.problem_id - 문제의 ID를 나타냅니다.
  * @param {string} query.sns_id - GITHUB의 유저ID값을 의미합니다 (존재할 경우 내 제출, 없을 경우 모든 유저 제출)
  * @returns {Object} Response object
  */
 
 const Status = () => {
+  const [currentPage, setCurrentPage] = useState(1);
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
 
-  const [problemId, snsId] = [
+  const [resultType, problemId, snsId] = [
+    queryParams.get('result_type') as SubmitResultsType,
     Number(queryParams.get('problem_id')),
     Number(queryParams.get('sns_id')),
   ];
 
-  const data = useGetStatusList({ problemId, snsId });
+  const data = useGetStatusList({ resultType, problemId, snsId, currentPage });
+  const listLength = data[0]?.data?.data?.data;
+  const listData = data[1]?.data?.data?.data;
 
   useEffect(() => {
+    data[0].refetch();
     data[1].refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [snsId]);
 
   return (
-    <table className={TableStyle}>
-      <StatusHeader />
-      {data[1].data?.data.data != null && <StatusBody items={data[1].data?.data.data} />}
-    </table>
+    <div>
+      <table className={TableStyle}>
+        <StatusHeader />
+        {listData != null && <StatusBody items={listData} />}
+      </table>
+      {listLength != null && listLength !== 0 && (
+        <PaginationButtons listLength={listLength} setCurrentPage={setCurrentPage} />
+      )}
+    </div>
   );
 };
 

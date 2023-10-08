@@ -1,12 +1,6 @@
+import { SubmitProps } from '@/type/status';
 import { API } from './instance';
-
-interface SubmitProps {
-  problemId?: number;
-  snsId?: number;
-  size?: number;
-}
-
-const COUNT_PER_PAGE = 10;
+import { COUNT_PER_PAGE } from '@/config/const';
 
 export const submitApi = {
   getSubmitSize: async (submitProps: SubmitProps) =>
@@ -14,6 +8,7 @@ export const submitApi = {
       params: {
         problemId: submitProps.problemId,
         snsId: submitProps.snsId === 0 ? null : submitProps.snsId,
+        resultType: submitProps.resultType,
       },
     }),
 
@@ -22,9 +17,9 @@ export const submitApi = {
       params: {
         problemId: submitProps.problemId,
         snsId: submitProps.snsId === 0 ? null : submitProps.snsId,
-        pageNum:
-          submitProps.size != null ? Math.floor(Number(submitProps.size / COUNT_PER_PAGE)) + 1 : 1,
+        pageNum: submitProps.currentPage,
         countPerPage: COUNT_PER_PAGE,
+        resultType: submitProps.resultType,
       },
     }),
 };
