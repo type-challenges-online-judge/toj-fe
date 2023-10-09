@@ -13,7 +13,6 @@ import { SingleButton, ButtonList, ProblemMunusWrapperStyle } from './ProblemMen
 // const
 import { PAGE_URL } from '@/config/path';
 import { useUserInfo } from '@/stores/useUserInfoStore';
-import { useIsAuth } from '@/stores/useAuthStore';
 
 /**
  *
@@ -32,7 +31,6 @@ interface ProblemMenusProps {
 
 const ProblemMenus = ({ problemDetail }: ProblemMenusProps) => {
   const navigate = useNavigate();
-  const isAuth = useIsAuth();
   const userInfo = useUserInfo();
 
   return (

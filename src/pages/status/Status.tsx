@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { PaginationButtons, StatusBody, StatusHeader } from '@/components';
 import { useGetStatusList } from '@/hooks/queries/status';
 
 import { TableStyle } from './Status.css';
-import { SubmitProps, SubmitResultsType } from '@/type/status';
-import { COUNT_PER_PAGE } from '@/config/const';
+import { SubmitResultsType } from '@/type/status';
 
 /**
  *

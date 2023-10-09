@@ -1,7 +1,6 @@
 import { submitApi } from '@/apis/status';
 import { SubmitProps } from '@/type/status';
 import { useQueries } from '@tanstack/react-query';
-import { useState } from 'react';
 
 export const useGetStatusList = (submitProps: SubmitProps) => {
   // const [size, setSize] = useState<number>();
