@@ -20,6 +20,7 @@ import { SubmitResultsType } from '@/type/status';
 
 const Status = () => {
   const [currentPage, setCurrentPage] = useState(1);
+
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
 
@@ -29,13 +30,13 @@ const Status = () => {
     Number(queryParams.get('sns_id')),
   ];
 
-  const data = useGetSubmitInfo({ resultType, problemId, snsId, currentPage });
-  const listLength = data[0]?.data?.data?.data;
-  const listData = data[1]?.data?.data?.data;
+  const info = useGetSubmitInfo({ resultType, problemId, snsId, currentPage });
+  const totalSize = info[0]?.data?.data?.data;
+  const list = info[1]?.data?.data?.data;
 
   useEffect(() => {
-    data[0].refetch();
-    data[1].refetch();
+    info[0].refetch();
+    info[1].refetch();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [snsId]);
 
@@ -43,10 +44,11 @@ const Status = () => {
     <div>
       <table className={TableStyle}>
         <StatusHeader />
-        {listData != null && <StatusBody items={listData} />}
+        {list != null && <StatusBody list={list} />}
       </table>
-      {listLength != null && listLength !== 0 && (
-        <PaginationButtons listLength={listLength} setCurrentPage={setCurrentPage} />
+
+      {totalSize != null && totalSize !== 0 && (
+        <PaginationButtons totalSize={totalSize} setCurrentPage={setCurrentPage} />
       )}
     </div>
   );
