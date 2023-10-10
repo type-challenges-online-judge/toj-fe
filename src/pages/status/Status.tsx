@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { PaginationButtons, StatusBody, StatusHeader } from '@/components';
-import { useGetStatusList } from '@/hooks/queries/status';
+import { useGetSubmitInfo } from '@/hooks/queries/status';
 
 import { TableStyle } from './Status.css';
 import { SubmitResultsType } from '@/type/status';
@@ -29,7 +29,7 @@ const Status = () => {
     Number(queryParams.get('sns_id')),
   ];
 
-  const data = useGetStatusList({ resultType, problemId, snsId, currentPage });
+  const data = useGetSubmitInfo({ resultType, problemId, snsId, currentPage });
   const listLength = data[0]?.data?.data?.data;
   const listData = data[1]?.data?.data?.data;
 

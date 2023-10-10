@@ -2,17 +2,12 @@ import { submitApi } from '@/apis/status';
 import { SubmitProps } from '@/type/status';
 import { useQueries } from '@tanstack/react-query';
 
-export const useGetStatusList = (submitProps: SubmitProps) => {
-  // const [size, setSize] = useState<number>();
-
+export const useGetSubmitInfo = (submitProps: SubmitProps) => {
   return useQueries({
     queries: [
       {
         queryKey: ['getSubmitSize', submitProps.problemId, submitProps.resultType],
         queryFn: async () => await submitApi.getSubmitSize(submitProps),
-        // onSuccess: (res: any) => {
-        //   setSize(res.data.data);
-        // },
         retry: 0,
         staleTime: 36000000,
         cacheTime: Infinity,
@@ -24,7 +19,6 @@ export const useGetStatusList = (submitProps: SubmitProps) => {
           submitProps.resultType,
           submitProps.currentPage,
         ],
-        // queryFn: async () => await submitApi.getSubmitList({ ...submitProps, size }),
         queryFn: async () => await submitApi.getSubmitList(submitProps),
       },
     ],
