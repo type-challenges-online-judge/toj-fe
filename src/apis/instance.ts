@@ -6,6 +6,7 @@ export const API = axios.create({});
 
 export const tmpHandleLogout = (url?: string) => {
   if (url !== undefined) window.location.href = `${url}`;
+  if (url === undefined) window.location.reload();
 
   localStorage.removeItem('accessToken');
 
@@ -28,7 +29,7 @@ API.interceptors.response.use(
   async (error) => {
     if (!(error instanceof AxiosError)) return;
     if (error.response !== undefined && error.response.status === 401) {
-      alert('로그인 해 주세요');
+      // alert('로그인 해 주세요');
       tmpHandleLogout('/login');
     }
 
