@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { PaginationButtons, StatusBody, StatusHeader } from '@/components';
-import { useGetSubmitInfo } from '@/hooks/queries/status';
+import { useGetSubmitList, useGetSubmitSize } from '@/hooks/queries/status';
+import { SubmitResultsType } from '@/type/status';
 
 import { TableStyle } from './Status.css';
-import { SubmitResultsType } from '@/type/status';
 
 /**
  *
@@ -20,6 +20,7 @@ import { SubmitResultsType } from '@/type/status';
 
 const Status = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [isInProgress, setIsInProgress] = useState<boolean>(true);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -30,15 +31,57 @@ const Status = () => {
     Number(queryParams.get('sns_id')),
   ];
 
-  const info = useGetSubmitInfo({ resultType, problemId, snsId, currentPage });
-  const totalSize = info[0]?.data?.data?.data;
-  const list = info[1]?.data?.data?.data;
+  const { data: submitList, refetch: submitListRefetch } = useGetSubmitList({
+    resultType,
+    problemId,
+    snsId,
+    currentPage,
+  });
+
+  const { data: submitSize, refetch: submitSizeRefetch } = useGetSubmitSize({
+    resultType,
+    problemId,
+    snsId,
+    currentPage,
+  });
+
+  const totalSize = submitSize?.data?.data;
+  const list = submitList?.data.data;
 
   useEffect(() => {
-    info[0].refetch();
-    info[1].refetch();
+    submitSizeRefetch();
+    submitListRefetch();
+    setIsInProgress(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [snsId]);
+
+  useEffect(() => {
+    if (list !== undefined && isInProgress) {
+      for (const item of list) {
+        if ([-4, -3, -2].includes(item.correct_score) || [-4, -3, -2].includes(item.valid_score)) {
+          return;
+        }
+      }
+
+      setIsInProgress(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [list]);
+
+  useEffect(() => {
+    let intervalId: NodeJS.Timeout;
+
+    if (isInProgress) {
+      intervalId = setInterval(() => {
+        submitListRefetch();
+      }, 10000);
+    }
+
+    return () => {
+      // 컴포넌트가 언마운트되면 clearInterval을 호출하여 메모리 누수를 방지합니다.
+      clearInterval(intervalId);
+    };
+  }, [isInProgress, submitListRefetch]);
 
   return (
     <div>
