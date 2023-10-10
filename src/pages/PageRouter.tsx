@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { createBrowserRouter, useLocation } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 
 // element
 import * as Switch from '@/pages';

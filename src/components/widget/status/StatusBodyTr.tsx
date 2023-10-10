@@ -1,28 +1,16 @@
 import AceEditor from 'react-ace';
 
-import { SubmitType } from '@/type/status';
+import { StatusType } from '@/type/status';
 
 import { TdStyle, TrStyle } from './Status.css';
 
 interface StatusBodyTrProps {
-  item: SubmitType;
+  item: StatusType;
   showedCode: Set<number>;
   setShowedCode: React.Dispatch<React.SetStateAction<Set<number>>>;
 }
 
 const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) => {
-  const COLUMN_KEYS = [
-    'submitNumber',
-    'userId',
-    'problemId',
-    'accuracyScore',
-    'validate',
-    'codeLength',
-    'submitDate',
-  ];
-
-  const COLUMN_EXTRA_TEXTS = ['', '', '', '점', '점', 'byte', ''];
-
   const openShowedCode = (submitNumber: number) => {
     setShowedCode((prevShowedCode) => {
       const newShowedCode = new Set(prevShowedCode);
@@ -40,20 +28,20 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
     <>
       <tr
         onClick={() => {
-          openShowedCode(item.submitNumber);
+          openShowedCode(item.id);
         }}
         className={TrStyle}
       >
-        {COLUMN_KEYS.map((columnKey: string, idx: number) => {
-          return (
-            <td key={idx} className={TdStyle}>
-              {item[columnKey as keyof SubmitType]} {COLUMN_EXTRA_TEXTS[idx]}
-            </td>
-          );
-        })}
+        <td className={TdStyle}>{item.id}</td>
+        <td className={TdStyle}>{item.user.snsId}</td>
+        <td className={TdStyle}>{item.problem.id}</td>
+        <td className={TdStyle}>{item.correct_score}</td>
+        <td className={TdStyle}>{item.valid_score}</td>
+        <td className={TdStyle}>{item.code.length}</td>
+        <td className={TdStyle}>{item.createAt}</td>
       </tr>
 
-      {showedCode.has(item.submitNumber) && (
+      {showedCode.has(item.id) && (
         <tr>
           <td colSpan={7}>
             <AceEditor
@@ -69,7 +57,7 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
               tabSize={2}
               editorProps={{ $blockScrolling: true }}
               readOnly
-              style={{ width: 'calc(100% - 40px)', height: '500px', margin: '10px 20px' }}
+              style={{ width: 'calc(100% - 40px)', height: '250px', margin: '10px 20px' }}
             />
           </td>
         </tr>

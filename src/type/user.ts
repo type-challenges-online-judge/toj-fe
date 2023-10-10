@@ -6,3 +6,8 @@ export interface GetUserInfoType {
     profileUrl: string;
   };
 }
+
+export interface UserType {
+  snsId: number;
+  name: string;
+}
