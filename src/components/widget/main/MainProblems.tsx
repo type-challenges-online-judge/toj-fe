@@ -15,7 +15,7 @@ import { useGetSolvedProblemsList } from '@/hooks/queries/user';
 
 const MainProblems = () => {
   const [problems, setProblems] = useState<ProblemsType>();
-  const [solvedId, setSolvedId] = useState<Set<number>>(new Set());
+  const [solvedId, setSolvedId] = useState<number[]>([]);
   const userInfo = useUserInfo();
 
   const { data: { data: unsortedProblems = null } = {} } = useGetProblems<GetProblemListType>();
@@ -26,7 +26,7 @@ const MainProblems = () => {
 
   useEffect(() => {
     if (solvedIdList.length > 0) {
-      setSolvedId(new Set(new Set(solvedIdList.map((solvedData: any) => solvedData.id))));
+      setSolvedId(solvedIdList.map((solvedData: any) => solvedData.id));
     }
   }, [solvedIdList]);
 
@@ -73,7 +73,7 @@ const MainProblems = () => {
                         id={problem.number}
                         text={problem.title}
                         level={level as Level}
-                        isSolved={solvedId.has(problem.id)}
+                        isSolved={solvedId.includes(problem.id)}
                         _onClick={() => {
                           moveProblemDetail(problem.id);
                         }}
