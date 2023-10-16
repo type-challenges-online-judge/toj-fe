@@ -22,3 +22,8 @@ export interface SubmitProps {
   resultType: SubmitResultsType;
   currentPage: number;
 }
+
+export interface SubmitItemProps {
+  type: 'correct' | 'valid';
+  id: number;
+}

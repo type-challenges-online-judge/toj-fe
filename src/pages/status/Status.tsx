@@ -20,7 +20,6 @@ import { TableStyle } from './Status.css';
 
 const Status = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [isInProgress, setIsInProgress] = useState<boolean>(true);
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -51,37 +50,8 @@ const Status = () => {
   useEffect(() => {
     submitSizeRefetch();
     submitListRefetch();
-    setIsInProgress(true);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [snsId]);
-
-  useEffect(() => {
-    if (list !== undefined && isInProgress) {
-      for (const item of list) {
-        if ([-4, -3, -2].includes(item.correct_score) || [-4, -3, -2].includes(item.valid_score)) {
-          return;
-        }
-      }
-
-      setIsInProgress(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [list]);
-
-  useEffect(() => {
-    let intervalId: NodeJS.Timeout;
-
-    if (isInProgress) {
-      intervalId = setInterval(() => {
-        submitListRefetch();
-      }, 10000);
-    }
-
-    return () => {
-      // 컴포넌트가 언마운트되면 clearInterval을 호출하여 메모리 누수를 방지합니다.
-      clearInterval(intervalId);
-    };
-  }, [isInProgress, submitListRefetch]);
 
   return (
     <div>

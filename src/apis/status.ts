@@ -1,4 +1,4 @@
-import { SubmitProps } from '@/type/status';
+import { SubmitItemProps, SubmitProps } from '@/type/status';
 import { API } from './instance';
 import { COUNT_PER_PAGE } from '@/config/const';
 
@@ -20,6 +20,13 @@ export const submitApi = {
         pageNum: submitProps.currentPage,
         countPerPage: COUNT_PER_PAGE,
         resultType: submitProps.resultType,
+      },
+    }),
+
+  getSubmitItem: async (submitItemProps: SubmitItemProps) =>
+    await API.get(`/api/submit/status/${submitItemProps.id}`, {
+      params: {
+        type: submitItemProps.type,
       },
     }),
 };
