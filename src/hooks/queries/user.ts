@@ -7,7 +7,7 @@ export const useGetSolvedProblemsList = <T, K = any>(
   options?: K,
 ) => {
   return useQuery({
-    queryKey: ['solvedList'],
+    queryKey: ['solvedList', snsId],
     queryFn: async () => {
       const res = await userApi.getSolvedProblemList(snsId, minify);
       return res?.data;
