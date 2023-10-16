@@ -10,10 +10,25 @@ import {
   MainLevelProblemsWrapperStyle,
   MainProblemsWrapperStyle,
 } from './MainProblems.css';
+import { useUserInfo } from '@/stores/useUserInfoStore';
+import { useGetSolvedProblemsList } from '@/hooks/queries/user';
 
 const MainProblems = () => {
   const [problems, setProblems] = useState<ProblemsType>();
+  const [solvedId, setSolvedId] = useState<Set<number>>(new Set());
+  const userInfo = useUserInfo();
+
   const { data: { data: unsortedProblems = null } = {} } = useGetProblems<GetProblemListType>();
+  const { data: { data: solvedIdList = [] } = {} } = useGetSolvedProblemsList(
+    userInfo.snsId,
+    false,
+  );
+
+  useEffect(() => {
+    if (solvedIdList.length > 0) {
+      setSolvedId(new Set(new Set(solvedIdList.map((solvedData: any) => solvedData.id))));
+    }
+  }, [solvedIdList]);
 
   const navigate = useNavigate();
 
@@ -58,7 +73,7 @@ const MainProblems = () => {
                         id={problem.number}
                         text={problem.title}
                         level={level as Level}
-                        isSolved={false}
+                        isSolved={solvedId.has(problem.id)}
                         _onClick={() => {
                           moveProblemDetail(problem.id);
                         }}
