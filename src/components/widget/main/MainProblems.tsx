@@ -11,7 +11,8 @@ import {
   MainProblemsWrapperStyle,
 } from './MainProblems.css';
 import { useUserInfo } from '@/stores/useUserInfoStore';
-import { useGetSolvedProblemsList } from '@/hooks/queries/user';
+import { useGetSolvedProblemList } from '@/hooks/queries/user';
+import { GetSolvedListType } from '@/type/user';
 
 const MainProblems = () => {
   const [problems, setProblems] = useState<ProblemsType>();
@@ -19,14 +20,14 @@ const MainProblems = () => {
   const userInfo = useUserInfo();
 
   const { data: { data: unsortedProblems = null } = {} } = useGetProblems<GetProblemListType>();
-  const { data: { data: solvedIdList = [] } = {} } = useGetSolvedProblemsList(
+  const { data: { data: solvedIdList = [] } = {} } = useGetSolvedProblemList<GetSolvedListType>(
     userInfo.snsId,
     false,
   );
 
   useEffect(() => {
     if (solvedIdList.length > 0) {
-      setSolvedId(solvedIdList.map((solvedData: any) => solvedData.id));
+      setSolvedId(solvedIdList.map((solvedData) => solvedData.id));
     }
   }, [solvedIdList]);
 

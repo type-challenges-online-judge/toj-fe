@@ -1,7 +1,7 @@
 import { userApi } from '@/apis/user';
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetSolvedProblemsList = <T, K = any>(
+export const useGetSolvedProblemList = <T, K = any>(
   snsId: number,
   minify: boolean,
   options?: K,
@@ -9,7 +9,7 @@ export const useGetSolvedProblemsList = <T, K = any>(
   return useQuery({
     queryKey: ['solvedList', snsId],
     queryFn: async () => {
-      const res = await userApi.getSolvedProblemList(snsId, minify);
+      const res = await userApi.getSolvedProblemList<T>(snsId, minify);
       return res?.data;
     },
     retry: 0,

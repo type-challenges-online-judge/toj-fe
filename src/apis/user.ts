@@ -11,12 +11,12 @@ export const userApi = {
       if (e instanceof AxiosError) console.error(e.message);
     }
   },
-  getSolvedProblemList: async (
+  getSolvedProblemList: async <T>(
     snsId: number,
     minify: boolean,
-  ): Promise<AxiosResponse<any> | undefined> => {
+  ): Promise<AxiosResponse<T> | undefined> => {
     try {
-      const apiResponse = await API.get(`/api/user/solved`, {
+      const apiResponse = await API.get<T>(`/api/user/solved`, {
         params: { snsId, minify },
       });
 
