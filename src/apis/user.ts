@@ -11,4 +11,18 @@ export const userApi = {
       if (e instanceof AxiosError) console.error(e.message);
     }
   },
+  getSolvedProblemList: async <T>(
+    snsId: number,
+    minify: boolean,
+  ): Promise<AxiosResponse<T> | undefined> => {
+    try {
+      const apiResponse = await API.get<T>(`/api/user/solved`, {
+        params: { snsId, minify },
+      });
+
+      return apiResponse;
+    } catch (e) {
+      if (e instanceof AxiosError) console.error(e.message);
+    }
+  },
 };

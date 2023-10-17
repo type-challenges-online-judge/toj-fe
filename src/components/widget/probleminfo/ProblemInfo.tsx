@@ -10,7 +10,7 @@ import { ProblemDescription } from './problemdescription';
 import { TestCases } from './testcases';
 
 // utils
-import { extractDescription, extractExample } from '@/util/problem';
+import { extractDescription, extractExample, extractTSOnlineLink } from '@/util/problem';
 
 // hooks
 import { useGetProblemDetail } from '@/hooks/queries/problem';
@@ -25,9 +25,10 @@ const ProblemInfo = () => {
   const { data: { data: problemDetailData = null } = {} } =
     useGetProblemDetail<GetProblemDetailType>(Number(problemId));
 
-  const [description, example, teaplate] = [
+  const [description, example, TSOnlineLink, teaplate] = [
     problemDetailData !== null ? extractDescription(problemDetailData.description) : '',
     problemDetailData !== null ? extractExample(problemDetailData.description) : '',
+    problemDetailData !== null ? extractTSOnlineLink(problemDetailData.description) : '',
     problemDetailData !== null ? problemDetailData.template : '',
   ];
 
@@ -39,7 +40,7 @@ const ProblemInfo = () => {
 
           <BasicButton
             text="TS 온라인에서 풀이"
-            _onClick={() => (window.location.href = 'https://www.typescriptlang.org/play')}
+            _onClick={() => (window.location.href = TSOnlineLink)}
           />
 
           <ProblemDescription description={description} />
