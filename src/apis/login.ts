@@ -1,7 +1,6 @@
 import { AxiosError, AxiosResponse } from 'axios';
 import { API } from './instance';
 
-// API
 export const loginApi = {
   postLogin: async <T>(gitHubAuthCode: string): Promise<AxiosResponse<T> | undefined> => {
     try {
