@@ -6,6 +6,7 @@ export const API = axios.create({});
 
 export const tmpHandleLogout = (url?: string) => {
   if (url !== undefined) window.location.href = `${url}`;
+  if (url === undefined) window.location.reload();
 
   localStorage.removeItem('accessToken');
 

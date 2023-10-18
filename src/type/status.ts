@@ -1,7 +1,6 @@
 import { ProblemType } from './problem';
 import { UserType } from './user';
 
-// 목데이터 전용으로 임시 생성.
 export interface StatusType {
   code: string;
   correct_score: number;
