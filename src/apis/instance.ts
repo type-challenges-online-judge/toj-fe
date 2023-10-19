@@ -29,7 +29,7 @@ API.interceptors.response.use(
   async (error) => {
     if (!(error instanceof AxiosError)) return;
     if (error.response !== undefined && error.response.status === 401) {
-      alert('로그인 해 주세요');
+      // alert('로그인 해 주세요');
       tmpHandleLogout('/login');
     }
 
