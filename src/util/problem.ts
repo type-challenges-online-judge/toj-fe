@@ -40,6 +40,25 @@ export const extractExample = (readmeString: string) => {
   return exampleCode;
 };
 
+// data.description의 README에서 TSOnline 링크 추출
+export const extractTSOnlineLink = (mdString: string) => {
+  const headerContent = mdString.match(
+    /<!--info-header-start-->([\s\S]+?)<!--info-header-end-->/,
+  )?.[1];
+
+  if (headerContent != null) {
+    const url = headerContent.match(
+      /<a href="(https:\/\/tsch\.js\.org\/\d+\/play(?:\/\w+)?)" target="_blank">/,
+    )?.[1];
+
+    if (url != null) {
+      return url;
+    }
+  }
+
+  return 'https://www.typescriptlang.org/play';
+};
+
 // 테스트케이스 문자열 반환
 export const extractTestCases = (arr: GetProblemDetailType['data']['testCase']) => {
   return arr.map((i) => i.case).join('\n\n');
