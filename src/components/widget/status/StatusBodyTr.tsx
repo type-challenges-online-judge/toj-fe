@@ -7,6 +7,7 @@ import { StatusType } from '@/type/status';
 import { TdStyle, TrStyle } from './Status.css';
 import useFormatSeconds from '@/hooks/useFormatSeconds';
 import useFormatScore from '@/hooks/useFormatScore';
+import useGetByte from '@/hooks/useGetByte';
 
 interface StatusBodyTrProps {
   item: StatusType;
@@ -146,7 +147,7 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
         <td className={TdStyle}>
           {useFormatScore(newItem.valid_score, checkValid?.data.data.judgeStatus)}
         </td>
-        <td className={TdStyle}>{newItem.code.length}</td>
+        <td className={TdStyle}>{useGetByte(newItem.code)}B</td>
         <td className={TdStyle}>{useFormatSeconds(diffDate)}</td>
       </tr>
 
