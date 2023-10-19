@@ -5,6 +5,7 @@ import { useGetSubmitItem } from '@/hooks/queries/status';
 import { StatusType } from '@/type/status';
 
 import { TdStyle, TrStyle } from './Status.css';
+import useFormatSeconds from '@/hooks/useFormatSeconds';
 
 interface StatusBodyTrProps {
   item: StatusType;
@@ -14,6 +15,7 @@ interface StatusBodyTrProps {
 
 const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) => {
   const [newItem, setNewItem] = useState<StatusType>(item);
+  const [diffDate, setDiffDate] = useState<number>(-1);
 
   const openShowedCode = (submitNumber: number) => {
     setShowedCode((prevShowedCode) => {
@@ -79,7 +81,7 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
         clearInterval(intervalId);
       };
     }
-  }, [checkCorrect, checkCorrectRefetch]);
+  }, [checkCorrect, checkCorrectRefetch, newItem]);
 
   useEffect(() => {
     if (![-5, -6].includes(newItem.valid_score) && !(newItem.valid_score >= 0)) {
@@ -121,7 +123,28 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
         clearInterval(intervalId);
       };
     }
-  }, [checkValid, checkValidRefetch]);
+  }, [checkValid, checkValidRefetch, newItem]);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (newItem != null) {
+        if (diffDate === -1) {
+          const submitDate = new Date(newItem.createdAt);
+          const nowDate = new Date();
+
+          setDiffDate(
+            Math.floor((nowDate.getTime() + 9 * 60 * 60 * 1000 - submitDate.getTime()) / 1000),
+          );
+        } else {
+          setDiffDate((prev) => prev + 1);
+        }
+      }
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [diffDate, newItem]);
 
   return (
     <>
@@ -137,7 +160,7 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
         <td className={TdStyle}>{newItem.correct_score}</td>
         <td className={TdStyle}>{newItem.valid_score}</td>
         <td className={TdStyle}>{newItem.code.length}</td>
-        <td className={TdStyle}>{newItem.createAt}</td>
+        <td className={TdStyle}>{useFormatSeconds(diffDate)}</td>
       </tr>
 
       {showedCode.has(newItem.id) && (

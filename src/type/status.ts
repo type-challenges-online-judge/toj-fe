@@ -4,7 +4,7 @@ import { UserType } from './user';
 export interface StatusType {
   code: string;
   correct_score: number;
-  createAt: string;
+  createdAt: string;
   id: number;
   problem: Partial<ProblemType> & { level: string };
   updatedAt: string;
