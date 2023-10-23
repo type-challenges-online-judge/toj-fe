@@ -10,11 +10,9 @@ import { API } from './apis/instance';
 
 function App() {
   const localStorageToken = localStorage.getItem('accessToken');
-  useEffect(() => {
-    if (localStorageToken !== null) {
-      API.defaults.headers.common.Authorization = `Bearer ${JSON.parse(localStorageToken)}`;
-    }
-  }, [localStorageToken]);
+  if (localStorageToken !== null) {
+    API.defaults.headers.common.Authorization = `Bearer ${JSON.parse(localStorageToken)}`;
+  }
 
   return (
     <>
