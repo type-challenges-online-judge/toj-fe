@@ -61,7 +61,11 @@ const Status = () => {
       </table>
 
       {totalSize != null && totalSize !== 0 && (
-        <PaginationButtons totalSize={totalSize} setCurrentPage={setCurrentPage} />
+        <PaginationButtons
+          totalSize={totalSize}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+        />
       )}
     </div>
   );
