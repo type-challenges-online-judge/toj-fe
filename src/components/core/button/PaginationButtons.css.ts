@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css';
 export const PaginationButtonsWrapperStyle = style({
   display: 'flex',
   justifyContent: 'center',
+  alignItems: 'center',
   marginBottom: '50px',
 });
 export const ButtonsStyle = style({

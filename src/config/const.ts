@@ -5,3 +5,4 @@ export const GIT_HUB_LOGIN_URL = `https://github.com/login/oauth/authorize?clien
 }`;
 
 export const COUNT_PER_PAGE = 10;
+export const MAXIMUM_PAGE_BUTTON_COUNT = 4;

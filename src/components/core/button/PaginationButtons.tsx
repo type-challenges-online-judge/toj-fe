@@ -1,8 +1,9 @@
-import { COUNT_PER_PAGE } from '@/config/const';
-import React from 'react';
+import { COUNT_PER_PAGE, MAXIMUM_PAGE_BUTTON_COUNT } from '@/config/const';
+import React, { useState } from 'react';
 import { ButtonsStyle, PaginationButtonsWrapperStyle } from './PaginationButtons.css';
 import GoLeft from './GoLeft';
 import GoRight from './GoRight';
+import { LuMoreHorizontal } from 'react-icons/lu';
 
 interface PaginationButtonsProps {
   totalSize: number;
@@ -10,26 +11,47 @@ interface PaginationButtonsProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 const PaginationButtons = ({ totalSize, currentPage, setCurrentPage }: PaginationButtonsProps) => {
-  const LAST_PAGE = Math.ceil(totalSize / COUNT_PER_PAGE);
+  const LAST_PAGE_NUMBER = Math.ceil(totalSize / COUNT_PER_PAGE);
+  const [slicedPageInex, setSlicedPageInex] = useState([
+    1,
+    LAST_PAGE_NUMBER + 1 < MAXIMUM_PAGE_BUTTON_COUNT + 1
+      ? LAST_PAGE_NUMBER + 1
+      : MAXIMUM_PAGE_BUTTON_COUNT + 1,
+  ]);
 
   return (
     <div className={PaginationButtonsWrapperStyle}>
-      <GoLeft currentPage={currentPage} setCurrentPage={setCurrentPage} />
-      {new Array(LAST_PAGE).fill(0).map((_, index: number) => {
-        return (
-          <button
-            key={index}
-            type="button"
-            className={`${ButtonsStyle} ${currentPage === index + 1 && 'current'}`}
-            onClick={() => {
-              setCurrentPage(index + 1);
-            }}
-          >
-            {index + 1}
-          </button>
-        );
-      })}
-      <GoRight lastPage={LAST_PAGE} currentPage={currentPage} setCurrentPage={setCurrentPage} />
+      <GoLeft
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        setSlicedPageInex={setSlicedPageInex}
+      />
+      {slicedPageInex[0] !== 1 && <LuMoreHorizontal />}
+      {new Array(LAST_PAGE_NUMBER + 1)
+        .fill(0)
+        .map((_, arrIndex: number) => arrIndex)
+        .slice(slicedPageInex[0], slicedPageInex[1])
+        .map((pageNumber, pageIndex) => {
+          return (
+            <button
+              key={pageIndex}
+              type="button"
+              className={`${ButtonsStyle} ${currentPage === pageNumber && 'current'}`}
+              onClick={() => {
+                setCurrentPage(pageNumber);
+              }}
+            >
+              {pageNumber}
+            </button>
+          );
+        })}
+      {slicedPageInex[1] !== LAST_PAGE_NUMBER + 1 && <LuMoreHorizontal />}
+      <GoRight
+        lastPageNumber={LAST_PAGE_NUMBER}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        setSlicedPageInex={setSlicedPageInex}
+      />
     </div>
   );
 };
