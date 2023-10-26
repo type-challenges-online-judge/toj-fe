@@ -18,12 +18,18 @@ const GoEnd = ({ lastPageNumber, currentPage, setCurrentPage, setSlicedPageInex 
         setCurrentPage(lastPageNumber);
 
         // 마지막 페이지네이션 버튼들 시작 인덱스
-        const nextSlicedStart = lastPageNumber - (lastPageNumber % MAXIMUM_PAGE_BUTTON_COUNT) + 1;
+        let nextSlicedStart;
+        if (lastPageNumber % MAXIMUM_PAGE_BUTTON_COUNT === 0) {
+          nextSlicedStart = lastPageNumber - MAXIMUM_PAGE_BUTTON_COUNT + 1;
+        } else {
+          nextSlicedStart =
+            lastPageNumber -
+            MAXIMUM_PAGE_BUTTON_COUNT +
+            1 +
+            (MAXIMUM_PAGE_BUTTON_COUNT - (lastPageNumber % MAXIMUM_PAGE_BUTTON_COUNT));
+        }
 
-        setSlicedPageInex([
-          nextSlicedStart > lastPageNumber ? 1 : nextSlicedStart,
-          lastPageNumber + 1,
-        ]);
+        setSlicedPageInex([nextSlicedStart, lastPageNumber + 1]);
       }}
     >
       <HiOutlineChevronDoubleRight />

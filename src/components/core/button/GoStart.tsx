@@ -23,11 +23,15 @@ const GoStart = ({
         disabled={currentPage === 1}
         onClick={() => {
           setCurrentPage(1);
-          const lastPageIndex =
-            1 + MAXIMUM_PAGE_BUTTON_COUNT > lastPageNumber
-              ? lastPageNumber + 1
-              : 1 + MAXIMUM_PAGE_BUTTON_COUNT;
-          setSlicedPageInex([1, lastPageIndex]);
+
+          let nextSlicedEnd;
+          if (MAXIMUM_PAGE_BUTTON_COUNT > lastPageNumber) {
+            nextSlicedEnd = lastPageNumber + 1;
+          } else {
+            nextSlicedEnd = 1 + MAXIMUM_PAGE_BUTTON_COUNT;
+          }
+
+          setSlicedPageInex([1, nextSlicedEnd]);
         }}
       >
         <HiOutlineChevronDoubleLeft />
