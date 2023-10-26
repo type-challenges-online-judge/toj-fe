@@ -28,7 +28,7 @@ const GoStart = ({
           if (MAXIMUM_PAGE_BUTTON_COUNT > lastPageNumber) {
             nextSlicedEnd = lastPageNumber + 1;
           } else {
-            nextSlicedEnd = 1 + MAXIMUM_PAGE_BUTTON_COUNT;
+            nextSlicedEnd = MAXIMUM_PAGE_BUTTON_COUNT + 1;
           }
 
           setSlicedPageInex([1, nextSlicedEnd]);

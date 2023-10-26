@@ -25,7 +25,6 @@ export const LogoStyle = style({
   backgroundColor: 'white',
   border: 'none',
   fontWeight: '700',
-  // fontSize: '17px',
   fontSize: '1.7rem',
   color: 'black',
   cursor: 'pointer',

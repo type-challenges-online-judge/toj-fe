@@ -16,7 +16,7 @@ const PaginationButtons = ({ totalSize, currentPage, setCurrentPage }: Paginatio
   const LAST_PAGE_NUMBER = Math.ceil(totalSize / COUNT_PER_PAGE);
   const [slicedPageInex, setSlicedPageInex] = useState([
     1,
-    LAST_PAGE_NUMBER + 1 < MAXIMUM_PAGE_BUTTON_COUNT + 1
+    LAST_PAGE_NUMBER < MAXIMUM_PAGE_BUTTON_COUNT
       ? LAST_PAGE_NUMBER + 1
       : MAXIMUM_PAGE_BUTTON_COUNT + 1,
   ]);
