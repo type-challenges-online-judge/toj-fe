@@ -41,7 +41,6 @@ const Status = () => {
     resultType,
     problemId,
     snsId,
-    currentPage,
   });
 
   const totalSize = submitSize?.data?.data;
