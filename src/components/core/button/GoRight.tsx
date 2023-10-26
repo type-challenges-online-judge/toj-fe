@@ -28,7 +28,9 @@ const GoRight = ({
           const to = nextPage + MAXIMUM_PAGE_BUTTON_COUNT;
 
           // (from=5) 5,6,7,8 (to=9)  ->  (from=9) 9,10 (to=13) (lastPageNumber=10)
+          //                                              [9,    11]
           if (to >= lastPageNumber + 1) setSlicedPageInex([from, lastPageNumber + 1]);
+
           if (to < lastPageNumber) setSlicedPageInex([from, to]);
         }
       }}

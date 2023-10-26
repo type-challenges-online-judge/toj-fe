@@ -4,6 +4,8 @@ import { ButtonsStyle, PaginationButtonsWrapperStyle } from './PaginationButtons
 import GoLeft from './GoLeft';
 import GoRight from './GoRight';
 import { LuMoreHorizontal } from 'react-icons/lu';
+import GoStart from './GoStart';
+import GoEnd from './GoEnd';
 
 interface PaginationButtonsProps {
   totalSize: number;
@@ -21,6 +23,12 @@ const PaginationButtons = ({ totalSize, currentPage, setCurrentPage }: Paginatio
 
   return (
     <div className={PaginationButtonsWrapperStyle}>
+      <GoStart
+        currentPage={currentPage}
+        lastPageNumber={LAST_PAGE_NUMBER}
+        setCurrentPage={setCurrentPage}
+        setSlicedPageInex={setSlicedPageInex}
+      />
       <GoLeft
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
@@ -47,6 +55,12 @@ const PaginationButtons = ({ totalSize, currentPage, setCurrentPage }: Paginatio
         })}
       {slicedPageInex[1] !== LAST_PAGE_NUMBER + 1 && <LuMoreHorizontal />}
       <GoRight
+        lastPageNumber={LAST_PAGE_NUMBER}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        setSlicedPageInex={setSlicedPageInex}
+      />
+      <GoEnd
         lastPageNumber={LAST_PAGE_NUMBER}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
