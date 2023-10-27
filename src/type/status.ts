@@ -19,7 +19,7 @@ export interface SubmitProps {
   snsId?: number;
   size?: number;
   resultType: SubmitResultsType;
-  currentPage: number;
+  currentPage?: number;
 }
 
 export interface SubmitItemProps {
