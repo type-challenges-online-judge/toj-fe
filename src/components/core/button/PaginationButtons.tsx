@@ -1,11 +1,23 @@
-import { COUNT_PER_PAGE, MAXIMUM_PAGE_BUTTON_COUNT } from '@/config/const';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
+// styles
 import { ButtonsStyle, PaginationButtonsWrapperStyle } from './PaginationButtons.css';
+
+// const
+import { COUNT_PER_PAGE } from '@/config/const';
+
+// components
 import GoLeft from './GoLeft';
 import GoRight from './GoRight';
-import { LuMoreHorizontal } from 'react-icons/lu';
 import GoStart from './GoStart';
 import GoEnd from './GoEnd';
+
+// icon
+import { LuMoreHorizontal } from 'react-icons/lu';
+
+// util
+import { getLastPageSlicedIndexAtFirst } from '@/util/status';
 
 interface PaginationButtonsProps {
   totalSize: number;
@@ -13,13 +25,20 @@ interface PaginationButtonsProps {
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 }
 const PaginationButtons = ({ totalSize, currentPage, setCurrentPage }: PaginationButtonsProps) => {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
+  const snsId = Number(queryParams.get('sns_id'));
   const LAST_PAGE_NUMBER = Math.ceil(totalSize / COUNT_PER_PAGE);
   const [slicedPageInex, setSlicedPageInex] = useState([
     1,
-    LAST_PAGE_NUMBER < MAXIMUM_PAGE_BUTTON_COUNT
-      ? LAST_PAGE_NUMBER + 1
-      : MAXIMUM_PAGE_BUTTON_COUNT + 1,
+    getLastPageSlicedIndexAtFirst(LAST_PAGE_NUMBER),
   ]);
+
+  useEffect(() => {
+    setSlicedPageInex([1, getLastPageSlicedIndexAtFirst(LAST_PAGE_NUMBER)]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [snsId]);
 
   return (
     <div className={PaginationButtonsWrapperStyle}>
