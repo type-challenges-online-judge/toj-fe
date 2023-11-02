@@ -49,6 +49,7 @@ const Status = () => {
   useEffect(() => {
     submitSizeRefetch();
     submitListRefetch();
+    setCurrentPage(1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [snsId]);
 
