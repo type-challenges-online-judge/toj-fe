@@ -32,6 +32,13 @@ const RouterInfo: RouterInfoType[] = [
     isMenu: false,
   },
   {
+    path: `${PAGE_URL.User}`,
+    element: <Switch.User />,
+    withAuthorization: false,
+    label: '사용자 페이지',
+    isMenu: true,
+  },
+  {
     // 쿼리스트링 사용 페이지
     path: `${PAGE_URL.Problem}/:problemId`,
     element: <Switch.ProblemPage />,
