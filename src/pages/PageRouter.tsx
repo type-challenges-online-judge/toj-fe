@@ -34,9 +34,9 @@ const RouterInfo: RouterInfoType[] = [
   {
     path: `${PAGE_URL.User}`,
     element: <Switch.User />,
-    withAuthorization: false,
+    withAuthorization: true,
     label: '사용자 페이지',
-    isMenu: true,
+    isMenu: false,
   },
   {
     // 쿼리스트링 사용 페이지
