@@ -2,7 +2,6 @@ import { style } from '@vanilla-extract/css';
 
 export const NavbarStyle = style({
   display: 'flex',
-  justifyContent: 'flex-start',
   alignItems: 'center',
 
   '@media': {
@@ -28,4 +27,10 @@ export const LogoStyle = style({
   fontSize: '1.7rem',
   color: 'black',
   cursor: 'pointer',
+});
+
+export const AuthFuncButtonStyle = style({
+  display: 'flex',
+  margin: '0 0 0 auto',
+  gap: '20px',
 });
