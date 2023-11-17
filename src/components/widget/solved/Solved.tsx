@@ -1,13 +1,23 @@
 import React from 'react';
-import { useGetSolvedProblemList } from '@/hooks/queries/user';
-import { useUserInfo } from '@/stores/useUserInfoStore';
-import { GetSolvedListType } from '@/type/user';
-import { SolvedBadgeStyle } from './Solved.css';
-import { BadgeButton } from '@/components';
 import { useNavigate } from 'react-router-dom';
+import { SingleBadgeStyle, SolvedBadgeStyle, SolvedButtonStyle } from './Solved.css';
+
+// hook
+import { useGetSolvedProblemList } from '@/hooks/queries/user';
+
+// store
+import { useUserInfo } from '@/stores/useUserInfoStore';
+
+// types
+import { GetSolvedListType } from '@/type/user';
+import { Level } from '@/type/problem';
+
+// component
+import { BadgeButton } from '@/components';
+
+// configs
 import { PAGE_URL } from '@/config/path';
 import { LEVEL_SEORE } from '@/config/const';
-import { Level } from '@/type/problem';
 
 const Solved = () => {
   const userInfo = useUserInfo();
@@ -21,20 +31,21 @@ const Solved = () => {
   });
 
   return (
-    <div>
-      <div className={SolvedBadgeStyle}>
+    <div className={SolvedBadgeStyle}>
+      <ul className={SolvedButtonStyle}>
         {solvedIdList.map((solvedInfo, index) => {
           return (
-            <BadgeButton
-              key={index}
-              solvedInfo={solvedInfo}
-              _onClick={() => {
-                navigate(`/${PAGE_URL.Problem}/${solvedInfo.id}`);
-              }}
-            />
+            <li key={index} className={SingleBadgeStyle}>
+              <BadgeButton
+                solvedInfo={solvedInfo}
+                _onClick={() => {
+                  navigate(`/${PAGE_URL.Problem}/${solvedInfo.id}`);
+                }}
+              />
+            </li>
           );
         })}
-      </div>
+      </ul>
     </div>
   );
 };
