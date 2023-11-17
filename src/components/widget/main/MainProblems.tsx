@@ -55,6 +55,12 @@ const MainProblems = () => {
         });
       }
 
+      for (const difficulty in sortedProblems) {
+        sortedProblems[difficulty as Level].sort((a: ProblemType, b: ProblemType) => {
+          return a.number - b.number;
+        });
+      }
+
       setProblems(sortedProblems);
     }
   }, [unsortedProblems]);
