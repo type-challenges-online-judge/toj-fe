@@ -1,12 +1,17 @@
-import { Badge } from '@/svgs';
-import { Level } from '@/type/problem';
 import React, { useState } from 'react';
+
+// styles
 import {
   BadgeButtonStyle,
   BadgeDiscriptionStyle,
   BadgeDiscriptionVisibleStyle,
-  DiscriptionStyle,
 } from './BadgeButton.css';
+
+// svg
+import { Badge } from '@/svgs';
+
+// types
+import { Level } from '@/type/problem';
 import { SolvedItemType } from '@/type/user';
 
 interface BadgeButtonProps {

@@ -1,8 +1,6 @@
 import React from 'react';
-import useGetHighestScore from '@/hooks/useGetHighestScore';
-import { useUserInfo } from '@/stores/useUserInfoStore';
-import { Badge } from '@/svgs';
-import { Level } from '@/type/problem';
+
+// styles
 import {
   ProfileBadgeStyle,
   ProfileImgStyle,
@@ -10,6 +8,18 @@ import {
   UserNameStyle,
   UserProfileWrapperStyle,
 } from './UserProfile.css';
+
+// hoook
+import useGetHighestScore from '@/hooks/useGetHighestScore';
+
+// store
+import { useUserInfo } from '@/stores/useUserInfoStore';
+
+// svg
+import { Badge } from '@/svgs';
+
+// type
+import { Level } from '@/type/problem';
 
 const UserProfile = () => {
   const userInfo = useUserInfo();
