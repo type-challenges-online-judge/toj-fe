@@ -19,4 +19,11 @@ export { default as ProblemMenus } from './problemmenus/ProblemMenus';
 export { default as Login } from './login/Login';
 export { default as LoginProcess } from './login/LoginProcess';
 
+// probleminfo
 export * from './probleminfo';
+
+// solved
+export { default as Solved } from './solved/Solved';
+
+// userprofile
+export * from './userprofile';

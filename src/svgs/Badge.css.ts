@@ -8,6 +8,7 @@ export const ProblemDiffStyle = {
   extreme: style({ fill: '#AC258C' }),
 };
 
-export const BadgeStyle = style({
-  width: '25px',
-});
+export const BadgeStyle = {
+  solvedList: style({ width: '25px' }),
+  profile: style({ width: '40px' }),
+};

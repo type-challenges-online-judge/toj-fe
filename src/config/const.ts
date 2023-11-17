@@ -6,3 +6,11 @@ export const GIT_HUB_LOGIN_URL = `https://github.com/login/oauth/authorize?clien
 
 export const COUNT_PER_PAGE = 8;
 export const MAXIMUM_PAGE_BUTTON_COUNT = 4;
+
+export const LEVEL_SEORE = {
+  warm: 0,
+  easy: 1,
+  medium: 2,
+  hard: 3,
+  extreme: 4,
+};

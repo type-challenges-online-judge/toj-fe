@@ -4,9 +4,10 @@ import { Level } from '@/type/problem';
 
 interface BadgeProps {
   diff: Level;
+  usage: 'solvedList' | 'profile';
 }
 
-const Badge = ({ diff }: BadgeProps) => {
+const Badge = ({ diff, usage }: BadgeProps) => {
   const badgeStr = {
     warm: 'W',
     easy: 'E',
@@ -15,10 +16,8 @@ const Badge = ({ diff }: BadgeProps) => {
     extreme: 'E',
   };
 
-  console.log(diff); // easy
-
   return (
-    <div className={BadgeStyle}>
+    <div className={BadgeStyle[usage]}>
       <svg
         id="레이어_1"
         data-name="레이어 1"
