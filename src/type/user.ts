@@ -24,3 +24,4 @@ export interface GetSolvedListType {
     },
   ];
 }
+export type SolvedItemType = GetSolvedListType['data'][number];

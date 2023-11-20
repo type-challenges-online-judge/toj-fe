@@ -6,3 +6,4 @@ export * from './submit';
 export * from './status';
 export * from './login';
 export * from './loginprocess';
+export * from './user';

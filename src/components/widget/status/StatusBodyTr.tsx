@@ -139,7 +139,7 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
         className={TrStyle}
       >
         <td className={TdStyle}>{newItem.id}</td>
-        <td className={TdStyle}>{newItem.user.snsId}</td>
+        <td className={TdStyle}>{newItem.user.name}</td>
         <td className={TdStyle}>{newItem.problem.id}</td>
         <td className={TdStyle}>
           {useFormatScore(newItem.correct_score, checkCorrect?.data.data.judgeStatus)}

@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
 
 import { problemApi } from '@/apis/problem';
 
@@ -14,7 +14,10 @@ export const useGetProblems = <T, K = any>(options?: K) => {
   });
 };
 
-export const useGetProblemDetail = <T, K = any>(problemId: number | null, options?: K) => {
+export const useGetProblemDetail = <T, K = any>(
+  problemId: number | null,
+  options?: K,
+): UseQueryResult<T> => {
   return useQuery<T>({
     queryKey: ['problemDetail', { problemId }],
     queryFn: async (): Promise<T> => {

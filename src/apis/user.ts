@@ -13,7 +13,7 @@ export const userApi = {
   },
   getSolvedProblemList: async <T>(
     snsId: number,
-    minify: boolean,
+    minify?: boolean,
   ): Promise<AxiosResponse<T> | undefined> => {
     try {
       const apiResponse = await API.get<T>(`/api/user/solved`, {
