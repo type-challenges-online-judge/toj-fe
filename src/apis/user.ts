@@ -8,7 +8,7 @@ export const userApi = {
       const apiResponse = await API.get<T>(`/api/user/info`);
       return apiResponse;
     } catch (e) {
-      if (e instanceof AxiosError) console.error(e.message);
+      if (e instanceof AxiosError) throw e;
     }
   },
   getSolvedProblemList: async <T>(

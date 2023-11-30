@@ -42,8 +42,6 @@ const CommonLayout = ({ isMenu }: CommonLayoutProps) => {
   const { data: { data: problemDetailData = null } = {} } =
     useGetProblemDetail<GetProblemDetailType>(currentProblemId);
 
-  console.log(currentProblemId);
-
   return (
     <div className={CommonLayoutStyle}>
       {problemDetailData !== null && isMenu && <ProblemMenus problemDetail={problemDetailData} />}
