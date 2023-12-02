@@ -5,7 +5,7 @@ import { Outlet, useLocation, useParams } from 'react-router-dom';
 import { ProblemMenus } from '@/components/widget';
 
 // util
-import { checkURL } from '@/util/problem';
+import { checkRemoveLocalStorageURL, checkWriteLocalStorageURL } from '@/util/problem';
 import { useGetProblemDetail } from '@/hooks/queries/problem';
 import { GetProblemDetailType } from '@/type/problem';
 import { CommonLayoutStyle } from './CommonLayout.css';
@@ -21,14 +21,19 @@ const CommonLayout = ({ isMenu }: CommonLayoutProps) => {
 
   useEffect(() => {
     const decideProblemId = () => {
-      if (!checkURL(location.pathname)) {
-        const problemIdFromLocalStorage = Number(JSON.parse(localStorage.getItem('problemId')!));
-        setCurrentProblemId(problemIdFromLocalStorage);
-      }
-
-      if (checkURL(location.pathname)) {
+      // "problem/", "submit/" URL에서는, 선택한 문제ID를 로컬스토리지에 저장
+      if (problemId !== undefined) {
         localStorage.setItem('problemId', JSON.stringify(problemId));
         setCurrentProblemId(Number(problemId));
+      }
+
+      // 제출하기,제출현황 URL에서는 새로고침에 대비해서 로컬스토리지의 문제ID를 가져와서 사용
+      if (
+        !checkRemoveLocalStorageURL(location.pathname) &&
+        !checkWriteLocalStorageURL(location.pathname)
+      ) {
+        const problemIdFromLocalStorage = Number(JSON.parse(localStorage.getItem('problemId')!));
+        setCurrentProblemId(problemIdFromLocalStorage);
       }
     };
     decideProblemId();
@@ -36,6 +41,9 @@ const CommonLayout = ({ isMenu }: CommonLayoutProps) => {
 
   const { data: { data: problemDetailData = null } = {} } =
     useGetProblemDetail<GetProblemDetailType>(currentProblemId);
+
+  console.log(currentProblemId);
+
   return (
     <div className={CommonLayoutStyle}>
       {problemDetailData !== null && isMenu && <ProblemMenus problemDetail={problemDetailData} />}

@@ -1,8 +1,14 @@
 import { GetProblemDetailType } from '@/type/problem';
 
 // "problem/", "submit/"" URL 판별
-export const checkURL = (pathname: string) => {
+export const checkWriteLocalStorageURL = (pathname: string) => {
   const pattern = /^\/(problem|submit)\/\d+/;
+  return pattern.test(pathname);
+};
+
+// 메인 페이지,로그인,내정보 페이지 URL 판별
+export const checkRemoveLocalStorageURL = (pathname: string) => {
+  const pattern = /^\/$|^\/login$|^\/user(\?sns_id=\d+)?$/;
   return pattern.test(pathname);
 };
 
