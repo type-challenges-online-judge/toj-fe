@@ -1,13 +1,13 @@
 import React from 'react';
-import { Solved, UserProfile } from '@/components';
+import { Chart, Solved, UserProfile } from '@/components';
+import { UserWrapperStyle } from './User.css';
 
 const User = () => {
   return (
-    <div>
-      <div>
-        <UserProfile />
-      </div>
+    <div className={UserWrapperStyle}>
+      <UserProfile />
       <Solved />
+      {/* <Chart /> */}
     </div>
   );
 };

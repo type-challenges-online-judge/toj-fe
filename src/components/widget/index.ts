@@ -27,3 +27,6 @@ export { default as Solved } from './solved/Solved';
 
 // userprofile
 export * from './userprofile';
+
+// chart
+export * from './chart';

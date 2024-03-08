@@ -5,6 +5,7 @@ export const BadgeButtonStyle = style({
   border: 'none',
   cursor: 'pointer',
   position: 'relative',
+  padding: '0',
 });
 export const BadgeDiscriptionVisibleStyle = style({
   position: 'absolute',

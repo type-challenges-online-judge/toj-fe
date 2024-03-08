@@ -4,7 +4,11 @@ import { API } from './instance';
 
 // API
 export const problemApi = {
-  getProblems: async <T>(): Promise<AxiosResponse<T>> => await API.get<T>('/api/problem'),
+  getProblems: async <T>(): Promise<AxiosResponse<T>> => {
+    const result = await API.get<T>('/api/problem');
+    console.log(result);
+    return result;
+  },
   getProblemDetail: async <T>(id: number): Promise<AxiosResponse<T>> => {
     return await API.get<T>(`/api/problem/detail/${id}`);
   },
