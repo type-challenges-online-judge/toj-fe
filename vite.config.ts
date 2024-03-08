@@ -15,7 +15,7 @@ export default defineConfig({
         target:
           process.env.NODE_ENV === 'development'
             ? `https://port-0-toj-be-147bpb2mlma5e3oj.sel5.cloudtype.app`
-            : `https://port-0-toj-be-12fhqa2blnfvxkti.sel5.cloudtype.app`,
+            : `https://toj.lightpavilion.site`,
         changeOrigin: true,
         secure: false,
       },
