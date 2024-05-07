@@ -12,10 +12,11 @@ export default defineConfig({
     proxy: {
       // 프록시 설정
       '/api': {
-        target:
-          process.env.NODE_ENV === 'development'
-            ? `https://port-0-toj-be-147bpb2mlma5e3oj.sel5.cloudtype.app`
-            : `https://toj.lightpavilion.site`,
+        // target:
+        //   process.env.NODE_ENV === 'development'
+        //     ? `https://port-0-toj-be-147bpb2mlma5e3oj.sel5.cloudtype.app`
+        //     : `https://toj.lightpavilion.site`,
+        target: `https://toj.lightpavilion.site`,
         changeOrigin: true,
         secure: false,
       },
