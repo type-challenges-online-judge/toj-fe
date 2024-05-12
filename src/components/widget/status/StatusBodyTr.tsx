@@ -127,7 +127,8 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
     const intervalId = setInterval(() => {
       if (newItem != null) {
         if (diffDate === -1) {
-          const submitDate = new Date(newItem.createdAt);
+          const createDate = new Date(newItem.createdAt);
+          const submitDate = createDate;
           const nowDate = new Date();
 
           setDiffDate(
@@ -164,7 +165,9 @@ const StatusBodyTr = ({ item, showedCode, setShowedCode }: StatusBodyTrProps) =>
           {useFormatScore(newItem.valid_score, checkValid?.data.data.judgeStatus)}
         </td>
         <td className={TdStyle}>{useGetByte(newItem.code)}B</td>
-        <td className={TdStyle}>{useFormatSeconds(diffDate)}</td>
+        <td className={TdStyle}>
+          {useFormatSeconds(new Date(newItem.createdAt), diffDate, showedCode.has(newItem.id))}
+        </td>
       </tr>
 
       {showedCode.has(newItem.id) && (
